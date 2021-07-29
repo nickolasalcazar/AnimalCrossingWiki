@@ -19,14 +19,12 @@ const ItemCard = ({ item }) => {
         <div className='item-card' key={item[variantNmbr]['internal-id']}>            
             <img src={item[variantNmbr]['image_uri']} alt='Furniture'></img>
 
-
-            {/* Cycling through color variants with button */}
-            { (item.length !== 1) &&
+            {(item.length !== 1) &&
                 (<>
                     <div onClick={()=>handleVariantBtnClick('left')} className='variation-btn variation-btn-left'>L</div>
                     <div onClick={()=>handleVariantBtnClick('right')} className='variation-btn variation-btn-right'>R</div>
-                </>)}
-
+                </>)
+            }
 
             <p>{item[variantNmbr]['variant']}</p>
             <div className='item-label'>
