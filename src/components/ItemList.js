@@ -1,4 +1,5 @@
 import useFetchGET from "../hooks/useFetchGET";
+import ItemCard from "./ItemCard";
 
 const ItemList = () => {
     // API URL for fetching all items: http://acnhapi.com/v1/houseware/{housewareID}
@@ -15,11 +16,7 @@ const ItemList = () => {
             {isPending && <p>Loading...</p>}
             {!isPending && (
                 Object.keys(items).map(item => (
-                    // Will be turned into its own ItemCard.js component
-                    <div className='item-card' key={items[item][0]['internal-id']}>
-                        <p>{items[item][0]['name']['name-USen']}</p>
-                        <img src={items[item][0]['image_uri']} alt='Furniture'></img>
-                    </div>
+                    <ItemCard key={ items[item][0]['internal-id'] } item={ items[item] } />
                 ))
             )}
         </div>
