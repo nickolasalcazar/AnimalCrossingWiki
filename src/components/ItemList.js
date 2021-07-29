@@ -13,10 +13,10 @@ const ItemList = () => {
     const [slice, setSlice] = useState(itemsPerPage);
 
     const handleStep = (step) => {
-        if (step) {
+        if (step === 1) {
             setSlice(slice+itemsPerPage);
 
-        } else {
+        } else if (step === -1) {
             setSlice(slice-itemsPerPage);
         }
     }
