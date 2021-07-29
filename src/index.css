@@ -6,9 +6,15 @@ body {
 .item-card {
   background-color: white;
   width: 200px;
-  height: 275px;
+  height: 300px;
   text-align: center;
   float: left;
   border-color: black;
   border: 1px solid lightgray;
+}
+
+.item-label {
+  margin-left: 10px;
+  text-align: left;
+  line-height: 5px;
 }
