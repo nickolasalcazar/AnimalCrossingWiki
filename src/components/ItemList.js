@@ -5,18 +5,20 @@ const ItemList = () => {
 
     const {data: items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
-    //for (const item in items) console.log(item[0]['name']['name-USen'])
+    //console.log(Object.keys(items))
+
 
     return (
         <div className="item-list">
 
+            {error && <p>Something went wrong...</p>}
             {isPending && <p>Loading...</p>}
             {!isPending && (
-                // Loop through items here
-                <></>
-            )
-            && console.log(items)
-            }
+                Object.keys(items).map(item => (
+                    //console.log(items[item][0]['name']['name-USen'])
+                    <p key={items[item][0]['internal-id']}>{items[item][0]['name']['name-USen']}</p>
+                ))
+            )}
         </div>
     );
 }
