@@ -38,8 +38,22 @@ const ItemList = () => {
                         <ItemCard key={ items[item][0]['internal-id'] } item={ items[item] } />
                     ))
                 )}
+
+                {/* First page */}
+                <button onClick={()=>{
+                    setCurrentPage(1);
+                    setSlice(itemsPerPage);
+                }}>First page</button>
+                {/* Backward */}
                 <button onClick={()=>handleStep(-1)}>Backward</button>
+                {/* Forward */}
                 <button onClick={()=>handleStep(1)}>Forward</button>
+                {/* Last page */}
+                <button onClick={()=>{
+                    setCurrentPage(Math.ceil(Object.keys(items).length / itemsPerPage));
+                    setSlice(itemsPerPage*Math.ceil(Object.keys(items).length / itemsPerPage))
+                }}>Last page</button>
+                {/* Page number */}
                 {!isPending &&
                     <p>Page {currentPage} of {Math.ceil(Object.keys(items).length / itemsPerPage)}</p>
                 }
