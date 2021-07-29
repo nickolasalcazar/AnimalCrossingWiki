@@ -8,16 +8,17 @@ const ItemList = () => {
 
     const {data: items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
-    // Number of elements to display at a time, elements slice(0, 10)
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(30);
     const [slice, setSlice] = useState(itemsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handleStep = (step) => {
         if (step === 1) {
             setSlice(slice+itemsPerPage);
-
+            setCurrentPage(currentPage+1);
         } else if (step === -1) {
             setSlice(slice-itemsPerPage);
+            setCurrentPage(currentPage-1);
         }
     }
 
@@ -39,6 +40,9 @@ const ItemList = () => {
                 )}
                 <button onClick={()=>handleStep(-1)}>Backward</button>
                 <button onClick={()=>handleStep(1)}>Forward</button>
+                {!isPending &&
+                    <p>Page {currentPage} of {Math.ceil(Object.keys(items).length / itemsPerPage)}</p>
+                }
             </div>
         </>
     );
