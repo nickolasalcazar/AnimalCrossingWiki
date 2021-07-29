@@ -15,8 +15,11 @@ const ItemList = () => {
             {isPending && <p>Loading...</p>}
             {!isPending && (
                 Object.keys(items).map(item => (
-                    //console.log(items[item][0]['name']['name-USen'])
-                    <p key={items[item][0]['internal-id']}>{items[item][0]['name']['name-USen']}</p>
+                    // Will be turned into its own ItemCard.js component
+                    <div className='item-card' key={items[item][0]['internal-id']}>
+                        <p>{items[item][0]['name']['name-USen']}</p>
+                        <img src={items[item][0]['image_uri']} alt='Furniture'></img>
+                    </div>
                 ))
             )}
         </div>
