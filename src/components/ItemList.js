@@ -1,4 +1,5 @@
 //import { useEffect, useState } from "react";
+import { useState } from "react";
 import useFetchGET from "../hooks/useFetchGET";
 import ItemCard from "./ItemCard";
 
@@ -7,8 +8,9 @@ const ItemList = () => {
 
     const {data: items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
+    const [slice, setSlice] = useState(10); // Number of elements to display at a time
 
-    //console.log(Object.keys(items))
+    
 
     return (
         <>
