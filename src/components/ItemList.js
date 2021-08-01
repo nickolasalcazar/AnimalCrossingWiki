@@ -1,12 +1,35 @@
-//import { useEffect, useState } from "react";
-import { useState } from "react";
-import useFetchGET from "../hooks/useFetchGET";
+import { useEffect, useState } from "react";
+//import useFetchGET from "../hooks/useFetchGET";
 import ItemCard from "./ItemCard";
+//import Pagination from "./Pagination";
 
 const ItemList = () => {
     // API URL for fetching all items: http://acnhapi.com/v1/houseware/{housewareID}
+    //const {data:items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
-    const {data: items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
+    const [items, setItems] = useState([]);
+    const [isPending, setIsPending] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() =>
+        fetch('http://acnhapi.com/v1/houseware/')
+            .then(response => {
+                if (!response.ok) throw new Error('Error:', response.status, response.statusText);
+                return response.json()
+            })
+            .then(data => {
+                const items = Object.values(data).map(i=>new Object(i)); /* This WORKS! */
+                console.log('items', items);
+                console.log('items[0]', items[0]);
+                setIsPending(false);
+                setError(null);
+            })
+            .catch(e => {
+                setError(true);
+                setIsPending(false);
+                console.log(e);
+            })
+    ,[]);
 
     const [itemsPerPage, setItemsPerPage] = useState(30);
     const [slice, setSlice] = useState(itemsPerPage);
@@ -24,20 +47,20 @@ const ItemList = () => {
 
     return (
         <>
-            {/* <div className="item-filter-settings">
-                
-            </div>
-            <div className="items-per-page-settings">
-                
-            </div> */}
             <div className="item-list">
                 {error && <p>Something went wrong...</p>}
                 {isPending && <p>Loading...</p>}
                 {!isPending && (
-                    Object.keys(items).slice(slice-itemsPerPage,slice).map(item => (
-                        <ItemCard key={ items[item][0]['internal-id'] } item={ items[item] } />
+                    //Object.keys(items).slice(slice-itemsPerPage,slice).map(item => (
+                    items.slice(slice-itemsPerPage, slice).map(item => (
+                        <ItemCard key={ items[0]['internal-id'] } item={ item } />
+                        //<ItemCard key={1} item={ items[item] } />
                     ))
                 )}
+
+
+
+
 
                 {/* First page */}
                 <button onClick={()=>{
