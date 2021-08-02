@@ -4,12 +4,9 @@ import ItemCard from "./ItemCard";
 import Pagination from "./Pagination";
 
 const ItemList = () => {
-    // API URL for fetching all items: http://acnhapi.com/v1/houseware/{housewareID}
-    //const {data:items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
+    // API URL for fetching all items: http://acnhapi.com/v1/houseware/
     
     const {data: items, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
-
-
 
     const [itemsPerPage/*, setItemsPerPage*/] = useState(30);
     const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);

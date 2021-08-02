@@ -2,16 +2,16 @@
  * Renders a buttons cycling through page and page counter.
  * Take in a itemsPerPage argument
  */
-const Pagination = ({ numberOfItems, itemsPerPage, currentPage, setCurrentPage, lastItemIndex, setLastItemIndex }) => {
-    const currentPageTEST = /*Math.ceil(numberOfItems / itemsPerPage) - Math.ceil*/(lastItemIndex / itemsPerPage);
+const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemIndex }) => {
+    let currentPage = lastItemIndex / itemsPerPage;
 
     const handleStep = (step) => {
         if (step === 1) {
             setLastItemIndex(lastItemIndex+itemsPerPage);
-            setCurrentPage(currentPage+1);
+            currentPage++;
         } else if (step === -1) {
             setLastItemIndex(lastItemIndex-itemsPerPage);
-            setCurrentPage(currentPage-1);
+            currentPage--;
         }
     }
 
@@ -19,7 +19,7 @@ const Pagination = ({ numberOfItems, itemsPerPage, currentPage, setCurrentPage, 
         <>
             {/* First page */}
             <button onClick={()=>{
-                setCurrentPage(1);
+                currentPage = 1;
                 setLastItemIndex(itemsPerPage);
             }}>First page</button>
 
@@ -30,13 +30,13 @@ const Pagination = ({ numberOfItems, itemsPerPage, currentPage, setCurrentPage, 
 
             {/* Last page */}
             <button onClick={()=>{
-                setCurrentPage(Math.ceil(numberOfItems / itemsPerPage));
+                currentPage =  Math.ceil(numberOfItems / itemsPerPage);
                 setLastItemIndex(itemsPerPage*Math.ceil(numberOfItems / itemsPerPage))
             }}>Last page</button>
 
             <div>
                 {/* <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p> */}
-                <p>Page {currentPageTEST} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
+                <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
             </div>
         </>
     );
