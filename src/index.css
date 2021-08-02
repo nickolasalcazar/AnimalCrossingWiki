@@ -3,6 +3,12 @@ body {
   background-color: darkseagreen;
 }
 
+/* Item filter */
+.item-filter {
+  background-color: white;
+}
+
+/* ItemCard */
 .item-card {
   position: relative;
 

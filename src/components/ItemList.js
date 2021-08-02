@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useFetchGET from "../hooks/useFetchGET";
+import ItemFilter from "./ItemFilter";
 import ItemCard from "./ItemCard";
 import Pagination from "./Pagination";
 
@@ -13,6 +14,7 @@ const ItemList = () => {
 
     return (
         <>
+            <ItemFilter />
             <div className="item-list">
                 {error && <p>Something went wrong...</p>}
                 {isPending && <p>Loading...</p>}

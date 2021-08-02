@@ -34,8 +34,8 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
                 setLastItemIndex(itemsPerPage*Math.ceil(numberOfItems / itemsPerPage))
             }}>Last page</button>
 
+            {/* Page counter */}
             <div>
-                {/* <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p> */}
                 <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
             </div>
         </>
