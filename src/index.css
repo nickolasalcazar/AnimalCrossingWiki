@@ -6,6 +6,19 @@ body {
 /* Item filter */
 .item-filter {
   background-color: white;
+  height: 125px;
+}
+
+.theme-filter {
+  float: left;
+  width: 75px;
+  height: 40px;
+
+  text-align: center;
+}
+
+.theme-filter:hover {
+  background-color: khaki;
 }
 
 /* ItemCard */
