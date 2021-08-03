@@ -9,16 +9,16 @@ const ItemList = () => {
     
     const {data, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
-    const [items, setItems] = useState({});
+    const [items, setItems] = useState([]);
     const [itemsPerPage/*, setItemsPerPage*/] = useState(30);
     const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
     useEffect(() => {
-        if (!isPending) setItems(data);
+        //if (!isPending) setItems(data);
         // SOLUTION?:
         // Turn items into an array rather than an object, so array methods like filter and slice can be used for filtering
         // Would require fixing how items are accessed in code below. Make a new branch for this.
-        // if (!isPending) setItems(Object.values(items)); 
+        if (!isPending) setItems(Object.values(data));
     }, [data, isPending]);
 
     return (

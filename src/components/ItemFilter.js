@@ -1,3 +1,4 @@
+/*
 const themes = ["bathroom",
     "child's room",
     "concert",
@@ -25,7 +26,7 @@ const themes = ["bathroom",
     "sporty",
     "vacation",
     "work",
-    "zen-style"];
+    "zen-style"];*/
 
 let appliedFilters = {
     "pattern": null,
@@ -36,7 +37,8 @@ let appliedFilters = {
     "color": [],
     "size": null,
     "source": [],
-    "hha-concept": [],
+    "hha-concept-1": [],
+    "hha-concept-2": [],
     "hha-series": [],
     "hha-set": null,
     "isInteractive": null,
@@ -49,73 +51,103 @@ let appliedFilters = {
 
 const ItemFilter = ({items, setItems}) => {
 
-    /**
-     * Multi-filter an array of objects
-     * @param  {Array}  array  : list of elements to apply a multiple criteria filter
-     * @param  {Object} filters: Contains multiple criteria filters by the property names of the objects to filter
-     * @return {Array}
-     * https://gist.github.com/diegochavez/e9019fedefa0553ce7efc12857739322
-     */
-    const multiFilter = (/*array, filters*/) => {
-        console.log('working');
-        //let filterKeys = Object.keys(filters);
-        let filterKeys = Object.keys(appliedFilters);
+    const multiFilter = () => {
+        let filterCategories = Object.keys(appliedFilters);   // The names of filter categories
+        let filters = Object.values(appliedFilters);          // The values of the filter categories to be filtered
 
         //return array.filter((item) => filterKeys.every((key) => (filters[key].indexOf(item[key]) !== -1)));
 
-        // BUG: items cannot be filtered through like an array
-        // SOLUTION: turn items into an array. See ItemList.js comment
-        setItems(items.filter((item) => filterKeys.every((key) => (appliedFilters[key].indexOf(item[key]) !== -1))));
-        console.log('filtering');
+        console.log('filterCategory', filterCategories);
+        console.log('items', items)
+        console.log('filters', filters)
+
+        setItems(
+            // Filter in items
+            items.filter(item => {
+                // that match every filter condition.
+                filterCategories.every(filterCategory => {
+                    // If filter condition is unspecified (null, undefined, empty array), skip
+                    //if (!filters[filterCategory]) { return true }
+
+                    //console.log(`item[0][${filterCategory}]`, item[0][filterCategory], `     |     appliedFilters[${filterCategory}]`, appliedFilters[filterCategory])
+
+                    // Does not work for more than one filter applied at a time to a filterCategory
+                    if (item[0][filterCategory] === null || item[0][filterCategory] === []) {
+                        console.log(`KEEP ${item[0][filterCategory]} == null or empty array`)
+                        return true;
+                    } else if (item[0][filterCategory] != appliedFilters[filterCategory]) {
+                        // Else if filter condition matches item property
+                        // Filter in the item
+                        console.log(`REMOVE ${item[0][filterCategory]} != ${appliedFilters[filterCategory]}`)
+                        return false;
+                    } else {
+                        console.log(`KEEP ${item[0][filterCategory]} == ${appliedFilters[filterCategory]}`)
+                        return true;
+                    }
+                })
+
+            })
+        ); // end setItems
+        
+        console.log('filtered items', items)
     }
 
-    // Toggle adding filter values to the appliedFilters array
+    // Toggles adding filter values to the appliedFilters array
     const toggleFilterBtn = (e) => {
+        console.log('_______________ toggleFilterBtn() __________________')
         const classList = e.target.classList;
-        const filter = e.target.value;
+        const filter = e.target.dataset.theme;
+        console.log('filter', filter)
 
+        // Add theme filter
         if (classList.contains('theme-filter')) {
             // If the filter is already added
-            if (appliedFilters['hha-concept'].includes(filter)) {
+            if (appliedFilters['hha-concept-1'].includes(filter)) {
                 // then remove it from appliedFilters
-                appliedFilters['hha-concept'].splice(appliedFilters['hha-concept'].indexOf(filter), 1)
+                appliedFilters['hha-concept-1'].splice(appliedFilters['hha-concept-1'].indexOf(filter), 1)
+                appliedFilters['hha-concept-2'].splice(appliedFilters['hha-concept-2'].indexOf(filter), 1)
             }
             // else add the filter to appliedFilters
-            else appliedFilters['hha-concept'].push(filter);
+            else {
+                appliedFilters['hha-concept-1'].push(filter)
+                appliedFilters['hha-concept-2'].push(filter)
+                //console.log('Added to appliedFilters:', appliedFilters['hha-concept']);
+            }
         }
+        console.log('_______________ _________________ __________________')
         multiFilter();
     }
 
     return (
         <div className='item-filter'>
             <h3>Themes</h3>
-            <div className='theme-filter' value="bathroom" onClick={(e)=>toggleFilterBtn(e)}>Bathroom</div>
-            <div className='theme-filter' value="child's room">Child's room</div>
-            <div className='theme-filter' value="concert">Concert</div>
-            <div className='theme-filter' value="den">Den</div>
-            <div className='theme-filter' value="expensive">Expensive</div>
-            <div className='theme-filter' value="facility">Facility</div>
-            <div className='theme-filter' value="fancy">Fancy</div>
-            <div className='theme-filter' value="fitness">Fitness</div>
-            <div className='theme-filter' value="folk art">Folk Art</div>
-            <div className='theme-filter' value="freezing cold">Freezing Cold</div>
-            <div className='theme-filter' value="garage">Garage</div>
-            <div className='theme-filter' value="garden">Garden</div>
-            <div className='theme-filter' value="horror">Horror</div>
-            <div className='theme-filter' value="kitchen">Kitchen</div>
-            <div className='theme-filter' value="living room">Living Room</div>
-            <div className='theme-filter' value="music">Music</div>
-            <div className='theme-filter' value="ocean">Ocean</div>
-            <div className='theme-filter' value="office">Office</div>
-            <div className='theme-filter' value="outdoors">Outdoors</div>
-            <div className='theme-filter' value="outdoorsy">Outdoorsy</div>
-            <div className='theme-filter' value="party">Party</div>
-            <div className='theme-filter' value="school">School</div>
-            <div className='theme-filter' value="shop">Shop</div>
-            <div className='theme-filter' value="sporty">Sporty</div>
-            <div className='theme-filter' value="vacation">Vacation</div>
-            <div className='theme-filter' value="work">Work</div>
-            <div className='theme-filter' value="zen-style">Zen-style</div>
+            <div className='theme-filter' data-theme="bathroom" onClick={(e)=>toggleFilterBtn(e)}>Bathroom</div>
+            <div className='theme-filter' data-theme="child's room" onClick={(e)=>toggleFilterBtn(e)}>Child's room</div>
+            <div className='theme-filter' data-theme="concert" onClick={(e)=>toggleFilterBtn(e)}>Concert</div>
+            <div className='theme-filter' data-theme="den" onClick={(e)=>toggleFilterBtn(e)}>Den</div>
+            <div className='theme-filter' data-theme="expensive" onClick={(e)=>toggleFilterBtn(e)}>Expensive</div>
+            <div className='theme-filter' data-theme="facility" onClick={(e)=>toggleFilterBtn(e)}>Facility</div>
+            <div className='theme-filter' data-theme="fancy" onClick={(e)=>toggleFilterBtn(e)}>Fancy</div>
+            <div className='theme-filter' data-theme="fitness" onClick={(e)=>toggleFilterBtn(e)}>Fitness</div>
+            <div className='theme-filter' data-theme="folk art" onClick={(e)=>toggleFilterBtn(e)}>Folk Art</div>
+            <div className='theme-filter' data-theme="freezing cold" onClick={(e)=>toggleFilterBtn(e)}>Freezing Cold</div>
+            <div className='theme-filter' data-theme="garage" onClick={(e)=>toggleFilterBtn(e)}>Garage</div>
+            <div className='theme-filter' data-theme="garden" onClick={(e)=>toggleFilterBtn(e)}>Garden</div>
+            <div className='theme-filter' data-theme="horror" onClick={(e)=>toggleFilterBtn(e)}>Horror</div>
+            <div className='theme-filter' data-theme="kitchen" onClick={(e)=>toggleFilterBtn(e)}>Kitchen</div>
+            <div className='theme-filter' data-theme="living room" onClick={(e)=>toggleFilterBtn(e)}>Living Room</div>
+            <div className='theme-filter' data-theme="music" onClick={(e)=>toggleFilterBtn(e)}>Music</div>
+            <div className='theme-filter' data-theme="ocean" onClick={(e)=>toggleFilterBtn(e)}>Ocean</div>
+            <div className='theme-filter' data-theme="office" onClick={(e)=>toggleFilterBtn(e)}>Office</div>
+            <div className='theme-filter' data-theme="outdoors" onClick={(e)=>toggleFilterBtn(e)}>Outdoors</div>
+            <div className='theme-filter' data-theme="outdoorsy" onClick={(e)=>toggleFilterBtn(e)}>Outdoorsy</div>
+            <div className='theme-filter' data-theme="party" onClick={(e)=>toggleFilterBtn(e)}>Party</div>
+            <div className='theme-filter' data-theme="school" onClick={(e)=>toggleFilterBtn(e)}>School</div>
+            <div className='theme-filter' data-theme="shop" onClick={(e)=>toggleFilterBtn(e)}>Shop</div>
+            <div className='theme-filter' data-theme="sporty" onClick={(e)=>toggleFilterBtn(e)}>Sporty</div>
+            <div className='theme-filter' data-theme="vacation" onClick={(e)=>toggleFilterBtn(e)}>Vacation</div>
+            <div className='theme-filter' data-theme="work" onClick={(e)=>toggleFilterBtn(e)}>Work</div>
+            <div className='theme-filter' data-theme="zen-style" onClick={(e)=>toggleFilterBtn(e)}>Zen-style</div>
         </div>
     );
 }
