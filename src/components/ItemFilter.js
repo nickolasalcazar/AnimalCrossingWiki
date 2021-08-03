@@ -29,20 +29,23 @@ const themes = ["bathroom",
     "zen-style"];*/
 
 let appliedFilters = {
+    //"applied": [],
+
     "pattern": null,
     "pattern-title": null,
     "isDIY": null,
     "canCustomizeBody": null,
     "canCustomizePattern": null,
-    "color": [],
+    "color-1": [],            // more than 1 color
+    "color-2": [],
     "size": null,
     "source": [],
-    "hha-concept-1": [],
+    "hha-concept-1": [],    // more than 1 hha concept
     "hha-concept-2": [],
     "hha-series": [],
     "hha-set": null,
     "isInteractive": null,
-    "tag": [],
+    "tag": [],              // multiple tags?
     "isOutdoor": null,
     "speaker-type": null,
     "lighting-type": null,
@@ -52,53 +55,26 @@ let appliedFilters = {
 const ItemFilter = ({items, setItems}) => {
 
     const multiFilter = () => {
-        let filterCategories = Object.keys(appliedFilters);   // The names of filter categories
-        let filters = Object.values(appliedFilters);          // The values of the filter categories to be filtered
+        let unfilteredItems = items;
 
-        //return array.filter((item) => filterKeys.every((key) => (filters[key].indexOf(item[key]) !== -1)));
+        console.log('appliedFilters', appliedFilters)
+        console.log('unfilteredItems', unfilteredItems);
 
-        console.log('filterCategory', filterCategories);
-        console.log('items', items)
-        console.log('filters', filters)
+        unfilteredItems.map(item => {
+            for (let appliedFilter in appliedFilters) {
+                console.log(`item[0]${appliedFilter}`, item[0][appliedFilter])
+                //console.log(appliedFilter)
+            }
+        })
 
-        setItems(
-            // Filter in items
-            items.filter(item => {
-                // that match every filter condition.
-                filterCategories.every(filterCategory => {
-                    // If filter condition is unspecified (null, undefined, empty array), skip
-                    //if (!filters[filterCategory]) { return true }
-
-                    //console.log(`item[0][${filterCategory}]`, item[0][filterCategory], `     |     appliedFilters[${filterCategory}]`, appliedFilters[filterCategory])
-
-                    // Does not work for more than one filter applied at a time to a filterCategory
-                    if (item[0][filterCategory] === null || item[0][filterCategory] === []) {
-                        console.log(`KEEP ${item[0][filterCategory]} == null or empty array`)
-                        return true;
-                    } else if (item[0][filterCategory] != appliedFilters[filterCategory]) {
-                        // Else if filter condition matches item property
-                        // Filter in the item
-                        console.log(`REMOVE ${item[0][filterCategory]} != ${appliedFilters[filterCategory]}`)
-                        return false;
-                    } else {
-                        console.log(`KEEP ${item[0][filterCategory]} == ${appliedFilters[filterCategory]}`)
-                        return true;
-                    }
-                })
-
-            })
-        ); // end setItems
         
-        console.log('filtered items', items)
+
     }
 
     // Toggles adding filter values to the appliedFilters array
     const toggleFilterBtn = (e) => {
-        console.log('_______________ toggleFilterBtn() __________________')
         const classList = e.target.classList;
         const filter = e.target.dataset.theme;
-        console.log('filter', filter)
-
         // Add theme filter
         if (classList.contains('theme-filter')) {
             // If the filter is already added
@@ -111,10 +87,8 @@ const ItemFilter = ({items, setItems}) => {
             else {
                 appliedFilters['hha-concept-1'].push(filter)
                 appliedFilters['hha-concept-2'].push(filter)
-                //console.log('Added to appliedFilters:', appliedFilters['hha-concept']);
             }
         }
-        console.log('_______________ _________________ __________________')
         multiFilter();
     }
 
