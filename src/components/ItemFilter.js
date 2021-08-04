@@ -53,22 +53,44 @@ let appliedFilters = {
 }
 
 const ItemFilter = ({items, setItems}) => {
+    let filteredItems = items;
 
     const multiFilter = () => {
+        console.log(items);
+
+        // For every item removed, another items stay due the index being messed up in the loop
+
+        // For each item in items
+        //for (let item of filteredItems) {
+        
+        for (let i = 0; i < filteredItems.length; i++) {
+            let item = items[i]
+
+            console.log(item)
+            // If the first variant !isOutdoor, remove it
+            //if (!item[0]['isOutdoor']) {
+            if (!item[0]['isOutdoor']) {
+                console.log("\t", item[0]['name']['name-USen'], 'is indoor')
+                console.log('\t', 'items.indexOf(item)', items.indexOf(item))
+                filteredItems.splice(filteredItems.indexOf(item), 1)
+                i--;
+                setItems(filteredItems);
+            } else { console.log("\t", item[0]['name']['name-USen'], 'is outdoor') }
+        }
+        
+        /*
         let unfilteredItems = items;
 
         console.log('appliedFilters', appliedFilters)
         console.log('unfilteredItems', unfilteredItems);
 
         unfilteredItems.map(item => {
+            console.log(`${item[0]['name']['name-USen']}_______________________________________________________`)
             for (let appliedFilter in appliedFilters) {
-                console.log(`item[0]${appliedFilter}`, item[0][appliedFilter])
-                //console.log(appliedFilter)
+                //console.log(`\t`, appliedFilter, `:`, item[0][appliedFilter], '?=', appliedFilters[appliedFilter], '=>', (item[0][appliedFilter] == appliedFilters[appliedFilter]));
+                console.log(`\t`, appliedFilter, `:`, item[0][appliedFilter], '?=', appliedFilters[appliedFilter], '=>', (item[0][appliedFilter] == appliedFilters[appliedFilter]));
             }
-        })
-
-        
-
+        })*/
     }
 
     // Toggles adding filter values to the appliedFilters array
