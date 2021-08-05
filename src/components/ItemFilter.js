@@ -66,7 +66,9 @@ const ItemFilter = ({items, setItems}) => {
                 console.log('\t', 'items.indexOf(item)', items.indexOf(item))
                 filteredItems.splice(filteredItems.indexOf(item), 1)
                 i--;
+
                 setItems(filteredItems);
+                
             } else { console.log("\t", item[0]['name']['name-USen'], 'is outdoor') }
         }
     }
@@ -89,12 +91,18 @@ const ItemFilter = ({items, setItems}) => {
                 appliedFilters['hha-concept-2'].push(filter)
             }
         }
-        multiFilter();
+        multiFilter(); // for testing
+        // grab "first page button", make it fire to reload the page
+        console.log('grabbed', document.getElementsByClassName('cycle-page-button')[2]);
+        document.getElementsByClassName('cycle-page-button')[2].click();
+        document.getElementsByClassName('cycle-page-button')[0].click();
+        //document.getElementsByClassName('cycle-page-button')[2].dispatchEvent(new Event('click'));
     }
 
     return (
         <div className='item-filter'>
             <h3>Themes</h3>
+            {/* Map these rather than hard code them! */}
             <div className='theme-filter' data-theme="bathroom" onClick={(e)=>toggleFilterBtn(e)}>Bathroom</div>
             <div className='theme-filter' data-theme="child's room" onClick={(e)=>toggleFilterBtn(e)}>Child's room</div>
             <div className='theme-filter' data-theme="concert" onClick={(e)=>toggleFilterBtn(e)}>Concert</div>

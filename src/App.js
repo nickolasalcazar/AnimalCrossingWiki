@@ -1,9 +1,11 @@
-import ItemList from "./components/ItemList";
+//import ItemList from "./components/ItemList";
+import ItemCatalog from "./components/ItemCatalog";
 
 function App() {
   return (
     <div className="App">
-      <ItemList />
+      {/* <ItemList /> */}
+      <ItemCatalog />
     </div>
   );
 }
