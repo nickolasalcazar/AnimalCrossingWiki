@@ -14,10 +14,7 @@ const ItemList = () => {
     const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
     useEffect(() => {
-        //if (!isPending) setItems(data);
-        // SOLUTION?:
-        // Turn items into an array rather than an object, so array methods like filter and slice can be used for filtering
-        // Would require fixing how items are accessed in code below. Make a new branch for this.
+        console.log('ItemList.js -- useEffect')
         if (!isPending) setItems(Object.values(data));
     }, [data, isPending]);
 
@@ -29,17 +26,17 @@ const ItemList = () => {
                 {isPending && <p>Loading...</p>}
 
                 {!isPending && <ItemFilter items={items} setItems={setItems}/>}
-                {!isPending && (
-                    Object.values(items).slice(lastItemIndex-itemsPerPage, lastItemIndex).map(item => (
+                {!isPending && 
+                    (Object.values(items).slice(lastItemIndex-itemsPerPage, lastItemIndex).map(item => (
                         <ItemCard key={ item[0]['internal-id'] } item={ item }/>
-                    ))
-                )}
+                    )))
+                }
                 
                 {!isPending &&
                     <Pagination
                         numberOfItems={Object.keys(items).length}
                         itemsPerPage={itemsPerPage}
-                        lastItemIndex={lastItemIndex}
+                        lastItemIndex={lastItemIndex} // Potential bug: total number of items is less than lastItemIndex after filter applied
                         setLastItemIndex={setLastItemIndex}
                     />
                 }
