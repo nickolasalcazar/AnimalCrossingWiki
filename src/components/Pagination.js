@@ -16,13 +16,11 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
     }
 
     return (
-        <>
+        <div className='pagination'>
             {/* First page */}
             <button className='cycle-page-button' onClick={()=>{
                 currentPage = 1;
-                // Add 0.001 is part of jank solution to get component to rerender when filter is applied.
-                // Page does not reload if itemsPerPage remains the same
-                setLastItemIndex(itemsPerPage + 0.001);
+                setLastItemIndex(itemsPerPage);
             }}>First page</button>
 
             {/* Backward */}
@@ -38,9 +36,9 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
 
             {/* Page counter */}
             <div>
-                <p>Page {Math.floor(currentPage)} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
+                <p>Page {Math.floor(currentPage)} ({currentPage}) of {Math.ceil(numberOfItems / itemsPerPage)}</p>
             </div>
-        </>
+        </div>
     );
 }
 export default Pagination;

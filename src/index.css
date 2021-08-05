@@ -3,25 +3,25 @@ body {
   background-color: darkseagreen;
 }
 
-/* Item filter */
+/* Item filter *************************************/
 .item-filter {
   background-color: white;
-  height: 125px;
+  height: 375px;
 }
 
-.theme-filter {
+.filter-option {
   float: left;
-  width: 75px;
+  width: 150px;
   height: 40px;
 
   text-align: center;
 }
 
-.theme-filter:hover {
+.filter-option:hover {
   background-color: khaki;
 }
 
-/* ItemCard */
+/* ItemCard ***************************************/
 .item-card {
   position: relative;
 
@@ -61,3 +61,7 @@ body {
   top: 50px;
 }
 /******************************/
+
+.pagination {
+  clear: both;
+}
