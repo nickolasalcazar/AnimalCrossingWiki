@@ -70,18 +70,26 @@ const ItemFilter = ({items, setItems}) => {
             for (let i = 0; i < filteredItems.length; i++) {
                 let item = items[i]
                 let deleteFlag = false;
-
                 // For every boolFilter
                 boolFilters.forEach(filter => {
-                    // If filter is null or true
+                    if (filter === "speaker-type" || filter === "lighting-type") {
+                        if (item[0][filter] !== null) return;
+                        else {
+                            console.log("\t", item[0]['name']['name-USen'], 'removed')
+                            filteredItems.splice(filteredItems.indexOf(item), 1);
+                            deleteFlag = true;
+                        }
+                    }
+                    // If filter is null or true, keep
                     if (item[0][filter] === null || item[0][filter] === true) {
+                        
                         //console.log("\t", item[0]['name']['name-USen'], 'kept')
                     } else if (item[0][filter] === false) {
-                        // Else if filter is false
-                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                        
+                        // Else if filter is false, remove
+                        console.log("\t", item[0]['name']['name-USen'], 'removed')
                         filteredItems.splice(filteredItems.indexOf(item), 1);
                         deleteFlag = true;
-                        
                     }
                 })
                 if (deleteFlag) i--;
