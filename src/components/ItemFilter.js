@@ -69,7 +69,7 @@ const ItemFilter = ({items, setItems}) => {
         //console.log('appliedFilters["hha-concept-1"]', appliedFilters["hha-concept-1"])
 
         // If any hha-concept filter is applied
-        if (Object.values(appliedFilters["hha-concepts"])) {
+        if (Object.values(appliedFilters["hha-concepts"]).length !== 0) {
             console.log('An HHA Concept filter has been applied!')
             hhaFilters = appliedFilters["hha-concepts"];
         }
@@ -104,8 +104,8 @@ const ItemFilter = ({items, setItems}) => {
                 }
                 
                 // If hhaFilter is not empty
-                if (hhaFilters !== []) {
-                    //console.log('hhaFilters', hhaFilters);
+                if (hhaFilters.length !== 0) { //!== []) {
+                    console.log('hhaFilters', hhaFilters);
                     // If handling 1 hha concept
                     if (hhaFilters.length === 1) {
                         if (item[0]["hha-concept-1"] === hhaFilters[0] || 
@@ -128,24 +128,6 @@ const ItemFilter = ({items, setItems}) => {
                             //console.log("\t", item[0]['name']['name-USen'], 'removed')
                         }
                     }
-                    /*
-                    hhaFilters.forEach(hhaFilter => {
-
-                        if (// concept 1 matches
-                            item[0]["hha-concept-1"] === hhaFilter || 
-                            // or concept 2 matches
-                            (item[0]["hha-concept-2"] === hhaFilter && item[0]["hha-concept-2"] !== null)
-                            
-                            
-                            
-                            ) {
-                            //else console.log("\t", item[0]['name']['name-USen'], 'kept')
-                        } else {
-                            filteredItems.splice(filteredItems.indexOf(item), 1);
-                            deleteFlag = true;
-                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
-                        }
-                    })*/
                 }
                 if (deleteFlag) i--;
             }
@@ -169,18 +151,11 @@ const ItemFilter = ({items, setItems}) => {
             if (appliedFilters['hha-concepts'].includes(filter)) {
                 // then remove it from appliedFilters
                 appliedFilters['hha-concepts'].splice(appliedFilters['hha-concepts'].indexOf(filter), 1);
-            }
-            
-            else {
+            } else {
                 // else add the filter to appliedFilters
                 appliedFilters['hha-concepts'].push(filter);
-
-                console.log("BEFORE appliedFilters['hha-concepts']", appliedFilters['hha-concepts'])
-                // If more than two hha-concepts are already applied, remove the oldest
-                if (appliedFilters['hha-concepts'].length === 3) {
+                if (appliedFilters['hha-concepts'].length === 3)
                     appliedFilters['hha-concepts'].splice(0, 1);
-                    console.log("AFTER appliedFilters['hha-concepts']", appliedFilters['hha-concepts'])
-                } //else appliedFilters['hha-concepts'].push(filter);
             }
         } else {
             // else if filter is boolean
