@@ -59,35 +59,35 @@ const ItemFilter = ({items, setItems}) => {
     const multiFilter = () => {
         let boolFilters = null;
 
-        // If there any boolean-filter has been applied
+        // If any boolean filter is applied
         if (Object.values(appliedFilters["boolean-filters"]).includes(!null)) {
-            console.log('A boolean filter has been applied');
-            boolFilters = Object.keys(appliedFilters["boolean-filters"]).filter(key => 
-                appliedFilters["boolean-filters"][key] !== null
-            );
+            boolFilters = Object.keys(appliedFilters["boolean-filters"])
+                .filter(key => appliedFilters["boolean-filters"][key] !== null);
             console.log('boolFilters', boolFilters)
-        } else {
-            console.log('A boolean filter has NOT been applied')
         }
-    
         // For every item
-        for (let i = 0; i < filteredItems.length; i++) {
-            let item = items[i]
-            
-            // For every boolFilter
-            boolFilters.forEach(filter => {
-                // If filter is null or true
-                if (item[0][filter] === null || item[0][filter] === true) {
-                    console.log("\t", item[0]['name']['name-USen'], 'kept')
-                } else if (item[0][filter] === false) {
-                    // Else if filter is false
-                    console.log("\t", item[0]['name']['name-USen'], 'removed')
-                    filteredItems.splice(filteredItems.indexOf(item), 1);
-                    i--;
-                    setItems(filteredItems);
-                }
-            })
+        if (boolFilters !== null) {
+            for (let i = 0; i < filteredItems.length; i++) {
+                let item = items[i]
+                let deleteFlag = false;
+
+                // For every boolFilter
+                boolFilters.forEach(filter => {
+                    // If filter is null or true
+                    if (item[0][filter] === null || item[0][filter] === true) {
+                        //console.log("\t", item[0]['name']['name-USen'], 'kept')
+                    } else if (item[0][filter] === false) {
+                        // Else if filter is false
+                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                        filteredItems.splice(filteredItems.indexOf(item), 1);
+                        deleteFlag = true;
+                        
+                    }
+                })
+                if (deleteFlag) i--;
+            }
         }
+        setItems(filteredItems);
     }
 
     // Toggles adding filter values to the appliedFilters array

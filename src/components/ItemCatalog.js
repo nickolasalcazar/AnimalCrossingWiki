@@ -10,7 +10,7 @@ const ItemCatalog = () => {
     const {data, isPending, error} = useFetchGET('http://acnhapi.com/v1/houseware/');
 
     const [items, setItems] = useState([]);
-    const [itemsPerPage, setItemsPerPage] = useState(30);
+    const [itemsPerPage, /*setItemsPerPage*/] = useState(30);
     const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
     useEffect(() => {
@@ -19,20 +19,20 @@ const ItemCatalog = () => {
 
     return (
         <div className='item-catalog'>
-            <button style={{clear: "both"}} 
+            {/* <button style={{clear: "both"}} 
                 onClick={() => {
-                    
                     setItemsPerPage(itemsPerPage - 0.001);
                     console.log(itemsPerPage);
                 } }>
                     Apply Filters
-                </button>
+                </button> */}
             {error && <p>Something went wrong...</p>}
             {isPending && <p>Loading...</p>}
             { !isPending &&
                 (<>
                     <ItemFilter
-                        items={items} 
+                        //items={items} 
+                        items={Object.values(data)}
                         setItems={setItems}
                     />
                     <ItemList 

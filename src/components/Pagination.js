@@ -36,7 +36,7 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
 
             {/* Page counter */}
             <div>
-                <p>Page {Math.floor(currentPage)} ({currentPage}) of {Math.ceil(numberOfItems / itemsPerPage)}</p>
+                <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
             </div>
         </div>
     );
