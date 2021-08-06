@@ -19,13 +19,6 @@ const ItemCatalog = () => {
 
     return (
         <div className='item-catalog'>
-            {/* <button style={{clear: "both"}} 
-                onClick={() => {
-                    setItemsPerPage(itemsPerPage - 0.001);
-                    console.log(itemsPerPage);
-                } }>
-                    Apply Filters
-                </button> */}
             {error && <p>Something went wrong...</p>}
             {isPending && <p>Loading...</p>}
             { !isPending &&

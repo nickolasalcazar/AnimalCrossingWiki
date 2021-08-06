@@ -18,14 +18,14 @@ const themes = ["bathroom",
     "ocean",
     "office",
     "outdoors",
-    "outdoorsy",
+    //"outdoorsy",
     "party",
     "school",
     "shop",
     "space",
-    "sporty",
-    "vacation",
-    "work",
+    //"sporty",
+    //"vacation",
+    //"work",
     "zen-style"];
 
 let appliedFilters = {
@@ -59,82 +59,81 @@ const ItemFilter = ({items, setItems}) => {
         let boolFilters = null;
         let hhaFilters = [];
 
-        // If any boolean filter is applied
+        // If any boolean filter is applied, add the filter to boolFilters
         if (Object.values(appliedFilters["boolean-filters"]).includes(!null)) {
             boolFilters = Object.keys(appliedFilters["boolean-filters"])
                 .filter(key => appliedFilters["boolean-filters"][key] !== null);
-            console.log('boolFilters', boolFilters)
+            //console.log('boolFilters', boolFilters)
         }
         
         //console.log('appliedFilters["hha-concept-1"]', appliedFilters["hha-concept-1"])
 
-        // If any hha-concept filter is applied
+        // If any hha-concept filter is applied, add to hhaFilters
         if (Object.values(appliedFilters["hha-concepts"]).length !== 0) {
             console.log('An HHA Concept filter has been applied!')
             hhaFilters = appliedFilters["hha-concepts"];
         }
 
         // For every item
-        //if (boolFilters !== null) {
-            for (let i = 0; i < filteredItems.length; i++) {
-                let item = items[i]
-                let deleteFlag = false;
-                if (boolFilters !== null) {
-                    // For every boolFilter
-                    boolFilters.forEach(filter => {
-                        // If filtering "speaker-type" or "lighting-type"
-                        if (filter === "speaker-type" || filter === "lighting-type") {
-                            if (item[0][filter] !== null) return;
-                            else {
-                                filteredItems.splice(filteredItems.indexOf(item), 1);
-                                deleteFlag = true;
-                            }
-                        }
-                        // If filter is null or true, keep
-                        if (item[0][filter] === null || item[0][filter] === true) {
-                            
-                            //console.log("\t", item[0]['name']['name-USen'], 'kept')
-                        } else if (item[0][filter] === false) {
-                            // Else if filter is false, remove
-                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
+        for (let i = 0; i < filteredItems.length; i++) {
+            let item = items[i]
+            let deleteFlag = false;
+            if (boolFilters !== null) {
+                // For every boolFilter
+                boolFilters.forEach(filter => {
+                    // If filtering "speaker-type" or "lighting-type"
+                    if (filter === "speaker-type" || filter === "lighting-type") {
+                        if (item[0][filter] !== null) return;
+                        else {
                             filteredItems.splice(filteredItems.indexOf(item), 1);
                             deleteFlag = true;
-                        }
-                    })
-                }
-                
-                // If hhaFilter is not empty
-                if (hhaFilters.length !== 0) { //!== []) {
-                    console.log('hhaFilters', hhaFilters);
-                    // If handling 1 hha concept
-                    if (hhaFilters.length === 1) {
-                        if (item[0]["hha-concept-1"] === hhaFilters[0] || 
-                            (item[0]["hha-concept-2"] === hhaFilters[0] && item[0]["hha-concept-2"] !== null)) {
-                            //else console.log("\t", item[0]['name']['name-USen'], 'kept')
-                        } else {
-                            filteredItems.splice(filteredItems.indexOf(item), 1);
-                            deleteFlag = true;
-                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
-                        }
-                    } else {
-                        // else if handling 2 hha concepts
-                        if ((item[0]["hha-concept-1"] === hhaFilters[0] && (item[0]["hha-concept-2"] === hhaFilters[1])) ||
-                            (item[0]["hha-concept-1"] === hhaFilters[1] && (item[0]["hha-concept-2"] === hhaFilters[0]))
-                            ) {
-                            //else console.log("\t", item[0]['name']['name-USen'], 'kept')
-                        } else {
-                            filteredItems.splice(filteredItems.indexOf(item), 1);
-                            deleteFlag = true;
-                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
                         }
                     }
-                }
-                if (deleteFlag) i--;
+                    // If filter is null or true, keep
+                    if (item[0][filter] === null || item[0][filter] === true) {
+                        
+                        //console.log("\t", item[0]['name']['name-USen'], 'kept')
+                    } else if (item[0][filter] === false) {
+                        // Else if filter is false, remove
+                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                        filteredItems.splice(filteredItems.indexOf(item), 1);
+                        deleteFlag = true;
+                    }
+                })
             }
-        //}
+
+            // If hhaFilter is not empty
+            if (hhaFilters.length !== 0) { //!== []) {
+                console.log('hhaFilters', hhaFilters);
+                // If handling 1 hha concept
+                if (hhaFilters.length === 1) {
+                    if (item[0]["hha-concept-1"] === hhaFilters[0] || 
+                        (item[0]["hha-concept-2"] === hhaFilters[0] && item[0]["hha-concept-2"] !== null)) {
+                        //else console.log("\t", item[0]['name']['name-USen'], 'kept')
+                    } else {
+                        filteredItems.splice(filteredItems.indexOf(item), 1);
+                        deleteFlag = true;
+                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                    }
+                } else {
+                    // else if handling 2 hha concepts
+                    if ((item[0]["hha-concept-1"] === hhaFilters[0] && (item[0]["hha-concept-2"] === hhaFilters[1])) ||
+                        (item[0]["hha-concept-1"] === hhaFilters[1] && (item[0]["hha-concept-2"] === hhaFilters[0]))
+                        ) {
+                        //else console.log("\t", item[0]['name']['name-USen'], 'kept')
+                    } else {
+                        filteredItems.splice(filteredItems.indexOf(item), 1);
+                        deleteFlag = true;
+                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                    }
+                }
+            }
+            if (deleteFlag) i--;
+        }
 
 
         setItems(filteredItems);
+        document.getElementsByClassName('cycle-page-btn')[0].click(); // Return to first page
     }
 
     /* 
@@ -170,6 +169,21 @@ const ItemFilter = ({items, setItems}) => {
         multiFilter(); // Apply the filters
     }
 
+    /*
+     * Toggles CSS styling for all filter option buttons
+     */
+    const toggleFilterBtnDisplay = (e) => {
+        // if null, make true
+        if (e.target.classList.contains("filter-option-null"))
+            e.target.classList.replace("filter-option-null", "filter-option-true");
+        // if true, make false
+        else if (e.target.classList.contains("filter-option-true"))
+            //e.target.classList.replace("filter-option-true", "filter-option-false");
+            e.target.classList.replace("filter-option-true", "filter-option-null");
+        // if false, make null
+        //else e.target.classList.replace("filter-option-false", "filter-option-null");
+    }
+
     return (
         <div className='item-filter'>
             <h3>Filters</h3>
@@ -177,10 +191,13 @@ const ItemFilter = ({items, setItems}) => {
                 <h4 style={{clear: "both"}}>Categories</h4>
                 {Object.keys(appliedFilters["boolean-filters"]).map(booleanFilter => (
                     <div
-                        className='filter-option bool-filter'
+                        className='filter-option bool-filter filter-option-null'
                         data-filter={booleanFilter}
                         key={booleanFilter}
-                        onClick={(e)=>toggleFilterBtn(e)}
+                        onClick={(e)=>{
+                            toggleFilterBtn(e)
+                            toggleFilterBtnDisplay(e)
+                        }}
                     >
                             {booleanFilter}
                     </div>
@@ -190,10 +207,13 @@ const ItemFilter = ({items, setItems}) => {
                 <h4 style={{clear: "both"}}>Themes</h4>
                 {themes.map(theme => (
                     <div
-                        className='filter-option'
+                        className='filter-option filter-option-null'
                         data-filter={theme}
                         key={theme}
-                        onClick={(e)=>toggleFilterBtn(e)}
+                        onClick={(e)=>{
+                            toggleFilterBtn(e);
+                            toggleFilterBtnDisplay(e);
+                        }}
                     >
                             {theme.charAt(0).toUpperCase() + theme.slice(1)}
                     </div>

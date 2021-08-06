@@ -18,18 +18,18 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
     return (
         <div className='pagination'>
             {/* First page */}
-            <button className='cycle-page-button' onClick={()=>{
+            <button className='cycle-page-btn' onClick={()=>{
                 currentPage = 1;
                 setLastItemIndex(itemsPerPage);
             }}>First page</button>
 
             {/* Backward */}
-            <button className='cycle-page-button' onClick={()=>handleStep(-1)}>Backward</button>
+            <button className='cycle-page-btn' onClick={()=>handleStep(-1)}>Backward</button>
             {/* Forward */}
-            <button className='cycle-page-button' onClick={()=>handleStep(1)}>Forward</button>
+            <button className='cycle-page-btn' onClick={()=>handleStep(1)}>Forward</button>
 
             {/* Last page */}
-            <button className='cycle-page-button' onClick={()=>{
+            <button className='cycle-page-btn' onClick={()=>{
                 currentPage =  Math.ceil(numberOfItems / itemsPerPage);
                 setLastItemIndex(itemsPerPage*Math.ceil(numberOfItems / itemsPerPage))
             }}>Last page</button>

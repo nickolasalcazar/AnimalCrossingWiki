@@ -17,6 +17,10 @@ body {
   text-align: center;
 }
 
+.filter-option-null { background-color: white; }
+.filter-option-true { background-color: lightgreen; }
+.filter-option-false { background-color: lightcoral; }
+
 .filter-option:hover {
   background-color: khaki;
 }
