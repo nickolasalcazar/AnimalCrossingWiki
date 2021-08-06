@@ -47,8 +47,7 @@ let appliedFilters = {
     "color-1": [],
     "color-2": [],
     "source": [],
-    "hha-concept-1": [],
-    "hha-concept-2": [],
+    "hha-concepts": [], // only two max at a time
     "hha-series": [],
     "tag": [],
 }
@@ -67,12 +66,12 @@ const ItemFilter = ({items, setItems}) => {
             console.log('boolFilters', boolFilters)
         }
         
-        console.log('appliedFilters["hha-concept-1"]', appliedFilters["hha-concept-1"])
+        //console.log('appliedFilters["hha-concept-1"]', appliedFilters["hha-concept-1"])
 
         // If any hha-concept filter is applied
-        if (Object.values(appliedFilters["hha-concept-1"])) {
+        if (Object.values(appliedFilters["hha-concepts"])) {
             console.log('An HHA Concept filter has been applied!')
-            hhaFilters = appliedFilters["hha-concept-1"];
+            hhaFilters = appliedFilters["hha-concepts"];
         }
 
         // For every item
@@ -107,20 +106,46 @@ const ItemFilter = ({items, setItems}) => {
                 // If hhaFilter is not empty
                 if (hhaFilters !== []) {
                     //console.log('hhaFilters', hhaFilters);
-                    hhaFilters.forEach(hhaFilter => {
-                        // console.log('item', item);
-                        // console.log('item["hha-concept-1"]', item["hha-concept-1"]);
-                        // console.log('item["hha-concept-2"]', item["hha-concept-2"])
-
-                        if (item[0]["hha-concept-1"] === hhaFilter || 
-                            (item[0]["hha-concept-2"] === hhaFilter && item[0]["hha-concept-2"] !== null)) {
+                    // If handling 1 hha concept
+                    if (hhaFilters.length === 1) {
+                        if (item[0]["hha-concept-1"] === hhaFilters[0] || 
+                            (item[0]["hha-concept-2"] === hhaFilters[0] && item[0]["hha-concept-2"] !== null)) {
                             //else console.log("\t", item[0]['name']['name-USen'], 'kept')
                         } else {
                             filteredItems.splice(filteredItems.indexOf(item), 1);
                             deleteFlag = true;
-                            console.log("\t", item[0]['name']['name-USen'], 'removed')
+                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
                         }
-                    })
+                    } else {
+                        // else if handling 2 hha concepts
+                        if ((item[0]["hha-concept-1"] === hhaFilters[0] && (item[0]["hha-concept-2"] === hhaFilters[1])) ||
+                            (item[0]["hha-concept-1"] === hhaFilters[1] && (item[0]["hha-concept-2"] === hhaFilters[0]))
+                            ) {
+                            //else console.log("\t", item[0]['name']['name-USen'], 'kept')
+                        } else {
+                            filteredItems.splice(filteredItems.indexOf(item), 1);
+                            deleteFlag = true;
+                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                        }
+                    }
+                    /*
+                    hhaFilters.forEach(hhaFilter => {
+
+                        if (// concept 1 matches
+                            item[0]["hha-concept-1"] === hhaFilter || 
+                            // or concept 2 matches
+                            (item[0]["hha-concept-2"] === hhaFilter && item[0]["hha-concept-2"] !== null)
+                            
+                            
+                            
+                            ) {
+                            //else console.log("\t", item[0]['name']['name-USen'], 'kept')
+                        } else {
+                            filteredItems.splice(filteredItems.indexOf(item), 1);
+                            deleteFlag = true;
+                            //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                        }
+                    })*/
                 }
                 if (deleteFlag) i--;
             }
@@ -141,15 +166,21 @@ const ItemFilter = ({items, setItems}) => {
         if (!classList.contains('bool-filter')) {
             console.log('handling non-Boolean filter')
             // If the filter is already added
-            if (appliedFilters['hha-concept-1'].includes(filter)) {
+            if (appliedFilters['hha-concepts'].includes(filter)) {
                 // then remove it from appliedFilters
-                appliedFilters['hha-concept-1'].splice(appliedFilters['hha-concept-1'].indexOf(filter), 1);
-                appliedFilters['hha-concept-2'].splice(appliedFilters['hha-concept-2'].indexOf(filter), 1);
+                appliedFilters['hha-concepts'].splice(appliedFilters['hha-concepts'].indexOf(filter), 1);
             }
-            // else add the filter to appliedFilters
+            
             else {
-                appliedFilters['hha-concept-1'].push(filter);
-                appliedFilters['hha-concept-2'].push(filter);
+                // else add the filter to appliedFilters
+                appliedFilters['hha-concepts'].push(filter);
+
+                console.log("BEFORE appliedFilters['hha-concepts']", appliedFilters['hha-concepts'])
+                // If more than two hha-concepts are already applied, remove the oldest
+                if (appliedFilters['hha-concepts'].length === 3) {
+                    appliedFilters['hha-concepts'].splice(0, 1);
+                    console.log("AFTER appliedFilters['hha-concepts']", appliedFilters['hha-concepts'])
+                } //else appliedFilters['hha-concepts'].push(filter);
             }
         } else {
             // else if filter is boolean
