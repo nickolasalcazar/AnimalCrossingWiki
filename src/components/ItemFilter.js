@@ -56,17 +56,19 @@ const ItemFilter = ({items, setItems}) => {
     let filteredItems = items;
 
     const multiFilter = () => {
-        let boolFilters = null;
-        let hhaFilters = [];
+        let boolFilters = null; // List of Boolean filters that are applied
+        let hhaFilters = []; // List of HHA filters that are applied
+                             // hhaFilter = [{"bathroom": true}, {"expensive": false}]
 
-        // If any boolean filter is applied, add the filter to boolFilters
-        if (Object.values(appliedFilters["boolean-filters"]).includes(!null)) {
+        // If there exists any boolean filter that is true or false (and therefore not null)
+        if (Object.values(appliedFilters["boolean-filters"]).includes(true) ||
+            Object.values(appliedFilters["boolean-filters"]).includes(false)
+            ) {
+            // add the boolean filter to boolFilters
             boolFilters = Object.keys(appliedFilters["boolean-filters"])
                 .filter(key => appliedFilters["boolean-filters"][key] !== null);
-            //console.log('boolFilters', boolFilters)
+            console.log('boolFilters', boolFilters)
         }
-        
-        //console.log('appliedFilters["hha-concept-1"]', appliedFilters["hha-concept-1"])
 
         // If any hha-concept filter is applied, add to hhaFilters
         if (Object.values(appliedFilters["hha-concepts"]).length !== 0) {
@@ -81,21 +83,33 @@ const ItemFilter = ({items, setItems}) => {
             if (boolFilters !== null) {
                 // For every boolFilter
                 boolFilters.forEach(filter => {
+                    let boolFilterValue = appliedFilters["boolean-filters"][filter];
                     // If filtering "speaker-type" or "lighting-type"
                     if (filter === "speaker-type" || filter === "lighting-type") {
-                        if (item[0][filter] !== null) return;
-                        else {
-                            filteredItems.splice(filteredItems.indexOf(item), 1);
-                            deleteFlag = true;
+                        // If filtering for true
+                        if (appliedFilters["boolean-filters"][filter] === true) {
+                            // If filter value is not null AND not false, keep item
+                            if ((item[0][filter] !== null) /*&& (item[0][filter] !== false)*/) return;
+                            else {
+                                filteredItems.splice(filteredItems.indexOf(item), 1);
+                                deleteFlag = true;
+                                //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                            }
+                        } else {
+                            // Else filtering for false
+                            // If the filter value is null, keep item
+                            if (item[0][filter] === null /*&& (item[0][filter] !== true)*/) return;
+                            else {
+                                filteredItems.splice(filteredItems.indexOf(item), 1);
+                                deleteFlag = true;
+                                //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                            }
                         }
-                    }
+                    // If filtering any other category
                     // If filter is null or true, keep
-                    if (item[0][filter] === null || item[0][filter] === true) {
-                        
-                        //console.log("\t", item[0]['name']['name-USen'], 'kept')
-                    } else if (item[0][filter] === false) {
-                        // Else if filter is false, remove
-                        //console.log("\t", item[0]['name']['name-USen'], 'removed')
+                    } else if (item[0][filter] === null || item[0][filter] === boolFilterValue) {
+                        return;
+                    } else if (item[0][filter] !== boolFilterValue) {
                         filteredItems.splice(filteredItems.indexOf(item), 1);
                         deleteFlag = true;
                     }
@@ -159,10 +173,10 @@ const ItemFilter = ({items, setItems}) => {
         } else {
             // else if filter is boolean
             console.log('handling Boolean filter')
+            let boolFilter = appliedFilters["boolean-filters"][filter]
 
-            // Implement later: filter with the values null -> true -> false -> null
-            if (appliedFilters["boolean-filters"][filter] === null) appliedFilters["boolean-filters"][filter] = true;
-            //else if (appliedFilters["boolean-filters"][filter]) appliedFilters["boolean-filters"][filter] = false;
+            if (boolFilter === null) appliedFilters["boolean-filters"][filter] = true;
+            else if (boolFilter) appliedFilters["boolean-filters"][filter] = false;
             else appliedFilters["boolean-filters"][filter] = null;
         }
         console.log("appliedFilters", appliedFilters)
@@ -178,10 +192,9 @@ const ItemFilter = ({items, setItems}) => {
             e.target.classList.replace("filter-option-null", "filter-option-true");
         // if true, make false
         else if (e.target.classList.contains("filter-option-true"))
-            //e.target.classList.replace("filter-option-true", "filter-option-false");
-            e.target.classList.replace("filter-option-true", "filter-option-null");
+            e.target.classList.replace("filter-option-true", "filter-option-false");
         // if false, make null
-        //else e.target.classList.replace("filter-option-false", "filter-option-null");
+        else e.target.classList.replace("filter-option-false", "filter-option-null");
     }
 
     return (
@@ -194,12 +207,9 @@ const ItemFilter = ({items, setItems}) => {
                         className='filter-option bool-filter filter-option-null'
                         data-filter={booleanFilter}
                         key={booleanFilter}
-                        onClick={(e)=>{
-                            toggleFilterBtn(e)
-                            toggleFilterBtnDisplay(e)
-                        }}
+                        onClick={(e)=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
                     >
-                            {booleanFilter}
+                        {booleanFilter}
                     </div>
                 ))}
             </div>
@@ -210,12 +220,9 @@ const ItemFilter = ({items, setItems}) => {
                         className='filter-option filter-option-null'
                         data-filter={theme}
                         key={theme}
-                        onClick={(e)=>{
-                            toggleFilterBtn(e);
-                            toggleFilterBtnDisplay(e);
-                        }}
+                        onClick={(e)=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
                     >
-                            {theme.charAt(0).toUpperCase() + theme.slice(1)}
+                        {theme.charAt(0).toUpperCase() + theme.slice(1)}
                     </div>
                 ))}
             </div>
