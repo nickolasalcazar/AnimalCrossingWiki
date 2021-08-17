@@ -119,33 +119,49 @@ const ItemFilter = ({items, setItems}) => {
                 })
             }
 
-            item[0]["remove"] = false;
+            item[0]["remove"] = null;
 
             //console.log('hhaFilters', hhaFilters);
-            hhaFilters.forEach(hhaFilter => {
+            hhaFilters.forEach(hhaFilter => {  
                 let hhaFilterName = Object.keys(hhaFilter)[0];
-                let hhaFilterValue = appliedFilters["hha-concepts"][0][hhaFilterName];
+                console.log('\tappliedFilters["hha-concepts"]', appliedFilters["hha-concepts"])
+                console.log('\tappliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName]', 
+                            appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName])
+
+                //let hhaFilterValue = appliedFilters["hha-concepts"][0][hhaFilterName];
+                let hhaFilterValue = appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName];
+
                 //console.log('hhaFilterValue', hhaFilterValue);
 
                 //console.log(item[0]["hha-concept-1"], "  ", hhaFilterName);
+                //console.log('hhaFilterName', Object.keys(hhaFilter)[0], 'hhaFilterValue', hhaFilterValue)
+
+                let alreadyRemoved = item[0]["remove"];
 
                 // Matches
+                // If item is already removed, do not add
                 if (hhaFilterValue === true) {
-                    if (item[0]["hha-concept-1"] === hhaFilterName ||
-                        item[0]["hha-concept-2"] === hhaFilterName) {
+                    if ((item[0]["hha-concept-1"] === hhaFilterName ||
+                        item[0]["hha-concept-2"] === hhaFilterName) && !alreadyRemoved) {
+                            // Keep
                             console.log("\t", item[0]['name']['name-USen'], 'kept')
                             item[0]["remove"] = false;
                             return;
                     } else {
-                        item[0]["remove"] = true; // Remove
+                        // Remove
+                        item[0]["remove"] = true;
+                        console.log("\t", item[0]['name']['name-USen'], 'removed');
                     }
                 } else {
                     // Inverted matches
                     if (item[0]["hha-concept-1"] === hhaFilterName ||
                         item[0]["hha-concept-2"] === hhaFilterName) 
                     {     
-                        item[0]["remove"] = true; // Remove
-                    } else {
+                        // Remove
+                        item[0]["remove"] = true;
+                        console.log("\t", item[0]['name']['name-USen'], 'removed');
+                    } else if (!alreadyRemoved) {
+                        // Keep
                         console.log("\t", item[0]['name']['name-USen'], 'kept')
                         item[0]["remove"] = false;
                         return;
@@ -155,7 +171,7 @@ const ItemFilter = ({items, setItems}) => {
             if (item[0]["remove"] === true) {
                 filteredItems.splice(filteredItems.indexOf(item), 1);
                 deleteFlag = true;
-                console.log("\t", item[0]['name']['name-USen'], 'removed');
+                //console.log("\t", item[0]['name']['name-USen'], 'removed');
             }
             if (deleteFlag) i--;
         }
