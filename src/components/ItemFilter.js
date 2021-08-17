@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 // Possibly move this array to its own file along with other related content
 const themes = ["bathroom",
     "child's room",
@@ -56,13 +58,14 @@ let appliedFilters = {
 
 const ItemFilter = ({items, setItems}) => {
     let filteredItems = items;
+    const [query, setQuery] = useState('');
 
     const multiFilter = () => {
         let boolFilters = null; // List of Boolean filters that are applied
         let hhaFilters = [];    // List of HHA filters that are applied
                                 // hhaFilter = [{"bathroom": true}, {"expensive": false}]
 
-        console.log('multiFilter: appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"]);
+        //console.log('multiFilter: appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"]);
 
         // If there exists any boolean filter that is true or false (and therefore not null)
         if (Object.values(appliedFilters["boolean-filters"]).includes(true) ||
@@ -71,7 +74,6 @@ const ItemFilter = ({items, setItems}) => {
             // add the boolean filter to boolFilters
             boolFilters = Object.keys(appliedFilters["boolean-filters"])
                 .filter(key => appliedFilters["boolean-filters"][key] !== null);
-            console.log('boolFilters', boolFilters)
         }
 
         // If any hha-concept filter is applied, add to hhaFilters
@@ -79,14 +81,23 @@ const ItemFilter = ({items, setItems}) => {
             hhaFilters = appliedFilters["hha-concepts"];
         }
 
-        //console.log('appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"])
-
         // For every item
         for (let i = 0; i < filteredItems.length; i++) {
             let item = items[i]
             let deleteFlag = false;
-            if (boolFilters !== null) {
-                // For every boolFilter
+            item[0]["remove"] = null;
+
+            // Query String
+            // Remove any items that do not match the query string
+
+            if (query !== '') {
+                if (item[0]["name"]["name-USen"].slice(0, query.length) !== query)
+                    item[0]["remove"] = true;
+            }
+            
+            
+            // Boolean Filters
+            if (boolFilters !== null) {    
                 boolFilters.forEach(filter => {
                     let boolFilterValue = appliedFilters["boolean-filters"][filter];
                     // If filtering "speaker-type" or "lighting-type"
@@ -119,23 +130,11 @@ const ItemFilter = ({items, setItems}) => {
                 })
             }
 
-            item[0]["remove"] = null;
-
-            //console.log('hhaFilters', hhaFilters);
+            // HHA Filters
+            //item[0]["remove"] = null;
             hhaFilters.forEach(hhaFilter => {  
                 let hhaFilterName = Object.keys(hhaFilter)[0];
-                //console.log('\tappliedFilters["hha-concepts"]', appliedFilters["hha-concepts"])
-                //console.log('\tappliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName]', 
-                //            appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName])
-
-                //let hhaFilterValue = appliedFilters["hha-concepts"][0][hhaFilterName];
                 let hhaFilterValue = appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName];
-
-                //console.log('hhaFilterValue', hhaFilterValue);
-
-                //console.log(item[0]["hha-concept-1"], "  ", hhaFilterName);
-                //console.log('hhaFilterName', Object.keys(hhaFilter)[0], 'hhaFilterValue', hhaFilterValue)
-
                 let alreadyRemoved = item[0]["remove"];
 
                 // Matches
@@ -144,13 +143,11 @@ const ItemFilter = ({items, setItems}) => {
                     if ((item[0]["hha-concept-1"] === hhaFilterName ||
                         item[0]["hha-concept-2"] === hhaFilterName) && !alreadyRemoved) {
                             // Keep
-                            console.log("\t", item[0]['name']['name-USen'], 'kept')
                             item[0]["remove"] = false;
                             return;
                     } else {
                         // Remove
                         item[0]["remove"] = true;
-                        console.log("\t", item[0]['name']['name-USen'], 'removed');
                     }
                 } else {
                     // Inverted matches
@@ -159,10 +156,8 @@ const ItemFilter = ({items, setItems}) => {
                     {     
                         // Remove
                         item[0]["remove"] = true;
-                        console.log("\t", item[0]['name']['name-USen'], 'removed');
                     } else if (!alreadyRemoved) {
                         // Keep
-                        console.log("\t", item[0]['name']['name-USen'], 'kept')
                         item[0]["remove"] = false;
                         return;
                     }
@@ -171,11 +166,9 @@ const ItemFilter = ({items, setItems}) => {
             if (item[0]["remove"] === true) {
                 filteredItems.splice(filteredItems.indexOf(item), 1);
                 deleteFlag = true;
-                //console.log("\t", item[0]['name']['name-USen'], 'removed');
             }
-            if (deleteFlag) i--;
+            if (deleteFlag) i--; // Could probably just remove the delete flag entirely, since item[0]["remove"] serves this purpose
         }
-
 
         setItems(filteredItems);
         document.getElementsByClassName('cycle-page-btn')[0].click(); // Return to first page
@@ -190,54 +183,35 @@ const ItemFilter = ({items, setItems}) => {
         const filter = e.target.dataset.filter;
         // If filter is not a boolean
         if (!classList.contains('bool-filter')) {
-            // console.log('Handling HHA filter _____________________________________________________');
-
             // Find the filter
             let targetFilter = null;
 
             // Check to see if the target filter already exists in applied filters
             appliedFilters['hha-concepts'].forEach(hhaConcept => {
-                //if (Object.keys(hhaConcept)[0] === filter) { // Bug is here, at [0]
-                //console.log('hhaConcept', hhaConcept);
-                //console.log('hhaConcept[filter]', hhaConcept[filter], '| filter', filter);
-                //if (hhaConcept[filter]) {
                 if (typeof hhaConcept[filter] !== 'undefined') {
-                    console.log('hhaConcept[filter]', hhaConcept[filter], '| filter', filter);
-
-                    console.log('Filter found: ', hhaConcept)
                     targetFilter = hhaConcept;
                     return;
-                } else console.log('Filter', filter, 'not found, was looking for ', hhaConcept[filter])
-
+                }
             })
 
             if (targetFilter !== null) {
                 // If filter is true
                 if (targetFilter[filter] === true)
                     {
-                        console.log('Inverting filter', filter)
                         targetFilter[filter] = false;
                     }
                 else
                     // Else if filter is false, remove filter altogether
                     {
-                        console.log('Removing filter', filter)
                         appliedFilters['hha-concepts']
-                            //.splice(appliedFilters['hha-concepts'].indexOf(filter), 1);
                             .splice(appliedFilters['hha-concepts'].indexOf(targetFilter), 1);
                     }
             } else {
                 // Else add the filter with the value true
-                console.log('Adding filter', filter);
-                
                 let filterInfo = {};
                 filterInfo[filter] = true;
-                
-                appliedFilters['hha-concepts'].push(filterInfo);
 
-                // and remove oldest filter to maintain size of 2
-                //if (appliedFilters['hha-concepts'].length === 3)
-                //    appliedFilters['hha-concepts'].splice(0, 1);
+                appliedFilters['hha-concepts'].push(filterInfo);
             }
 
 
@@ -267,9 +241,23 @@ const ItemFilter = ({items, setItems}) => {
         else e.target.classList.replace("filter-option-false", "filter-option-null");
     }
 
+    useEffect(() => {
+        const timeOutId = setTimeout(() => multiFilter(), 500);
+        //console.log('Query:', query)
+        return () => clearTimeout(timeOutId);
+        // eslint-disable-next-line
+    }, [query]);
+
     return (
         <div className='item-filter'>
             <h3>Filters</h3>
+            <div className='item-search-field'>
+                    <input type='search' onChange={(e) => {
+                        setQuery(e.target.value.toLocaleLowerCase())
+                        //console.log('Query:', query);
+                        //multiFilter();
+                    }}></input>
+            </div>
             <div>
                 <h4 style={{clear: "both"}}>Categories</h4>
                 {Object.keys(appliedFilters["boolean-filters"]).map(booleanFilter => (
