@@ -56,45 +56,44 @@ let appliedFilters = {
     "tag": [],
 }
 
+/**
+ * Contains all the buttons for applying filters to items displayed in ItemCatalog.js, in addition to the logic
+ * associated with applying those filters.
+ * @param   {Array}     items State variable of array containing all Animal Crossing furniture items.
+ * @param   {setItems}  setItems useState hook for setting the value of items.
+ */
 const ItemFilter = ({items, setItems}) => {
     let filteredItems = items;
     const [query, setQuery] = useState('');
 
+    /**
+     * Modifies the state variable items by applying the filters specified in appliedFitlers.
+     * @returns {void}
+     */
     const multiFilter = () => {
-        let boolFilters = null; // List of Boolean filters that are applied
-        let hhaFilters = [];    // List of HHA filters that are applied
-                                // hhaFilter = [{"bathroom": true}, {"expensive": false}]
+        let boolFilters = null; // List of Boolean filters to beapplied
+        let hhaFilters = [];    // List of HHA filters to be applied
 
-        //console.log('multiFilter: appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"]);
+        console.log('multiFilter: appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"]);
 
-        // If there exists any boolean filter that is true or false (and therefore not null)
-        if (Object.values(appliedFilters["boolean-filters"]).includes(true) ||
-            Object.values(appliedFilters["boolean-filters"]).includes(false)
-            ) {
-            // add the boolean filter to boolFilters
-            boolFilters = Object.keys(appliedFilters["boolean-filters"])
-                .filter(key => appliedFilters["boolean-filters"][key] !== null);
-        }
+        // Store non-null boolean filters in boolFilters
+        boolFilters = Object.keys(appliedFilters["boolean-filters"])
+            .filter(key => appliedFilters["boolean-filters"][key] !== null);
 
-        // If any hha-concept filter is applied, add to hhaFilters
-        if (Object.keys(appliedFilters["hha-concepts"]).length !== 0) {
-            hhaFilters = appliedFilters["hha-concepts"];
-        }
+        // Store HHA filter in hhaFilters
+        hhaFilters = appliedFilters["hha-concepts"];
 
-        // For every item
+        // For every item, apply the filters specified in: query, booleanFilters, hhaFilters
         for (let i = 0; i < filteredItems.length; i++) {
             let item = items[i]
             let deleteFlag = false;
             item[0]["remove"] = null;
 
-            // Query String
             // Remove any items that do not match the query string
-
             if (query !== '') {
                 if (item[0]["name"]["name-USen"].slice(0, query.length) !== query)
                     item[0]["remove"] = true;
             }
-            
             
             // Boolean Filters
             if (boolFilters !== null) {    
@@ -104,127 +103,132 @@ const ItemFilter = ({items, setItems}) => {
                     if (filter === "speaker-type" || filter === "lighting-type") {
                         // If filtering for true
                         if (appliedFilters["boolean-filters"][filter] === true) {
-                            // If filter value is not null AND not false, keep item
-                            if ((item[0][filter] !== null)) return;
-                            else {
-                                filteredItems.splice(filteredItems.indexOf(item), 1);
-                                deleteFlag = true;
-                            }
+                            // If filter value is null, remove item
+                            if (item[0][filter] === null) {
+                                console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                               filteredItems.splice(filteredItems.indexOf(item), 1);
+                               deleteFlag = true;
+                            } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                         } else {
                             // Else filtering for false
-                            // If the filter value is null, keep item
-                            if (item[0][filter] === null) return;
-                            else {
+                            // If the filter value is not null, remove item
+                            if (item[0][filter] !== null) {
+                                console.log('Removing item: ', item[0]["name"]["name-USen"]);
                                 filteredItems.splice(filteredItems.indexOf(item), 1);
                                 deleteFlag = true;
-                            }
+                            } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                         }
                     // If filtering any other category
                     // If filter is null or true, keep
                     } else if (item[0][filter] === null || item[0][filter] === boolFilterValue) {
+                        console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                         return;
                     } else if (item[0][filter] !== boolFilterValue) {
+                        console.log('Removing item: ', item[0]["name"]["name-USen"]);
                         filteredItems.splice(filteredItems.indexOf(item), 1);
                         deleteFlag = true;
                     }
                 })
             }
 
-            // HHA Filters
-            //item[0]["remove"] = null;
-            hhaFilters.forEach(hhaFilter => {  
-                let hhaFilterName = Object.keys(hhaFilter)[0];
-                let hhaFilterValue = appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName];
-                let alreadyRemoved = item[0]["remove"];
+            // If not already removed
+            if (!deleteFlag) {
+                // Applued HHA filters
+                hhaFilters.forEach(hhaFilter => { 
+                    let hhaFilterName = Object.keys(hhaFilter)[0];
+                    let hhaFilterValue = appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName];
+                    let alreadyRemoved = item[0]["remove"];
 
-                // Matches
-                // If item is already removed, do not add
-                if (hhaFilterValue === true) {
-                    if ((item[0]["hha-concept-1"] === hhaFilterName ||
-                        item[0]["hha-concept-2"] === hhaFilterName) && !alreadyRemoved) {
+                    // Matches
+                    // If item is already removed, do not add
+                    if (hhaFilterValue === true) {
+                        if ((item[0]["hha-concept-1"] === hhaFilterName ||
+                            item[0]["hha-concept-2"] === hhaFilterName) && !alreadyRemoved) {
+                                // Keep
+                                item[0]["remove"] = false;
+                                console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                                return;
+                        } else {
+                            // Remove
+                            item[0]["remove"] = true;
+                            console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                        }
+                    } else {
+                        // Inverted matches
+                        if (item[0]["hha-concept-1"] === hhaFilterName ||
+                            item[0]["hha-concept-2"] === hhaFilterName) 
+                        {     
+                            // Remove
+                            item[0]["remove"] = true;
+                            console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                        } else if (!alreadyRemoved) {
                             // Keep
+                            console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                             item[0]["remove"] = false;
                             return;
-                    } else {
-                        // Remove
-                        item[0]["remove"] = true;
+                        }
                     }
-                } else {
-                    // Inverted matches
-                    if (item[0]["hha-concept-1"] === hhaFilterName ||
-                        item[0]["hha-concept-2"] === hhaFilterName) 
-                    {     
-                        // Remove
-                        item[0]["remove"] = true;
-                    } else if (!alreadyRemoved) {
-                        // Keep
-                        item[0]["remove"] = false;
-                        return;
-                    }
-                }
-            });
+                });
+            }
+            
             if (item[0]["remove"] === true) {
                 filteredItems.splice(filteredItems.indexOf(item), 1);
                 deleteFlag = true;
             }
-            if (deleteFlag) i--; // Could probably just remove the delete flag entirely, since item[0]["remove"] serves this purpose
+            if (deleteFlag) i--;
         }
-
+        console.log('\n________________________________________________________________________\n')
         setItems(filteredItems);
         document.getElementsByClassName('cycle-page-btn')[0].click(); // Return to first page
     }
 
-    /* 
-     * Toggles adding filter values to the appliedFilters array
-     * Accepted an event object e from elements with the className of 'filter-option'
+    /**
+     * Toggles adding filter values to the appliedFilters array. Calls the multiFilter function 
+     * to apply the filters specified in the appliedFilters array.
+     * @param   {Event} e Event object containing target element from which filter is applied.
+     * @returns {void}
      */
     const toggleFilterBtn = (e) => {
         const classList = e.target.classList;
         const filter = e.target.dataset.filter;
-        // If filter is not a boolean
+        // If filter is not a boolean filter
         if (!classList.contains('bool-filter')) {
-            // Find the filter
             let targetFilter = null;
 
-            // Check to see if the target filter already exists in applied filters
+            // Check to see if targetFilter already exists in appliedFilters array
             appliedFilters['hha-concepts'].forEach(hhaConcept => {
                 if (typeof hhaConcept[filter] !== 'undefined') {
                     targetFilter = hhaConcept;
-                    return;
+                    return; // If found, assign hhaConcept to targerFilter and return
                 }
-            })
+            });
 
+            // If targetFilter is not null, then it already has been applied once before
             if (targetFilter !== null) {
-                // If filter is true
-                if (targetFilter[filter] === true)
-                    {
-                        targetFilter[filter] = false;
-                    }
-                else
-                    // Else if filter is false, remove filter altogether
-                    {
-                        appliedFilters['hha-concepts']
-                            .splice(appliedFilters['hha-concepts'].indexOf(targetFilter), 1);
-                    }
+                // If targetFilter is true, then set to false
+                if (targetFilter[filter] === true) {
+                    targetFilter[filter] = false;
+                } else {
+                    // Else if targetFilter is false, then remove targetFilter appliedFilters
+                    appliedFilters['hha-concepts']
+                        .splice(appliedFilters['hha-concepts'].indexOf(targetFilter), 1);
+                }
             } else {
-                // Else add the filter with the value true
+                // Else add the filter to the appliedFilters array, set to true
                 let filterInfo = {};
                 filterInfo[filter] = true;
-
                 appliedFilters['hha-concepts'].push(filterInfo);
             }
-
-
-
-        } else {
-            // else if filter is boolean
+        } else { // Else if filter is boolean
             let boolFilter = appliedFilters["boolean-filters"][filter];
+            // If filter is null, add to appliedFilters as true
             if (boolFilter === null) appliedFilters["boolean-filters"][filter] = true;
+            // Else if filter is true, set to false
             else if (boolFilter) appliedFilters["boolean-filters"][filter] = false;
+            // Else if filter is false, set to null
             else appliedFilters["boolean-filters"][filter] = null;
         }
-        console.log("appliedFilters['hha-concepts']", appliedFilters['hha-concepts'])
-        multiFilter(); // Apply the filters
+        multiFilter(); // Apply the filters by calling multiFilter
     }
 
     /*
@@ -252,11 +256,7 @@ const ItemFilter = ({items, setItems}) => {
         <div className='item-filter'>
             <h3>Filters</h3>
             <div className='item-search-field'>
-                    <input type='search' onChange={(e) => {
-                        setQuery(e.target.value.toLocaleLowerCase())
-                        //console.log('Query:', query);
-                        //multiFilter();
-                    }}></input>
+                    <input type='search' onChange={e => setQuery(e.target.value.toLocaleLowerCase())}></input>
             </div>
             <div>
                 <h4 style={{clear: "both"}}>Categories</h4>
