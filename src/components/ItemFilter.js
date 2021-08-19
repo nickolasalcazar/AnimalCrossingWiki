@@ -85,59 +85,75 @@ const ItemFilter = ({items, setItems}) => {
 
         // For every item, apply the filters specified in: query, booleanFilters, hhaFilters
         for (let i = 0; i < filteredItems.length; i++) {
+            console.log('i', i);
             let item = items[i]
             let deleteFlag = false;
-            item[0]["remove"] = null;
-
-            // Remove any items that do not match the query string
+            item[0]["remove"] = false;
+            
+            // // Remove any items that do not match the query string
             if (query !== '') {
-                if (item[0]["name"]["name-USen"].slice(0, query.length) !== query)
-                    item[0]["remove"] = true;
+                if (item[0]["name"]["name-USen"].slice(0, query.length).toLowerCase() !== query) {
+                    //item[0]["remove"] = true;
+                    filteredItems.splice(filteredItems.indexOf(item), 1);
+                    i--; //
+                    console.log('Removing ', item[0]["name"]["name-USen"], ' by query');
+                    continue;
+                    //deleteFlag = true; //
+                }// else console.log('Keeping ', item[0]["name"]["name-USen"])
             }
             
-            // Boolean Filters
-            if (boolFilters !== null) {    
-                boolFilters.forEach(filter => {
-                    let boolFilterValue = appliedFilters["boolean-filters"][filter];
-                    // If filtering "speaker-type" or "lighting-type"
-                    if (filter === "speaker-type" || filter === "lighting-type") {
-                        // If filtering for true
-                        if (appliedFilters["boolean-filters"][filter] === true) {
-                            // If filter value is null, remove item
-                            if (item[0][filter] === null) {
-                                console.log('Removing item: ', item[0]["name"]["name-USen"]);
-                               filteredItems.splice(filteredItems.indexOf(item), 1);
-                               deleteFlag = true;
-                            } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
-                        } else {
-                            // Else filtering for false
-                            // If the filter value is not null, remove item
-                            if (item[0][filter] !== null) {
-                                console.log('Removing item: ', item[0]["name"]["name-USen"]);
-                                filteredItems.splice(filteredItems.indexOf(item), 1);
-                                deleteFlag = true;
-                            } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
-                        }
-                    // If filtering any other category
-                    // If filter is null or true, keep
-                    } else if (item[0][filter] === null || item[0][filter] === boolFilterValue) {
-                        console.log('Keeping item: ', item[0]["name"]["name-USen"]);
-                        return;
-                    } else if (item[0][filter] !== boolFilterValue) {
-                        console.log('Removing item: ', item[0]["name"]["name-USen"]);
-                        filteredItems.splice(filteredItems.indexOf(item), 1);
-                        deleteFlag = true;
-                    }
-                })
-            }
+            // If not already deleted
+            if (!deleteFlag) {
+                // Apply Boolean Filters
+                if (boolFilters !== null) {    
+                    boolFilters.forEach(filter => {
+                        if (deleteFlag) return;
 
+                        let boolFilterValue = appliedFilters["boolean-filters"][filter];
+                        // If filtering "speaker-type" or "lighting-type"
+                        if (filter === "speaker-type" || filter === "lighting-type") {
+                            // If filtering for true
+                            if (appliedFilters["boolean-filters"][filter] === true) {
+                                // If filter value is null, remove item
+                                if (item[0][filter] === null) {
+                                    console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                                    filteredItems.splice(filteredItems.indexOf(item), 1);
+                                    
+                                    deleteFlag = true;
+                                } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                            } else {
+                                // Else filtering for false
+                                // If the filter value is not null, remove item
+                                if (item[0][filter] !== null) {
+                                    console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                                    filteredItems.splice(filteredItems.indexOf(item), 1);
+                                    
+                                    deleteFlag = true;
+                                } else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                            }
+                        // If filtering any other category
+                        // If filter is null or true, keep
+                        } else if (item[0][filter] === null || item[0][filter] === boolFilterValue) {
+                            console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                            return;
+                        } else if (item[0][filter] !== boolFilterValue) {
+                            console.log('Removing item: ', item[0]["name"]["name-USen"]);
+                            filteredItems.splice(filteredItems.indexOf(item), 1);
+                            
+                            deleteFlag = true;
+                        }
+                    })
+                }
+            }
+            //item[0]["remove"] = null;
             // If not already removed
             if (!deleteFlag) {
-                // Applued HHA filters
+                // Apply HHA filters
                 hhaFilters.forEach(hhaFilter => { 
                     let hhaFilterName = Object.keys(hhaFilter)[0];
                     let hhaFilterValue = appliedFilters["hha-concepts"][hhaFilters.findIndex(i => i === hhaFilter)][hhaFilterName];
                     let alreadyRemoved = item[0]["remove"];
+                    //let alreadyRemoved = null;
 
                     // Matches
                     // If item is already removed, do not add
@@ -170,10 +186,21 @@ const ItemFilter = ({items, setItems}) => {
                     }
                 });
             }
+
+            // Remove any items that do not match the query string
+            // if (query !== '') {
+            //     if (item[0]["name"]["name-USen"].slice(0, query.length) !== query) {
+            //         if (item[0]["remove"] === false && !deleteFlag) {
+            //             filteredItems.splice(filteredItems.indexOf(item), 1);
+            //             i--;
+            //         }
+            //     }
+            // }
             
             if (item[0]["remove"] === true) {
                 filteredItems.splice(filteredItems.indexOf(item), 1);
-                deleteFlag = true;
+                i--;
+                //deleteFlag = true;
             }
             if (deleteFlag) i--;
         }
@@ -256,7 +283,7 @@ const ItemFilter = ({items, setItems}) => {
         <div className='item-filter'>
             <h3>Filters</h3>
             <div className='item-search-field'>
-                    <input type='search' onChange={e => setQuery(e.target.value.toLocaleLowerCase())}></input>
+                    <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
             </div>
             <div>
                 <h4 style={{clear: "both"}}>Categories</h4>
