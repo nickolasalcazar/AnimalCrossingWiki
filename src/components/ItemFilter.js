@@ -66,6 +66,14 @@ const ItemFilter = ({items, setItems}) => {
     let filteredItems = items;
     const [query, setQuery] = useState('');
 
+    const handleCollapsible = (e) => {
+        e.target.classList.toggle("collapsible-active");
+        console.log(e.target.nextElementSibling);
+        let content = e.target.nextElementSibling;
+        if (content.style.display === "block") content.style.display = "none";
+        else content.style.display = "block";
+    }
+
     /**
      * Modifies the state variable items by applying the filters specified in appliedFitlers.
      * @returns void
@@ -73,8 +81,6 @@ const ItemFilter = ({items, setItems}) => {
     const multiFilter = () => {
         let boolFilters = null; // List of Boolean filters to beapplied
         let hhaFilters = [];    // List of HHA filters to be applied
-
-        //console.log('multiFilter: appliedFilters["hha-concepts"]', appliedFilters["hha-concepts"]);
 
         // Store non-null boolean filters in boolFilters
         boolFilters = Object.keys(appliedFilters["boolean-filters"])
@@ -85,12 +91,10 @@ const ItemFilter = ({items, setItems}) => {
 
         // For every item, apply the filters specified in: query, booleanFilters, hhaFilters
         for (let i = 0; i < filteredItems.length; i++) {
-            //console.log('i', i);
             let item = items[i]
             let deleteFlag = false;
             item[0]["remove"] = false;
-            
-            // // Remove any items that do not match the query string
+            // Remove any items that do not match the query string
             if (query !== '') {
                 if (item[0]["name"]["name-USen"].slice(0, query.length).toLowerCase() !== query) {
                     filteredItems.splice(filteredItems.indexOf(item), 1);
@@ -98,14 +102,12 @@ const ItemFilter = ({items, setItems}) => {
                     continue;
                 }
             }
-            
             // If not already deleted
             if (!deleteFlag) {
                 // Apply Boolean Filters
                 if (boolFilters !== null) {    
                     boolFilters.forEach(filter => {
                         if (deleteFlag) return;
-
                         let boolFilterValue = appliedFilters["boolean-filters"][filter];
                         // If filtering "speaker-type" or "lighting-type"
                         if (filter === "speaker-type" || filter === "lighting-type") {
@@ -113,33 +115,28 @@ const ItemFilter = ({items, setItems}) => {
                             if (appliedFilters["boolean-filters"][filter] === true) {
                                 // If filter value is null, remove item
                                 if (item[0][filter] === null) {
-                                    //console.log('Removing item: ', item[0]["name"]["name-USen"]);
                                     filteredItems.splice(filteredItems.indexOf(item), 1);
                                     deleteFlag = true;
-                                }// else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                                }
                             } else {
                                 // Else filtering for false
                                 // If the filter value is not null, remove item
                                 if (item[0][filter] !== null) {
-                                    //console.log('Removing item: ', item[0]["name"]["name-USen"]);
                                     filteredItems.splice(filteredItems.indexOf(item), 1);
                                     deleteFlag = true;
-                                }// else console.log('Keeping item: ', item[0]["name"]["name-USen"]);
+                                }
                             }
                         // If filtering any other category
                         // If filter is null or true, keep
                         } else if (item[0][filter] === null || item[0][filter] === boolFilterValue) {
-                            //console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                             return;
                         } else if (item[0][filter] !== boolFilterValue) {
-                            //console.log('Removing item: ', item[0]["name"]["name-USen"]);
                             filteredItems.splice(filteredItems.indexOf(item), 1);
                             deleteFlag = true;
                         }
                     })
                 }
             }
-
             // If not already removed
             if (!deleteFlag) {
                 // Apply HHA filters
@@ -155,14 +152,12 @@ const ItemFilter = ({items, setItems}) => {
                         if ((item[0]["hha-concept-1"] !== hhaFilterName &&
                             item[0]["hha-concept-2"] !== hhaFilterName)) {
                             item[0]["remove"] = true;
-                            //console.log('Keeping item: ', item[0]["name"]["name-USen"]);
                         }
                     } else {
                         // Inverted matches
                         if (item[0]["hha-concept-1"] === hhaFilterName ||
                             item[0]["hha-concept-2"] === hhaFilterName) {
                             item[0]["remove"] = true;
-                            //console.log('Removing item: ', item[0]["name"]["name-USen"]);
                         } 
                     }
                 });
@@ -174,7 +169,6 @@ const ItemFilter = ({items, setItems}) => {
             }
             if (deleteFlag) i--;
         }
-        console.log('\n________________________________________________________________________\n')
         setItems(filteredItems);
         document.getElementsByClassName('cycle-page-btn')[0].click(); // Return to first page
     }
@@ -244,7 +238,6 @@ const ItemFilter = ({items, setItems}) => {
 
     useEffect(() => {
         const timeOutId = setTimeout(() => multiFilter(), 500);
-        //console.log('Query:', query)
         return () => clearTimeout(timeOutId);
         // eslint-disable-next-line
     }, [query]);
@@ -252,11 +245,17 @@ const ItemFilter = ({items, setItems}) => {
     return (
         <div className='item-filter'>
             <h3>Filters</h3>
+            {/* Search field */}
             <div className='item-search-field'>
-                    <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
+                Search: <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
             </div>
-            <div>
-                <h4 style={{clear: "both"}}>Categories</h4>
+
+            {/* Category fiter */}
+            <button type="button" className="collapsible" onClick={handleCollapsible}>
+                {/* <h4 style={{clear: "both"}}>Categories</h4> */}
+                Categories
+            </button>
+            <div className="collapsible-content">
                 {Object.keys(appliedFilters["boolean-filters"]).map(booleanFilter => (
                     <div
                         className='filter-option bool-filter filter-option-null'
@@ -268,8 +267,12 @@ const ItemFilter = ({items, setItems}) => {
                     </div>
                 ))}
             </div>
-            <div>
-                <h4 style={{clear: "both"}}>Themes</h4>
+
+            {/* Theme filter */}
+            <button type="button" className="collapsible" onClick={handleCollapsible}>
+                Themes
+            </button>
+            <div className="collapsible-content" >
                 {themes.map(theme => (
                     <div
                         className='filter-option filter-option-null'
@@ -281,6 +284,7 @@ const ItemFilter = ({items, setItems}) => {
                     </div>
                 ))}
             </div>
+            
         </div>
     );
 }
