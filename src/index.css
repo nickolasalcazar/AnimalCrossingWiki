@@ -125,6 +125,7 @@ body {
 }
 
 .item-detail-variations-img {
+  border-radius: 10px;
   width: 70px;
   height: 'auto';
 }

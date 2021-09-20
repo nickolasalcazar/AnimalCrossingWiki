@@ -4,13 +4,10 @@ const ItemDetail = ({item}) => {
     const [variantNmbr, setVariantNmbr] = useState(0);
 
     // Handles user clicking left / right, cycling through color variations of item
-    const handleVariantBtnClick = (e) => {
-        if (e.target.classList.contains('variation-btn-right')) {
-            if (variantNmbr === item.length-1) return;
-            setVariantNmbr(variantNmbr+1);
-        } else {
-            if (variantNmbr === 0) return;
-            setVariantNmbr(variantNmbr-1);
+    const handleVariantBtnClick = (variant) => {
+        let variantID = variant.target.currentSrc.slice(-3);
+        for (let i=0; i<item.length; i++) {
+            if (item[i]["variant-id"] === variantID) setVariantNmbr(i);
         }
     }
 
@@ -22,17 +19,16 @@ const ItemDetail = ({item}) => {
             <div style={{float: 'left'}}>
                 <img 
                     src={item[variantNmbr]['image_uri']} alt='Furniture' 
-                    // style={{width: '200px', height: 'auto', marginLeft: '20px'}}
                 ></img>
                 {(item.length > 1) &&
                     <div className='item-detail-variations'>
-                        {item.map(variation => 
+                        {item.map(variant => 
                             <img
                                 className='item-detail-variations-img'
-                                key={variation['file-name']}
-                                src={variation['image_uri']}
+                                key={variant['file-name']}
+                                src={variant['image_uri']}
                                 alt='Furniture'
-                                onClick={(e)=>handleVariantBtnClick(e)}
+                                onClick={(variant)=>handleVariantBtnClick(variant)}
                             ></img>
                         )}
                     </div>

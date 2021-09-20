@@ -17,7 +17,7 @@ const ItemCard = ({ item }) => {
 
     const handleOverlay = (e) => {
         let overlay = e.currentTarget.querySelector(".item-detail-overlay");
-        if (overlay.style.display === "block") overlay.style.display = "none";
+        if (overlay.style.display === "block") overlay.style.display = "block";
         else overlay.style.display = "block";
     }
 
