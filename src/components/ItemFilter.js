@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// Possibly move this array to its own file along with other related content
 const themes = ["bathroom",
     "child's room",
     "concert",
@@ -68,7 +67,6 @@ const ItemFilter = ({items, setItems}) => {
 
     const handleCollapsible = (e) => {
         e.target.classList.toggle("collapsible-active");
-        console.log(e.target.nextElementSibling);
         let content = e.target.nextElementSibling;
         if (content.style.display === "block") content.style.display = "none";
         else content.style.display = "block";

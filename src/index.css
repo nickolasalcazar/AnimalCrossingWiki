@@ -51,6 +51,8 @@ body {
 
 /* ItemCard ***************************************/
 .item-card {
+  cursor:pointer;
+
   position: relative;
 
   background-color: white;
@@ -87,6 +89,29 @@ body {
 
 .variation-btn-left {
   top: 50px;
+}
+
+.item-detail-overlay {
+  position: fixed;
+
+  display: none; /* Hidden by default */
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: lightcoral;
+  margin: 100px;
+
+  /* width: 100px; */
+  height: 400px;
+
+  padding: 1%;
+
+  /* background-color: rgba(0,0,0,0.2); Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
 }
 /******************************/
 

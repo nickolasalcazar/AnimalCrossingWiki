@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ItemDetail from "./ItemDetail";
 
 const ItemCard = ({ item }) => {
     const [variantNmbr, setVariantNmbr] = useState(0);
@@ -13,8 +14,15 @@ const ItemCard = ({ item }) => {
             setVariantNmbr(variantNmbr-1);
         }
     }
+
+    const handleOverlay = (e) => {
+        let overlay = e.currentTarget.querySelector(".item-detail-overlay");
+        if (overlay.style.display === "block") overlay.style.display = "none";
+        else overlay.style.display = "block";
+    }
+
     return(
-        <>
+        <div onClick={(e)=>handleOverlay(e)}>
             <div className='item-card' key={item[variantNmbr]['internal-id']}>            
                 <img src={item[variantNmbr]['image_uri']} alt='Furniture'></img>
 
@@ -27,7 +35,7 @@ const ItemCard = ({ item }) => {
 
                 <p>{item[variantNmbr]['variant']}</p>
                 <div className='item-label'>
-                    <p>{item[0]['name']['name-USen'].charAt(0).toUpperCase() + item[0]['name']['name-USen'].slice(1)}</p>
+                    <p>{item[0]['name']['name-USen'].charAt(0).toUpperCase()+item[0]['name']['name-USen'].slice(1)}</p>
                     <p style={{fontSize: "10pt"}}>{item[0]['source']}</p>
                     {item[0]['buy-price'] && 
                         <p style={{fontSize: "9pt", paddingTop: "8px"}}>
@@ -36,7 +44,8 @@ const ItemCard = ({ item }) => {
                     }
                 </div>
             </div>
-        </>
+            <ItemDetail item={item}/>
+        </div>
     );
 }
 export default ItemCard;
