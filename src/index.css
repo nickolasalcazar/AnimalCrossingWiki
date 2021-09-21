@@ -93,27 +93,6 @@ body {
 
 /* ItemDetail.js ***************************************/
 .item-detail-modal {
-  /*
-  position: fixed;
-
-  display: none; /* Hidden by default *
-
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  background-color: lightcoral;
-  margin: 100px;
-
-  /* width: 100px; *
-  height: 430px;
-
-  padding: 1%;
-
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements *
-  cursor: pointer; /* Add a pointer on hover */
-
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -152,11 +131,8 @@ body {
 .item-detail-variations {
   width: 280px;
   height: 200px;
-
   overflow-x: hidden;
-  /* overflow-y: hidden; */
   overflow-y: scroll;
-
   /* white-space:nowrap; */
 }
 
