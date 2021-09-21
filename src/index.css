@@ -91,10 +91,12 @@ body {
   top: 50px;
 }
 
-.item-detail-overlay {
+/* ItemDetail.js ***************************************/
+.item-detail-modal {
+  /*
   position: fixed;
 
-  display: none; /* Hidden by default */
+  display: none; /* Hidden by default *
 
   top: 0;
   left: 0;
@@ -104,13 +106,47 @@ body {
   background-color: lightcoral;
   margin: 100px;
 
-  /* width: 100px; */
+  /* width: 100px; *
   height: 430px;
 
   padding: 1%;
 
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements *
   cursor: pointer; /* Add a pointer on hover */
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.item-detail-modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item-detail-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .item-detail-variations {

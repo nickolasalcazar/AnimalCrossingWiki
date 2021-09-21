@@ -250,7 +250,6 @@ const ItemFilter = ({items, setItems}) => {
 
             {/* Category fiter */}
             <button type="button" className="collapsible" onClick={handleCollapsible}>
-                {/* <h4 style={{clear: "both"}}>Categories</h4> */}
                 Categories
             </button>
             <div className="collapsible-content">

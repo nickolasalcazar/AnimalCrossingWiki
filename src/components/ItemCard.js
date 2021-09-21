@@ -15,15 +15,14 @@ const ItemCard = ({ item }) => {
         }
     }
 
-    const handleOverlay = (e) => {
-        let overlay = e.currentTarget.querySelector(".item-detail-overlay");
-        if (overlay.style.display === "block") overlay.style.display = "block";
-        else overlay.style.display = "block";
-    }
+    const itemDetailModal = document.getElementById(item[variantNmbr]['internal-id']);
 
     return(
-        <div onClick={(e)=>handleOverlay(e)}>
-            <div className='item-card' key={item[variantNmbr]['internal-id']}>            
+        <div>
+            <div 
+                className='item-card' 
+                key={item[variantNmbr]['internal-id']} 
+                onClick={()=>itemDetailModal.style.display = "block"}>            
                 <img src={item[variantNmbr]['image_uri']} alt='Furniture'></img>
 
                 {(item.length !== 1) &&
@@ -45,6 +44,7 @@ const ItemCard = ({ item }) => {
                 </div>
             </div>
             <ItemDetail item={item}/>
+            
         </div>
     );
 }
