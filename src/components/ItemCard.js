@@ -15,15 +15,21 @@ const ItemCard = ({ item }) => {
         }
     }
 
-    const itemDetailModal = document.getElementById(item[variantNmbr]['internal-id']);
+    const [showModal, setShowModal] = useState(false);
+
+    //const displayModal = () => itemDetailModal.style.display = "block";
+    
+    
 
     return(
         <div>
-            <div 
-                className='item-card' 
-                key={item[variantNmbr]['internal-id']} 
-                onClick={()=>itemDetailModal.style.display = "block"}>            
-                <img src={item[variantNmbr]['image_uri']} alt='Furniture'></img>
+            <div className='item-card' key={item[variantNmbr]['internal-id']}>            
+                <img 
+                    src={item[variantNmbr]['image_uri']}
+                    alt='Furniture'
+                    onClick={()=>setShowModal(true)}
+                    style={{cursor: "pointer"}}
+                    ></img>
 
                 {(item.length !== 1) &&
                     (<>
@@ -32,10 +38,14 @@ const ItemCard = ({ item }) => {
                     </>)
                 }
 
-                <p>{item[variantNmbr]['variant']}</p>
+                {/* <p>{item[variantNmbr]['variant']}</p> */}
                 <div className='item-label'>
-                    <p>{item[0]['name']['name-USen'].charAt(0).toUpperCase()+item[0]['name']['name-USen'].slice(1)}</p>
-                    <p style={{fontSize: "10pt"}}>{item[0]['source']}</p>
+                    <p style={{cursor: "pointer"}} onClick={()=>setShowModal(true)}>
+                        {item[0]['name']['name-USen'].charAt(0).toUpperCase()+item[0]['name']['name-USen'].slice(1)}
+                    </p>
+                    <p style={{fontSize: "10pt"}}>
+                        {item[0]['source']}
+                    </p>
                     {item[0]['buy-price'] && 
                         <p style={{fontSize: "9pt", paddingTop: "8px"}}>
                             {item[0]['buy-price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} bells
@@ -43,8 +53,7 @@ const ItemCard = ({ item }) => {
                     }
                 </div>
             </div>
-            <ItemDetail item={item}/>
-            
+            <ItemDetail item={item} show={showModal} onClose={()=>setShowModal(false)}/>
         </div>
     );
 }

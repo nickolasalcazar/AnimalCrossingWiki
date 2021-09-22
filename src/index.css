@@ -3,6 +3,11 @@ body {
   background-color: darkseagreen;
 }
 
+.item-list-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 /* Item filter *************************************/
 .item-filter {
   background-color: white;
@@ -51,15 +56,18 @@ body {
 
 /* ItemCard ***************************************/
 .item-card {
-  cursor:pointer;
+  /* cursor:pointer; */
 
   position: relative;
 
   background-color: white;
-  width: 200px;
+  /* width: 200px; */
   height: 300px;
+
   text-align: center;
-  float: left;
+
+  /* float: left; */
+
   border-color: black;
   border: 1px solid lightgray;
 }
@@ -93,16 +101,27 @@ body {
 
 /* ItemDetail.js ***************************************/
 .item-detail-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
   left: 0;
+  right: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  bottom: 0;
+
+  background-color: 0, 0, 0, 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+.item-detail-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+  height: 420px;
 }
 
 .item-detail-modal-close {
@@ -120,14 +139,6 @@ body {
   cursor: pointer;
 }
 
-.item-detail-modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
 .item-detail-variations {
   width: 280px;
   height: 200px;
@@ -140,9 +151,10 @@ body {
   border-radius: 10px;
   width: 70px;
   height: 'auto';
+  background-color: #eee;
 }
 
-.item-detail-variations-img:hover { background-color: green; }
+.item-detail-variations-img:hover { background-color: #D2E4D2; } /*#ddd; }
 /******************************/
 
 .pagination {
