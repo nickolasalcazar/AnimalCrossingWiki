@@ -17,11 +17,10 @@ body {
 /* Item filter *************************************/
 .item-filter {
   background-color: white;
-  /* height: 375px; */
 }
 
 .filter-option {
-  float: left;
+  display: inline-block;
   width: 150px;
   height: 40px;
 
@@ -36,8 +35,8 @@ body {
   background-color: khaki;
 }
 
-/* Collapsible menu */
-.collapsible {
+/* Collapsible menu *****************/
+.collapsible-btn {
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -49,31 +48,29 @@ body {
   font-size: 15px;
 }
 
-.collapsible-active, .collapsible:hover {
+.collapsible-btn:hover { 
   background-color: #ccc;
+  transition: height 1s;
 }
 
 .collapsible-content {
   padding: 0 18px;
-  display: none;
   overflow: hidden;
   background-color: #f1f1f1;
+  max-height: 0px;
+  transition: max-height 0.25s;
+}
+
+.collapsible-active {
+  max-height: 500px;
 }
 
 /* ItemCard ***************************************/
 .item-card {
-  /* cursor:pointer; */
-
   position: relative;
-
   background-color: white;
-  /* width: 200px; */
   height: 300px;
-
   text-align: center;
-
-  /* float: left; */
-
   border-color: black;
   border: 1px solid lightgray;
 }

@@ -65,13 +65,6 @@ const ItemFilter = ({items, setItems}) => {
     let filteredItems = items;
     const [query, setQuery] = useState('');
 
-    const handleCollapsible = (e) => {
-        e.target.classList.toggle("collapsible-active");
-        let content = e.target.nextElementSibling;
-        if (content.style.display === "block") content.style.display = "none";
-        else content.style.display = "block";
-    }
-
     /**
      * Modifies the state variable items by applying the filters specified in appliedFitlers.
      * @returns void
@@ -234,6 +227,17 @@ const ItemFilter = ({items, setItems}) => {
         else e.target.classList.replace("filter-option-false", "filter-option-null");
     }
 
+    /*
+     * Toggles CSS styling for all filter option buttons
+     */
+    const toggleCollapsible = (e) => {
+        let content = e.currentTarget.nextSibling;
+        let show = content.classList.contains("collapsible-active");
+
+        if (show) content.classList.remove("collapsible-active");
+        else content.classList.add("collapsible-active");
+    }
+
     useEffect(() => {
         const timeOutId = setTimeout(() => multiFilter(), 500);
         return () => clearTimeout(timeOutId);
@@ -249,7 +253,7 @@ const ItemFilter = ({items, setItems}) => {
             </div>
 
             {/* Category fiter */}
-            <button type="button" className="collapsible" onClick={handleCollapsible}>
+            <button type="button" className="collapsible-btn" onClick={e=>toggleCollapsible(e)}>
                 Categories
             </button>
             <div className="collapsible-content">
@@ -258,7 +262,7 @@ const ItemFilter = ({items, setItems}) => {
                         className='filter-option bool-filter filter-option-null'
                         data-filter={booleanFilter}
                         key={booleanFilter}
-                        onClick={(e)=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
+                        onClick={e=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
                     >
                         {booleanFilter}
                     </div>
@@ -266,7 +270,7 @@ const ItemFilter = ({items, setItems}) => {
             </div>
 
             {/* Theme filter */}
-            <button type="button" className="collapsible" onClick={handleCollapsible}>
+            <button type="button" className="collapsible-btn" onClick={e=>toggleCollapsible(e)}>
                 Themes
             </button>
             <div className="collapsible-content" >
