@@ -1,12 +1,21 @@
+.stylized-font {
+  font-family: 'Roboto Slab', serif;
+}
+
 body {
   font-family: arial;
   background-color: darkseagreen;
 }
 
+.item-catalog {
+  max-width: 1000px;
+  margin: auto;
+}
+
 .item-list-content {
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(200px, 0.33fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.44fr));
   
   justify-content: space-evenly;
   align-content: space-evenly;
@@ -24,41 +33,47 @@ body {
   width: 150px;
   height: 40px;
 
+  padding-top: 0px;
+  line-height: 35px;
+
   text-align: center;
+  border-radius: 50%;
+
+  transition: background-color 0.1s;
 }
 
 .filter-option-null { background-color: white; }
 .filter-option-true { background-color: lightgreen; }
 .filter-option-false { background-color: lightcoral; }
 
-.filter-option:hover {
-  background-color: khaki;
-}
+.filter-option:hover { background-color: khaki; }
 
 /* Collapsible menu *****************/
 .collapsible-btn {
-  background-color: #eee;
-  color: #444;
+  background-color: #ffe46c;
+  color: #884c14;
   cursor: pointer;
-  padding: 18px;
+  padding: 10px 18px 10px 18px;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 18px;
+  border-bottom: #884c141a solid 2px;
+  transition: background-color 0.1s;
 }
 
-.collapsible-btn:hover { 
-  background-color: #ccc;
-  transition: height 1s;
-}
+.collapsible-btn:hover { background-color: #e6bb00; }
 
 .collapsible-content {
   padding: 0 18px;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #fffce4;
   max-height: 0px;
-  transition: max-height 0.25s;
+  transition: max-height 0.5s;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .collapsible-active {

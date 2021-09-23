@@ -32,8 +32,8 @@ const themes = ["bathroom",
 let appliedFilters = {
     "boolean-filters": {
         "isDIY": null,
-        "canCustomizeBody": null,
-        "canCustomizePattern": null,
+        "canCustomizeBody": null,       // "canCustomizeBody"
+        "canCustomizePattern": null,    // "canCustomizePattern"
         
         "isInteractive": null,
         "isOutdoor": null,
@@ -245,7 +245,7 @@ const ItemFilter = ({items, setItems}) => {
     }, [query]);
 
     return (
-        <div className='item-filter'>
+        <div className='item-filter stylized-font'>
             <h3>Filters</h3>
             {/* Search field */}
             <div className='item-search-field'>
@@ -253,7 +253,7 @@ const ItemFilter = ({items, setItems}) => {
             </div>
 
             {/* Category fiter */}
-            <button type="button" className="collapsible-btn" onClick={e=>toggleCollapsible(e)}>
+            <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Categories
             </button>
             <div className="collapsible-content">
@@ -270,7 +270,7 @@ const ItemFilter = ({items, setItems}) => {
             </div>
 
             {/* Theme filter */}
-            <button type="button" className="collapsible-btn" onClick={e=>toggleCollapsible(e)}>
+            <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Themes
             </button>
             <div className="collapsible-content" >
