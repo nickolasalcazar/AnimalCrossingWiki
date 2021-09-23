@@ -246,12 +246,6 @@ const ItemFilter = ({items, setItems}) => {
 
     return (
         <div className='item-filter stylized-font'>
-            <h3>Filters</h3>
-            {/* Search field */}
-            <div className='item-search-field'>
-                Search: <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
-            </div>
-
             {/* Category fiter */}
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Categories
@@ -259,7 +253,7 @@ const ItemFilter = ({items, setItems}) => {
             <div className="collapsible-content">
                 {Object.keys(appliedFilters["boolean-filters"]).map(booleanFilter => (
                     <div
-                        className='filter-option bool-filter filter-option-null'
+                        className='filter-option bool-filter filter-option-null clickable'
                         data-filter={booleanFilter}
                         key={booleanFilter}
                         onClick={e=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
@@ -276,7 +270,7 @@ const ItemFilter = ({items, setItems}) => {
             <div className="collapsible-content" >
                 {themes.map(theme => (
                     <div
-                        className='filter-option filter-option-null'
+                        className='filter-option filter-option-null clickable'
                         data-filter={theme}
                         key={theme}
                         onClick={(e)=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
@@ -285,7 +279,11 @@ const ItemFilter = ({items, setItems}) => {
                     </div>
                 ))}
             </div>
-            
+
+            {/* Search field */}
+            <div className='item-search-field'>
+                Search: <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
+            </div>
         </div>
     );
 }

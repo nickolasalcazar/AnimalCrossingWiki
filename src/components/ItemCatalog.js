@@ -28,6 +28,12 @@ const ItemCatalog = () => {
                         items={Object.values(data)}
                         setItems={setItems}
                     />
+                    <Pagination 
+                        numberOfItems={items.length}
+                        itemsPerPage={itemsPerPage}
+                        lastItemIndex={lastItemIndex}
+                        setLastItemIndex={setLastItemIndex}
+                    />
                     <ItemList 
                         items={items}
                         itemsPerPage={itemsPerPage}

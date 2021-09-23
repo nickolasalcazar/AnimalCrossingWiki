@@ -17,30 +17,37 @@ const ItemCard = ({ item }) => {
 
     const [showModal, setShowModal] = useState(false);
 
-    //const displayModal = () => itemDetailModal.style.display = "block";
-    
-    
-
     return(
-        <div>
-            <div className='item-card' key={item[variantNmbr]['internal-id']}>            
+        <>
+            <div 
+                className='item-card stylized-font clickable'
+                key={item[variantNmbr]['internal-id']} 
+                onClick={()=>setShowModal(true)}>            
                 <img 
                     src={item[variantNmbr]['image_uri']}
                     alt='Furniture'
-                    onClick={()=>setShowModal(true)}
-                    style={{cursor: "pointer"}}
+                    
+                    className="clickable"
                     ></img>
 
                 {(item.length !== 1) &&
-                    (<>
-                        <div onClick={(e)=>handleVariantBtnClick(e)} className='variation-btn variation-btn-left'>L</div>
-                        <div onClick={(e)=>handleVariantBtnClick(e)} className='variation-btn variation-btn-right'>R</div>
-                    </>)
+                    (<span className="no-select clickable" onClick={e=>e.stopPropagation()}>
+                        <>
+                            {(variantNmbr !== 0) &&
+                                <div onClick={(e)=>handleVariantBtnClick(e)}
+                                    className='variation-btn variation-btn-left'>&lsaquo;</div>
+                            }
+                        </>
+                        <>
+                            {(variantNmbr !== item.length-1) &&
+                                <div onClick={(e)=>handleVariantBtnClick(e)} 
+                                    className='variation-btn variation-btn-right'>&rsaquo;</div>}
+                        </>
+                    </span>)
                 }
 
-                {/* <p>{item[variantNmbr]['variant']}</p> */}
                 <div className='item-label'>
-                    <p style={{cursor: "pointer"}} onClick={()=>setShowModal(true)}>
+                    <p className={"clickable"} onClick={()=>setShowModal(true)}>
                         {item[0]['name']['name-USen'].charAt(0).toUpperCase()+item[0]['name']['name-USen'].slice(1)}
                     </p>
                     <p style={{fontSize: "10pt"}}>
@@ -54,7 +61,7 @@ const ItemCard = ({ item }) => {
                 </div>
             </div>
             <ItemDetail item={item} show={showModal} onClose={()=>setShowModal(false)}/>
-        </div>
+        </>
     );
 }
 export default ItemCard;

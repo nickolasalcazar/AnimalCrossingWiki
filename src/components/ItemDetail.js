@@ -27,12 +27,11 @@ const ItemDetail = ({item, show, onClose}) => {
                         <div className='item-detail-variations'>
                             {item.map(variant => 
                                 <img
-                                    className='item-detail-variations-img'
+                                    className='item-detail-variations-img clickable'
                                     key={variant['file-name']}
                                     src={variant['image_uri']}
                                     alt='Furniture'
                                     onClick={(variant)=>handleVariantBtnClick(variant)}
-                                    style={{cursor: "pointer"}}
                                 ></img>
                             )}
                         </div>
