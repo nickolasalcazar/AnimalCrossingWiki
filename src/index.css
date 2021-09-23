@@ -4,6 +4,12 @@
 
 .no-select { user-select: none; }
 
+.main-logo {
+  margin: 0px auto 0px auto ;
+  
+  display: block;
+}
+
 body {
   font-family: arial;
   /* background-color: darkseagreen; */
