@@ -104,7 +104,8 @@ body {
 
 /* Pagination ***************************************/
 .pagination {
-  clear: both;
+  /* clear: both; */
+  
 }
 
 .pagination button {
@@ -120,6 +121,8 @@ body {
   display: inline-block;
   border: none;
   border-radius: 5px;
+
+  cursor: pointer;
 }
 
 /* ItemCard ***************************************/
