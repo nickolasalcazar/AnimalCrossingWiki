@@ -6,7 +6,8 @@
 
 .main-logo {
   margin: 0px auto 0px auto ;
-  
+  width: 40vw;
+  height: auto;
   display: block;
 }
 
@@ -19,26 +20,34 @@ body {
   background: linear-gradient(180deg, #68a4fc 0%, #58ac54 120%);
 }
 
+/* ItemCatalog *************************************/
 .item-catalog {
   max-width: 800px;
   min-width: 300px;
   margin: auto;
+  /* background-color: #fffce4; */
+  background-color: #d8a45c;
+  border-radius: 2% 2% 0px 0px;
+}
+
+.item-catalog h2 {
+  border-radius: 20px 20px 0px 0px;
+  background-color: #ffb56b;
+
+  padding: 10px 10px 10px 20px;
+  font-size: 18pt;
 }
 
 .item-list-content {
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-  grid-template-columns: repeat(auto-fit, minmax(200px, 0.44fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 0.55fr));
   justify-content: space-evenly;
-
-  background-color: #fffce4;
+  /* background-color: #fffce4; */
 }
 
-/* Item filter *************************************/
-.item-filter {
-  background-color: #fffce4;
-  border-radius: 50px 50px 0px 0px;
-}
+/* Item Filter *************************************/
+.item-filter { }
 
 .filter-option {
   display: inline-block;
@@ -93,10 +102,31 @@ body {
   max-height: 500px;
 }
 
+/* Pagination ***************************************/
+.pagination {
+  clear: both;
+}
+
+.pagination button {
+  font-size: 15pt;
+  line-height: 3px;
+
+  background-color: #c83c24;
+  color: #f0c434;
+  
+  padding: 10px 20px 14px 20px;
+  margin: 5px;
+
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+}
+
 /* ItemCard ***************************************/
 .item-card {
   position: relative;
-  background-color: white;
+  /* background-color: white; */
+  background-color: #fffce4;
   height: 300px;
   text-align: center;
 
@@ -104,7 +134,10 @@ body {
   border: 1px solid #884c141a;
 }
 
-.item-card:hover { background-color: #efe; }
+.item-card:hover { 
+  background-color: #fcfae8;
+  /* background-color: #D2E4D2; */
+}
 
 .item-label {
   margin-left: 10px;
@@ -194,8 +227,9 @@ body {
 }
 
 .item-detail-variations {
-  width: 320px;
-  height: 200px;
+  display: inline-block;
+  max-width: 320px;
+  max-height: 200px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #fffce4;
@@ -211,10 +245,5 @@ body {
   background-color: white;
 }
 
-.item-detail-variations-img:hover { background-color: #D2E4D2; } /*#ddd; }
+.item-detail-variations-img:hover { background-color: #D2E4D2; }
 /******************************/
-
-.pagination {
-  clear: both;
-}
-

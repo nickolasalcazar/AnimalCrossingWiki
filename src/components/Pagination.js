@@ -16,28 +16,28 @@ const Pagination = ({ numberOfItems, itemsPerPage, lastItemIndex, setLastItemInd
     }
 
     return (
-        <div className='pagination'>
+        <div className='pagination stylized-font'>
             {/* First page */}
-            <button className='cycle-page-btn' onClick={()=>{
+            <button className='cycle-page-btn stylized-font' onClick={()=>{
                 currentPage = 1;
                 setLastItemIndex(itemsPerPage);
-            }}>First page</button>
+            }}>&lsaquo;&lsaquo;</button>
 
             {/* Backward */}
-            <button className='cycle-page-btn' onClick={()=>handleStep(-1)}>Backward</button>
+            <button className='cycle-page-btn stylized-font'
+                onClick={()=>handleStep(-1)}>&lsaquo;</button>
             {/* Forward */}
-            <button className='cycle-page-btn' onClick={()=>handleStep(1)}>Forward</button>
+            <button className='cycle-page-btn stylized-font'
+                onClick={()=>handleStep(1)}>&rsaquo;</button>
 
             {/* Last page */}
-            <button className='cycle-page-btn' onClick={()=>{
+            <button className='cycle-page-btn stylized-font' onClick={()=>{
                 currentPage =  Math.ceil(numberOfItems / itemsPerPage);
                 setLastItemIndex(itemsPerPage*Math.ceil(numberOfItems / itemsPerPage))
-            }}>Last page</button>
+            }}>&rsaquo;&rsaquo;</button>
 
             {/* Page counter */}
-            <div>
-                <p>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</p>
-            </div>
+            <span>Page {currentPage} of {Math.ceil(numberOfItems / itemsPerPage)}</span>
         </div>
     );
 }

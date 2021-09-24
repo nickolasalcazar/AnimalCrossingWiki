@@ -23,6 +23,7 @@ const ItemCatalog = () => {
             {isPending && <p>Loading...</p>}
             { !isPending &&
                 (<>
+                    <h2 className="stylized-font">Item Catalog</h2>
                     <ItemFilter
                         //items={items} 
                         items={Object.values(data)}

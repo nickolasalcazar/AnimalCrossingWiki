@@ -246,6 +246,11 @@ const ItemFilter = ({items, setItems}) => {
 
     return (
         <div className='item-filter stylized-font'>
+            {/* Search field */}
+            <div className='item-search-field'>
+                Search: <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
+            </div>
+
             {/* Category fiter */}
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Categories
@@ -278,11 +283,6 @@ const ItemFilter = ({items, setItems}) => {
                         {theme.charAt(0).toUpperCase() + theme.slice(1)}
                     </div>
                 ))}
-            </div>
-
-            {/* Search field */}
-            <div className='item-search-field'>
-                Search: <input type='search' onChange={e => setQuery(e.target.value.toLowerCase())}></input>
             </div>
         </div>
     );
