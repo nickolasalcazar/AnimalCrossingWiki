@@ -18,7 +18,7 @@ const ItemCatalog = () => {
     }, [data, isPending]);
 
     return (
-        <div className='item-catalog'>
+        <div className='item-catalog center-justify'>
             {error && <p>Something went wrong...</p>}
             {isPending && <p>Loading...</p>}
             { !isPending &&

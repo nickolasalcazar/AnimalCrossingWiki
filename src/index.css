@@ -20,11 +20,37 @@ body {
   background: linear-gradient(180deg, #68a4fc 0%, #58ac54 120%);
 }
 
-/* ItemCatalog *************************************/
-.item-catalog {
+/* For primary components like NavBar and ItemCatalog */
+.center-justify {
   max-width: 800px;
   min-width: 300px;
   margin: auto;
+}
+
+/* NavBar */
+.nav-bar {
+  color: white;
+  background-color: #58ac54;
+
+  padding: 30px;
+
+  border-radius: 5px;
+}
+
+.nav-bar span {
+  padding: 20px;
+}
+
+.nav-bar div span:hover {
+  background-color: #448340;
+}
+
+/* ItemCatalog *************************************/
+.item-catalog {
+  /* max-width: 800px; */
+  /* min-width: 300px; */
+  /* margin: auto; */
+
   /* background-color: #fffce4; */
   background-color: #d8a45c;
   border-radius: 2% 2% 0px 0px;
@@ -96,6 +122,8 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   column-gap: 20px;
+
+  border-radius: 0px 0px 6px 6px;
 }
 
 .collapsible-active {
