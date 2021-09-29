@@ -1,6 +1,9 @@
+import { useState } from "react";
 import ItemCard from "./ItemCard";
+import ItemSorter from "./ItemSorter";
 
 const ItemList = ({ items, itemsPerPage, lastItemIndex }) => {
+    let [sortBy, setSortBy] = useState(null);
 
     let compareBuyPrice = (a, b) => {
         if (a[0]['buy-price'] === null && b[0]['buy-price'] === null) {
@@ -20,7 +23,7 @@ const ItemList = ({ items, itemsPerPage, lastItemIndex }) => {
 
     return (
         <>
-            {/* <ItemSorter items={items}/> */}
+            <ItemSorter sortBy={sortBy} setSortBy={setSortBy}/>
             <div className="item-list">
                 <div className="item-list-content">
                     {Object.values(items).slice(lastItemIndex-itemsPerPage, lastItemIndex).map(item => (

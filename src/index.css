@@ -72,6 +72,24 @@ body {
   /* background-color: #fffce4; */
 }
 
+/* Item Sorter *************************************/
+.item-sorter-button {
+  cursor: pointer;
+}
+
+.item-sorter-options {
+  cursor: pointer;
+  background-color: grey;
+}
+
+.item-sorter-options :hover {
+  background-color: white;
+}
+
+.item-sorter-option-active {
+  background-color: lightgreen;
+}
+
 /* Item Filter *************************************/
 .item-filter { }
 
