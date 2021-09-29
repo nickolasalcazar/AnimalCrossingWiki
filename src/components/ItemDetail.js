@@ -18,11 +18,9 @@ const ItemDetail = ({item, show, onClose}) => {
             <div className="item-detail-modal-content" onClick={e=>e.stopPropagation()}>
                 <span className="item-detail-modal-close" onClick={onClose}>&times;</span>
 
-                <h3>{item[0]['name']['name-USen'].charAt(0).toUpperCase() + item[0]['name']['name-USen'].slice(1)}</h3>
+                <h3>{item[0]['Name'].charAt(0).toUpperCase() + item[0]['Name'].slice(1)}</h3>
                 <div style={{float: 'left'}}>
-                    <img 
-                        src={item[variantNmbr]['image_uri']} alt='Furniture' 
-                    ></img>
+                    <img src={item[variantNmbr]['Image']} alt='Furniture'></img>
                     {(item.length > 1) &&
                         <div>
                             <div className='item-detail-variations'>
@@ -30,7 +28,7 @@ const ItemDetail = ({item, show, onClose}) => {
                                     <img
                                         className='item-detail-variations-img clickable'
                                         key={variant['file-name']}
-                                        src={variant['image_uri']}
+                                        src={variant['Image']}
                                         alt='Furniture'
                                         onClick={(variant)=>handleVariantBtnClick(variant)}
                                     ></img>

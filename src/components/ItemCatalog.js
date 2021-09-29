@@ -12,7 +12,7 @@ const ItemCatalog = () => {
     const [items, setItems] = useState([]);
     const [itemsT, setItemsT] = useState([]);   // New version of items
 
-    const [itemsPerPage, /*setItemsPerPage*/] = useState(30);
+    const [itemsPerPage, /*setItemsPerPage*/] = useState(30); // Default 30 items per page
     const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
     useEffect(() => {
@@ -81,22 +81,28 @@ const ItemCatalog = () => {
                 (<>
                     <h2 className="stylized-font">Item Catalog</h2>
                     <ItemFilter
-                        //items={items} 
-                        items={Object.values(data)}
+                        // items={items} 
+                        // items={Object.values(data) // ORIGINAL
+                        items={itemsT}
                         setItems={setItems}
                     />
-                    <Pagination 
+
+                    {/* Pagination should still work */}
+                    <Pagination
                         numberOfItems={items.length}
                         itemsPerPage={itemsPerPage}
                         lastItemIndex={lastItemIndex}
                         setLastItemIndex={setLastItemIndex}
                     />
                     <ItemList 
-                        items={items}
+                        // items={items}
+                        items={itemsT}
                         itemsPerPage={itemsPerPage}
                         lastItemIndex={lastItemIndex}
                     />
-                    <Pagination 
+
+                    {/* Pagination should still work */}
+                    <Pagination
                         numberOfItems={items.length}
                         itemsPerPage={itemsPerPage}
                         lastItemIndex={lastItemIndex}

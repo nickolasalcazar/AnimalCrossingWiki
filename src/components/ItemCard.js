@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ItemDetail from "./ItemDetail";
 
+// param: item - an item array containing all of the variants of the item
 const ItemCard = ({ item }) => {
     const [variantNmbr, setVariantNmbr] = useState(0);
 
@@ -23,12 +24,9 @@ const ItemCard = ({ item }) => {
                 className='item-card stylized-font clickable'
                 key={item[variantNmbr]['internal-id']} 
                 onClick={()=>setShowModal(true)}>            
-                <img 
-                    src={item[variantNmbr]['image_uri']}
-                    alt='Furniture'
-                    
-                    className="clickable"
-                    ></img>
+                <img src={item[variantNmbr]['Image']} 
+                    alt='Furniture' className="clickable">
+                </img>
 
                 {(item.length !== 1) &&
                     (<span className="no-select clickable" onClick={e=>e.stopPropagation()}>
@@ -48,14 +46,14 @@ const ItemCard = ({ item }) => {
 
                 <div className='item-label'>
                     <p className={"clickable"} onClick={()=>setShowModal(true)}>
-                        {item[0]['name']['name-USen'].charAt(0).toUpperCase()+item[0]['name']['name-USen'].slice(1)}
+                        {item[0]['Name'].charAt(0).toUpperCase()+item[0]['Name'].slice(1)}
                     </p>
                     <p style={{fontSize: "10pt"}}>
-                        {item[0]['source']}
+                        {item[0]['Source']}
                     </p>
-                    {item[0]['buy-price'] && 
+                    {item[0]['Buy Price'] && 
                         <p style={{fontSize: "9pt", paddingTop: "8px"}}>
-                            {item[0]['buy-price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} bells
+                            {item[0]['Buy Price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} bells
                         </p>
                     }
                 </div>
