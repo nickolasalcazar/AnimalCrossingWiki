@@ -24,10 +24,7 @@ const ItemCatalog = () => {
             { !isPending &&
                 (<>
                     <h2 className="stylized-font">Item Catalog</h2>
-                    <ItemFilter
-                        //items={items} 
-                        items={Object.values(data)}
-                        setItems={setItems}
+                    <ItemFilter items={Object.values(data)} setItems={setItems}
                     />
                     <Pagination 
                         numberOfItems={items.length}
