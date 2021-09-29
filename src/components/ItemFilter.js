@@ -29,6 +29,17 @@ const themes = ["bathroom",
     //"work",
     "zen-style"];
 
+let booleanFilterNames = {
+    "isDIY": "DIY",
+    "canCustomizeBody": "Customizable Body",
+    "canCustomizePattern": "Customizable Pattern",
+    "isInteractive": "Interactive",
+    "isOutdoor": "Outdoor",
+    "isCatalog": "Catalog",
+    "speaker-type": "Speaker",
+    "lighting-type": "Lighting",
+}
+
 let appliedFilters = {
     "boolean-filters": {
         "isDIY": null,
@@ -255,7 +266,7 @@ const ItemFilter = ({items, setItems}) => {
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Categories
             </button>
-            <div className="collapsible-content">
+            <div className="collapsible-content collapsible-active">
                 {Object.keys(appliedFilters["boolean-filters"]).map(booleanFilter => (
                     <div
                         className='filter-option bool-filter filter-option-null clickable'
@@ -263,7 +274,7 @@ const ItemFilter = ({items, setItems}) => {
                         key={booleanFilter}
                         onClick={e=>{ toggleFilterBtn(e); toggleFilterBtnDisplay(e); }}
                     >
-                        {booleanFilter}
+                        {booleanFilterNames[booleanFilter]}
                     </div>
                 ))}
             </div>
@@ -272,7 +283,7 @@ const ItemFilter = ({items, setItems}) => {
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Themes
             </button>
-            <div className="collapsible-content" >
+            <div className="collapsible-content collapsible-active" >
                 {themes.map(theme => (
                     <div
                         className='filter-option filter-option-null clickable'

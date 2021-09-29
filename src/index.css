@@ -126,6 +126,10 @@ body {
   border-radius: 0px 0px 6px 6px;
 }
 
+.collapsible-content .filter-option {
+  font-size: 11pt;
+}
+
 .collapsible-active {
   max-height: 500px;
 }
