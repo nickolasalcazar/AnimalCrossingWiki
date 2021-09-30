@@ -1,4 +1,3 @@
-
 const sortOptions = [
     "Name", // Default
     "Buy Price",
@@ -11,7 +10,7 @@ const sortOptions = [
 // Controls which category the items will be sorted, e.g. price, color.
 // Does not sort the actual list of items. Actual sorting takes place in
 // the ItemList.js component, the parent component of ItemSorter.js 
-const ItemSorter = ({sortBy, setSortBy}) => {
+const ItemSorter = ({sortBy, handleSetSortBy}) => {
 
     const handleSelectOption = (e) => {
         let selected = e.currentTarget.textContent;
@@ -19,14 +18,16 @@ const ItemSorter = ({sortBy, setSortBy}) => {
         let options = document.getElementsByClassName("item-sorter-option");
 
         if (selected === sortBy) {
-            setSortBy(null);
+            handleSetSortBy(null);
+
             for (let i=0; i<options.length; i++) {
                 
                 let option = options[i];
                 option.classList.remove("item-sorter-option-active");
             }
         } else {
-            setSortBy(selected);
+            handleSetSortBy(selected);
+
             for (let i=0; i<options.length; i++) {
                 let option = options[i];
                 if (option.textContent !== selected) option.classList.remove("item-sorter-option-active")
