@@ -1,6 +1,7 @@
 //import ItemList from "./components/ItemList";
-import ItemCatalog from "./components/ItemCatalog";
 import NavBar from "./components/NavBar";
+import ItemCatalog from "./components/ItemCatalog";
+import Footer from "./components/Footer";
 import logo from "./media/CritterCatalogLogo.png";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <NavBar />
       {/* <ItemList /> */}
       <ItemCatalog />
+      <Footer />
     </div>
   );
 }
