@@ -23,7 +23,8 @@ body {
 /* For primary components like NavBar and ItemCatalog */
 .center-justify {
   max-width: 800px;
-  min-width: 300px;
+  /* min-width: 300px; */
+  min-width: 400px;
   margin: auto;
 }
 
@@ -60,7 +61,7 @@ body {
 .item-catalog h2 {
   border-radius: 20px 20px 0px 0px;
   background-color: #ffb56b;
-
+  margin: 10px auto 5px auto;
   padding: 10px 10px 10px 20px;
   font-size: 18pt;
 }
@@ -153,8 +154,8 @@ body {
   text-align: left;
   outline: none;
   font-size: 18px;
-  border-radius: 20px 20px 0px 0px;
-  border-bottom: #884c141a solid 2px;
+  border-radius: 20px 20px 3px 3px;
+  border-bottom: #884c141a solid 4px;
   transition: background-color 0.1s;
 }
 
@@ -328,4 +329,8 @@ body {
 }
 
 .item-detail-variations-img:hover { background-color: #D2E4D2; }
-/******************************/
+
+/* Footer ******************************/
+.footer {
+
+}
