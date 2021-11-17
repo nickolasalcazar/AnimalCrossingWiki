@@ -255,8 +255,6 @@ const ItemFilter = ({items, setItems}) => {
 
     return (
         <div className='item-filter stylized-font'>
-            
-
             {/* Category fiter */}
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Categories
@@ -273,7 +271,6 @@ const ItemFilter = ({items, setItems}) => {
                     </div>
                 ))}
             </div>
-
             {/* Theme filter */}
             <button type="button" className="collapsible-btn stylized-font" onClick={e=>toggleCollapsible(e)}>
                 Themes
@@ -290,14 +287,13 @@ const ItemFilter = ({items, setItems}) => {
                     </div>
                 ))}
             </div>
-
             {/* Search field */}
-            <div class="item-search-field-wrapper">
-                <img class="search-icon" alt="search" src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
+            <div className="item-search-field-wrapper">
+                <img className="search-icon" alt="search" src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"/>
                 <input placeholder="Search"
-                        type="text" 
-                        class="item-search-field"
-                        onChange={e => setQuery(e.target.value.toLowerCase())}></input>
+                    type="text" 
+                    className="item-search-field"
+                    onChange={e => setQuery(e.target.value.toLowerCase())}></input>
             </div>
         </div>
     );
