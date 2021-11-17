@@ -97,12 +97,10 @@ const ItemFilter = ({items, setItems}) => {
             let deleteFlag = false;
             item[0]["remove"] = false;
             // Remove any items that do not match the query string
-            if (query !== '') {
-                if (item[0]["name"]["name-USen"].slice(0, query.length).toLowerCase() !== query) {
-                    filteredItems.splice(filteredItems.indexOf(item), 1);
-                    i--;
-                    continue;
-                }
+            if (!item[0]["name"]["name-USen"].includes(query)) {
+                filteredItems.splice(filteredItems.indexOf(item), 1);
+                i--;
+                continue;
             }
             // If not already deleted
             if (!deleteFlag) {
