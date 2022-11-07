@@ -1,0 +1,12 @@
+footer {
+  height: 50vh;
+  padding: 10% 20%;
+  background-color: var(--light-blue);
+
+  color: white;
+  border-bottom: 5px solid white;
+}
+
+footer ul {
+  list-style-type: none;
+}

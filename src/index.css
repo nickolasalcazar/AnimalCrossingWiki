@@ -11,6 +11,10 @@
   font-family: arial;
 }
 
+html {
+  background-color: orange;
+}
+
 .stylized-font {
   font-family: "Roboto Slab", serif;
 }
@@ -172,19 +176,4 @@ body {
 
 .item-detail-variations-img:hover {
   background-color: #d2e4d2;
-}
-
-/* Footer ******************************/
-.footer {
-  height: 100px;
-  color: aliceblue;
-  margin: 0;
-  padding: 20px 30px;
-  background-color: #448340;
-  /* background-color: #ffe46c; */
-  /* background-color: white; */
-}
-
-.footer ul {
-  list-style-type: none;
 }

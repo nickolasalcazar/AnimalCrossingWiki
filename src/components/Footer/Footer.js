@@ -1,13 +1,14 @@
+import "./Footer.css";
+
 const Footer = () => {
   return (
-    <div className="footer-wrapper stylized-font">
-      <div className="footer">
+    <footer>
+      <div>
         <ul>
-          Navigation
-          <li></li>
+          <li>Navigation</li>
         </ul>
       </div>
-    </div>
+    </footer>
   );
 };
 export default Footer;
