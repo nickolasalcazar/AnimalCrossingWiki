@@ -1,5 +1,5 @@
 import "./ItemList.css";
-import ItemCard from "../../../components/ItemCard";
+import ItemCard from "../../../components/ItemCard/ItemCard";
 
 const ItemList = ({ items, itemsPerPage, lastItemIndex }) => {
   return (
