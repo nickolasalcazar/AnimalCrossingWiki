@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+
+import "./ItemCatalog.css";
+
 import useFetchGET from "../../hooks/useFetchGET";
 
-import ItemFilter from "./ItemFilter";
-import Pagination from "../../components/Pagination";
-import ItemList from "../../components/ItemList";
+import ItemFilter from "./ItemFilter/ItemFilter";
+import Pagination from "../../components/Pagination/Pagination";
+import ItemList from "./ItemList/ItemList";
 import Hero from "../../components/Hero/Hero";
 
 const ItemCatalog = () => {
@@ -21,17 +24,16 @@ const ItemCatalog = () => {
   }, [data, isPending]);
 
   return (
-    <>
-      <Hero title="Item Catalog" image="/assets/wallpapers/nook-n-go.jpg" />
-      <div className="item-catalog center-justify">
+    <main className="item-catalog-wrapper">
+      <Hero title="Item Catalog" image="/assets/wallpapers/items.png" />
+      <div className="item-catalog">
         {error && <p>Something went wrong...</p>}
         {isPending && <p>Loading...</p>}
         {!isPending && (
-          <>
-            <h2 className="stylized-font">Item Catalog</h2>
+          <div>
             <ItemFilter items={Object.values(data)} setItems={setItems} />
             <Pagination
-              numberOfItems={items.length}
+              totalNumberOfItems={items.length}
               itemsPerPage={itemsPerPage}
               lastItemIndex={lastItemIndex}
               setLastItemIndex={setLastItemIndex}
@@ -42,15 +44,15 @@ const ItemCatalog = () => {
               lastItemIndex={lastItemIndex}
             />
             <Pagination
-              numberOfItems={items.length}
+              totalNumberOfItems={items.length}
               itemsPerPage={itemsPerPage}
               lastItemIndex={lastItemIndex}
               setLastItemIndex={setLastItemIndex}
             />
-          </>
+          </div>
         )}
       </div>
-    </>
+    </main>
   );
 };
 export default ItemCatalog;

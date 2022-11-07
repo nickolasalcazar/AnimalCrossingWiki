@@ -1,0 +1,101 @@
+.item-filter {
+}
+
+.filter-option {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+
+  padding-top: 0px;
+  line-height: 35px;
+
+  text-align: center;
+  border-radius: 50%;
+
+  transition: background-color 0.1s;
+}
+
+.filter-option-null {
+  background-color: white;
+}
+.filter-option-true {
+  background-color: lightgreen;
+}
+.filter-option-false {
+  background-color: lightcoral;
+}
+.filter-option:hover {
+  background-color: #ded;
+}
+
+.item-search-field-wrapper {
+  margin: 7px 10px;
+  position: relative;
+  display: flex;
+  min-width: 100px;
+}
+
+.item-search-field {
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 25px;
+  width: 200px;
+  padding: 2px 23px 2px 30px;
+  outline: 0;
+  background-color: #f5f5f5;
+}
+
+.item-search-field:hover,
+.item-search-field:focus {
+  border: 1px solid #009688;
+  background-color: white;
+}
+
+.search-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+}
+
+/* Collapsible menu *****************/
+.collapsible-btn {
+  background-color: #ffe46c;
+  color: #884c14;
+  cursor: pointer;
+  padding: 10px 18px 10px 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  border-radius: 20px 20px 3px 3px;
+  border-bottom: #884c141a solid 4px;
+  transition: background-color 0.1s;
+}
+
+.collapsible-btn:hover {
+  background-color: #e6bb00;
+}
+
+.collapsible-content {
+  padding: 0 18px;
+  overflow: hidden;
+  background-color: #fffce4;
+  max-height: 0px;
+  transition: max-height 0.5s;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  column-gap: 20px;
+
+  border-radius: 0px 0px 6px 6px;
+}
+
+.collapsible-content .filter-option {
+  font-size: 11pt;
+}
+
+.collapsible-active {
+  max-height: 500px;
+}

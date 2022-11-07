@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import "./ItemFilter.css";
+
 const themes = [
   "bathroom",
   "child's room",

@@ -1,0 +1,22 @@
+.pagination {
+  margin: 5px 5px;
+  margin-bottom: 0;
+}
+
+.pagination button {
+  font-size: 15pt;
+  line-height: 3px;
+
+  background-color: #c83c24;
+  color: #f0c434;
+
+  padding: 10px 20px 14px 20px;
+  margin: 5px;
+  margin-bottom: 10px;
+
+  display: inline-block;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
