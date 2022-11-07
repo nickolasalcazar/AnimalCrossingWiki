@@ -4,9 +4,9 @@
   height: 190px;
   height: 20vw;
 
-  background-repeat: no-repeat;
-  background-position: right bottom;
-  background-size: cover;
+  background-position: center center;
+  background-size: max(1000px, 105%) auto;
+  background-size: max(700px, 105%) auto;
 
   display: flex;
   /* justify-content: left; */
