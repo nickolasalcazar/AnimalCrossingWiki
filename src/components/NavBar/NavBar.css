@@ -1,6 +1,6 @@
 .navbar {
   background-color: white;
-  background-color: #5691f9;
+  background-color: var(--light-blue);
 
   border-top: 20px solid orange;
   border-bottom: 5px solid white;
