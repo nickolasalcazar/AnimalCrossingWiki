@@ -1,0 +1,12 @@
+.navbar {
+  background-color: white;
+  background-color: #5691f9;
+
+  border-top: 20px solid orange;
+  border-bottom: 5px solid white;
+}
+
+.navbar-content {
+  width: 100%;
+  border-top: 5px solid white;
+}
