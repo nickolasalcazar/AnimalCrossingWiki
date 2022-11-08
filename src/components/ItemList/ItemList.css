@@ -1,6 +1,10 @@
 .item-list-content {
+  max-width: 850px;
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
   grid-template-columns: repeat(auto-fit, minmax(200px, 0.55fr));
-  justify-content: space-evenly;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 0.5fr));
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-columns: repeat(auto-fill, min(45vw, 200px));
+  justify-content: center;
 }
