@@ -38,6 +38,7 @@ function Villagers() {
               setLastItemIndex={setLastItemIndex}
             />
             <ItemList
+              listType="villagers"
               items={items}
               itemsPerPage={itemsPerPage}
               lastItemIndex={lastItemIndex}

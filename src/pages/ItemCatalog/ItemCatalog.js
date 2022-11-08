@@ -39,6 +39,7 @@ const ItemCatalog = () => {
               setLastItemIndex={setLastItemIndex}
             />
             <ItemList
+              listType={"items"}
               items={items}
               itemsPerPage={itemsPerPage}
               lastItemIndex={lastItemIndex}
