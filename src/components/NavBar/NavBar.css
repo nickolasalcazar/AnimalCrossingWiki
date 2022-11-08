@@ -1,12 +1,40 @@
 .navbar {
+  box-sizing: unset;
+
+  height: var(--navbar-height);
+
   background-color: white;
   background-color: var(--light-blue);
 
   border-top: 20px solid orange;
   border-bottom: 1.5px solid #989898;
+  color: white;
 }
 
 .navbar-content {
+  height: 100%;
   width: 100%;
   border-top: 5px solid white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
+}
+
+.navbar .logo-wrapper {
+  margin: auto;
+  grid-column: 1 / 2;
+  height: 90%;
+}
+
+.navbar ul {
+  margin: auto;
+  grid-column: 3 / 4;
+  /* grid-column: 2 / 3; */
+  /* grid-column: 2 / 4; */
+  display: flex;
+  list-style: none;
+}
+
+.navbar ul li {
+  margin: auto 10px;
 }

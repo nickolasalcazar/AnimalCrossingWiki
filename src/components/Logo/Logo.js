@@ -5,16 +5,10 @@ import "./Logo.css";
 /**
  * Logo of CritterCatalog. Rendered as an SVG contained in a div.
  *
- * @param   {String}    color   Color of the logo. Parsed as CSS.
- *                              Defaults to white (#FFFFFF).
- * @returns
+ * @returns {SvgLogo}
  */
-function Logo({ color = "#FFFFFF" }) {
-  return (
-    <div className="logo-container">
-      <SvgLogo className="logo" />
-    </div>
-  );
+function Logo() {
+  return <SvgLogo className="logo-wrapper" />;
 }
 
 export default Logo;
