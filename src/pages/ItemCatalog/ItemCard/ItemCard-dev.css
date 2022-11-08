@@ -14,3 +14,24 @@
   width: 75%;
   height: auto;
 }
+
+/* Variant buttons */
+.item-card .variant-btns {
+  position: absolute;
+}
+
+.item-card .variant-btn {
+  cursor: pointer;
+  position: relative;
+
+  font-size: 28pt;
+}
+
+.item-card .variant-btn-left {
+  left: -75px;
+  /* left: 100%; */
+}
+
+.item-card .variant-btn-right {
+  left: 75px;
+}

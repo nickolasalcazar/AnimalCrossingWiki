@@ -6,7 +6,7 @@ import "./ItemCard-dev.css";
 import ItemDetail from "../../../components/ItemDetail/ItemDetail";
 
 /**
- * Renders an arrow button for cycling through furniture variants, and handle its onClick event.
+ * Renders an arrow button for cycling through furniture variants, and handles its onClick event.
  *
  * @param {String} direction        Direction the arrow button points.
  * @param {Number} numberOfVariants Number of variants that belong to the item.
@@ -28,17 +28,18 @@ const VariantBtn = ({
       setVariantNmbr(variantNmbr - 1);
     }
   };
+
   if (!direction) return <></>;
   if (direction === "left" && variantNmbr === 0) return <></>;
   if (direction === "right" && variantNmbr === numberOfVariants - 1)
     return <></>;
   return (
-    <div
+    <span
       className={`variant-btn variant-btn-${direction}`}
       onClick={() => handleClick()}
     >
       {direction === "left" ? "‹" : "›"}
-    </div>
+    </span>
   );
 };
 
@@ -61,10 +62,9 @@ const ItemCard = ({ item }) => {
           onClick={() => setShowModal(true)}
           className="clickable"
         ></img>
-
         {item.length !== 1 && (
           <span
-            className="no-select clickable"
+            className="variant-btns no-select"
             onClick={(e) => e.stopPropagation()}
           >
             <VariantBtn
@@ -81,7 +81,6 @@ const ItemCard = ({ item }) => {
             />
           </span>
         )}
-
         <div className="item-label">
           <p className={"clickable"} onClick={() => setShowModal(true)}>
             {item[0]["name"]["name-USen"].charAt(0).toUpperCase() +
