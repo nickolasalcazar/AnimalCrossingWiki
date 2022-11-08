@@ -6,7 +6,7 @@ import useFetchGET from "../../hooks/useFetchGET";
 
 import ItemFilter from "./ItemFilter/ItemFilter";
 import Pagination from "../../components/Pagination/Pagination";
-import ItemList from "./ItemList/ItemList";
+import ItemList from "../../components/ItemList/ItemList";
 import Hero from "../../components/Hero/Hero";
 
 const ItemCatalog = () => {

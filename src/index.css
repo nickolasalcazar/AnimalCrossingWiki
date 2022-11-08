@@ -1,6 +1,9 @@
 :root {
   --light-blue: #5691f9;
   --navbar-height: 90px;
+  --stylized-font: "Roboto Slab", serif;
+  --dark-font-color: black;
+  --light-font-color: white;
 }
 
 *,
@@ -12,12 +15,20 @@
   font-family: arial;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: var(--dark-font-color);
+}
+
 body {
   background-color: white;
 }
 
 .stylized-font {
-  font-family: "Roboto Slab", serif;
+  font-family: var(--stylized-font);
 }
 
 .clickable {
