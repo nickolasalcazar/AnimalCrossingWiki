@@ -8,7 +8,6 @@
 
   border-top: 20px solid orange;
   border-bottom: 5px solid white;
-  color: white;
 }
 
 .navbar-content {
@@ -37,4 +36,9 @@
 
 .navbar ul li {
   margin: auto 10px;
+}
+
+.navbar ul li a {
+  font-family: var(--stylized-font);
+  color: var(--light-font-color);
 }
