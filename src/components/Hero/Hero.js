@@ -11,6 +11,7 @@ function Hero({ image, title = "Hero" }) {
       <h1>
         <mark className="stylized-font">{title}</mark>
       </h1>
+      {/* <p>Description</p> */}
     </div>
   );
 }
