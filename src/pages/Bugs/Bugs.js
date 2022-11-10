@@ -5,7 +5,7 @@ import Hero from "../../components/Hero/Hero";
 function Bugs(props) {
   return (
     <main>
-      <Hero title="bugs" />
+      <Hero title="Bugs" />
       <Catalog type="bugs" />
     </main>
   );

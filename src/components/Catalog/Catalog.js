@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useFetchGET from "../../hooks/useFetchGET";
 
 import Hero from "../../components/Hero/Hero";
-// import ItemFilter from "./ItemFilter/ItemFilter";
+import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
 import Pagination from "../../components/Pagination/Pagination";
 import ItemList from "../../components/ItemList/ItemList";
 
@@ -40,7 +40,12 @@ function Catalog({ type = null }) {
         {isPending && <p>Loading...</p>}
         {!isPending && (
           <div>
-            {/* <ItemFilter items={Object.values(data)} setItems={setItems} /> */}
+            {type === "houseware" && (
+              <FurnitureFilter
+                items={Object.values(data)}
+                setItems={setItems}
+              />
+            )}
             <Pagination
               totalNumberOfItems={items.length}
               itemsPerPage={itemsPerPage}
