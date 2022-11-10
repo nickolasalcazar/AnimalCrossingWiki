@@ -1,6 +1,6 @@
 import "./ItemList.css";
 import CardWrapper from "../UI/CardWrapper/CardWrapper";
-import ItemCard from "../../pages/ItemCatalog/ItemCard/ItemCard";
+import ItemCard from "../../pages/FurnitureCatalog/FurnitureCard/FurnitureCard";
 import VillagerCard from "../../pages/VillagerCatalog/VillagerCard/VillagerCard";
 
 /**

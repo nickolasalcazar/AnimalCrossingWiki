@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-// import "./ItemCard.css";
-import "./ItemCard-dev.css";
+import "./FurnitureCard.css";
 
 import ItemDetail from "../../../components/ItemDetail/ItemDetail";
 

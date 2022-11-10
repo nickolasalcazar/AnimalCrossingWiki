@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-import "./ItemCatalog.css";
+import "./FurnitureCatalog.css";
 
 import useFetchGET from "../../hooks/useFetchGET";
 
-import ItemFilter from "./ItemFilter/ItemFilter";
+import ItemFilter from "./FurnitureFilter/FurnitureFilter";
 import Pagination from "../../components/Pagination/Pagination";
 import ItemList from "../../components/ItemList/ItemList";
 import Hero from "../../components/Hero/Hero";
@@ -25,7 +25,7 @@ const ItemCatalog = () => {
 
   return (
     <main className="item-catalog-wrapper">
-      <Hero title="Item Catalog" image="/assets/wallpapers/items.png" />
+      <Hero title="Furniture Catalog" image="/assets/wallpapers/items.png" />
       <div className="item-catalog">
         {error && <p>Something went wrong...</p>}
         {isPending && <p>Loading...</p>}
