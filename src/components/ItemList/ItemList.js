@@ -1,8 +1,9 @@
 import "./ItemList.css";
 import CardWrapper from "../UI/CardWrapper/CardWrapper";
-import ItemCard from "../../pages/FurnitureCatalog/FurnitureCard/FurnitureCard";
-import VillagerCard from "../../pages/VillagerCatalog/VillagerCard/VillagerCard";
-import BugCard from "../../pages/BugCatalog/BugCard";
+import ItemCard from "../../pages/Furniture/FurnitureCard/FurnitureCard";
+import VillagerCard from "../../pages/Villagers/VillagerCard/VillagerCard";
+import BugCard from "../../pages/Bugs/BugCard";
+import FishCard from "../../pages/Fish/FishCard";
 
 /**
  * A component that maps items to individual ItemCard components.
@@ -16,11 +17,10 @@ import BugCard from "../../pages/BugCatalog/BugCard";
  * @param {Number} lastItemIndex  The last element to display.
  */
 const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
-  console.log("items****************\n", items);
   return (
     <div className="item-list">
       <div className="item-list-content">
-        {listType === "items" &&
+        {listType === "houseware" &&
           Object.values(items)
             .slice(lastItemIndex - itemsPerPage, lastItemIndex)
             .map((item) => (
@@ -39,7 +39,14 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
                 <VillagerCard villager={villager} />
               </CardWrapper>
             ))}
-        {listType === "fish" && <h1>fish</h1>}
+        {listType === "fish" &&
+          Object.values(items)
+            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+            .map((fish) => (
+              <CardWrapper key={fish["id"]}>
+                <FishCard fish={fish} />
+              </CardWrapper>
+            ))}
         {listType === "bugs" &&
           Object.values(items)
             .slice(lastItemIndex - itemsPerPage, lastItemIndex)

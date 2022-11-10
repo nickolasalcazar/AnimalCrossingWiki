@@ -3,10 +3,18 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
-import FurnitureCatalog from "./pages/FurnitureCatalog/FurnitureCatalog";
-import VillagerCatalog from "./pages/VillagerCatalog/VillagerCatalog";
+// import FurnitureCatalog from "./pages/FurnitureCatalog/FurnitureCatalog";
+// import VillagerCatalog from "./pages/VillagerCatalog/VillagerCatalog";
 import Critters from "./pages/Critters/Critters";
-import BugCatalog from "./pages/BugCatalog/BugCatalog.js";
+// import BugCatalog from "./pages/BugCatalog/BugCatalog.js";
+
+import Catalog from "./components/Catalog/Catalog.js";
+
+// TESTING
+import Furniture from "./pages/Furniture/Furniture";
+import Villagers from "./pages/Villagers/Villagers";
+import Bugs from "./pages/Bugs/Bugs";
+import Fish from "./pages/Fish/Fish";
 
 function App() {
   return (
@@ -14,10 +22,14 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<h1>Homepage</h1>} />
-        <Route path="/furniture" element={<FurnitureCatalog />} />
-        <Route path="/villagers" element={<VillagerCatalog />} />
+
+        <Route path="/furniture" element={<Furniture />} />
+        <Route path="/villagers" element={<Villagers />} />
+
         <Route path="/critters" element={<Critters />} />
-        <Route path="/critters/bugs" element={<BugCatalog />} />
+        <Route path="/critters/bugs" element={<Bugs />} />
+        <Route path="/critters/fish" element={<Fish />} />
+
         <Route path="/art" element={<h1>Art</h1>} />
       </Routes>
       <Footer />
