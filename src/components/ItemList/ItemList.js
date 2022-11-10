@@ -2,6 +2,7 @@ import "./ItemList.css";
 import CardWrapper from "../UI/CardWrapper/CardWrapper";
 import ItemCard from "../../pages/FurnitureCatalog/FurnitureCard/FurnitureCard";
 import VillagerCard from "../../pages/VillagerCatalog/VillagerCard/VillagerCard";
+import BugCard from "../../pages/BugCatalog/BugCard";
 
 /**
  * A component that maps items to individual ItemCard components.
@@ -30,9 +31,21 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
         {listType === "villagers" &&
           Object.values(items)
             .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((item) => (
-              <CardWrapper key={item["id"]}>
-                <VillagerCard villager={item} />
+            .map((villager) => (
+              <CardWrapper
+                key={villager["id"]}
+                style={{ backgroundColor: villager["bubble-color"] }}
+              >
+                <VillagerCard villager={villager} />
+              </CardWrapper>
+            ))}
+        {listType === "fish" && <h1>fish</h1>}
+        {listType === "bugs" &&
+          Object.values(items)
+            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+            .map((bug) => (
+              <CardWrapper key={bug["id"]}>
+                <BugCard bug={bug} />
               </CardWrapper>
             ))}
       </div>
