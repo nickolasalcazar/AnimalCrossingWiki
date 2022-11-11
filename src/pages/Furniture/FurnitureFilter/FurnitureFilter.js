@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Collapsible from "../../../components/UI/Collapsible/Collapsible";
+
 import "./FurnitureFilter.css";
 
 const themes = [
@@ -255,17 +257,6 @@ const ItemFilter = ({ items, setItems }) => {
       e.target.classList.replace("filter-option-false", "filter-option-null");
   };
 
-  /*
-   * Toggles CSS styling for all filter option buttons
-   */
-  const toggleCollapsible = (e) => {
-    let content = e.currentTarget.nextSibling;
-    let show = content.classList.contains("collapsible-active");
-
-    if (show) content.classList.remove("collapsible-active");
-    else content.classList.add("collapsible-active");
-  };
-
   useEffect(() => {
     const timeOutId = setTimeout(() => multiFilter(), 500);
     return () => clearTimeout(timeOutId);
@@ -275,28 +266,23 @@ const ItemFilter = ({ items, setItems }) => {
   return (
     <div className="item-filter stylized-font">
       {/* Search field */}
-      <div className="item-search-field-wrapper">
-        <img
-          className="search-icon"
-          alt="search"
-          src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"
-        />
-        <input
-          placeholder="Search"
-          type="text"
-          className="item-search-field"
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
-        ></input>
-      </div>
+      <Collapsible title="Search" disabled="true" loadOpen="true">
+        <div className="item-search-field-wrapper">
+          <img
+            className="search-icon"
+            alt="search"
+            src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"
+          />
+          <input
+            placeholder="Search"
+            type="text"
+            className="item-search-field"
+            onChange={(e) => setQuery(e.target.value.toLowerCase())}
+          ></input>
+        </div>
+      </Collapsible>
       {/* Category fiter */}
-      <button
-        type="button"
-        className="collapsible-btn stylized-font"
-        onClick={(e) => toggleCollapsible(e)}
-      >
-        Categories
-      </button>
-      <div className="collapsible-content collapsible-active">
+      <Collapsible title="Categories">
         {Object.keys(appliedFilters["boolean-filters"]).map((booleanFilter) => (
           <div
             className="filter-option bool-filter filter-option-null clickable"
@@ -310,16 +296,9 @@ const ItemFilter = ({ items, setItems }) => {
             {booleanFilterNames[booleanFilter]}
           </div>
         ))}
-      </div>
+      </Collapsible>
       {/* Theme filter */}
-      <button
-        type="button"
-        className="collapsible-btn stylized-font"
-        onClick={(e) => toggleCollapsible(e)}
-      >
-        Themes
-      </button>
-      <div className="collapsible-content collapsible-active">
+      <Collapsible title="Themes">
         {themes.map((theme) => (
           <div
             className="filter-option filter-option-null clickable"
@@ -333,7 +312,7 @@ const ItemFilter = ({ items, setItems }) => {
             {theme.charAt(0).toUpperCase() + theme.slice(1)}
           </div>
         ))}
-      </div>
+      </Collapsible>
     </div>
   );
 };
