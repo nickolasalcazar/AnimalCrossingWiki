@@ -32,35 +32,39 @@ function Catalog({ type = null }) {
   }, [data, loading, type]);
 
   return (
-    <div className="catalog">
+    <div className="catalog-wrapper">
       {error && <p>Something went wrong...</p>}
       {loading && <p>Loading...</p>}
       {!loading && (
-        <div>
+        <div className="catalog">
           {type === "houseware" && (
-            <FurnitureFilter
-              items={Object.values(data[0])}
-              setItems={setItems}
-            />
+            <div className="filter">
+              <FurnitureFilter
+                items={Object.values(data[0])}
+                setItems={setItems}
+              />
+            </div>
           )}
-          <Pagination
-            totalNumberOfItems={items.length}
-            itemsPerPage={itemsPerPage}
-            lastItemIndex={lastItemIndex}
-            setLastItemIndex={setLastItemIndex}
-          />
-          <ItemList
-            listType={type}
-            items={items}
-            itemsPerPage={itemsPerPage}
-            lastItemIndex={lastItemIndex}
-          />
-          <Pagination
-            totalNumberOfItems={items.length}
-            itemsPerPage={itemsPerPage}
-            lastItemIndex={lastItemIndex}
-            setLastItemIndex={setLastItemIndex}
-          />
+          <div className="catalog-item-list">
+            <Pagination
+              totalNumberOfItems={items.length}
+              itemsPerPage={itemsPerPage}
+              lastItemIndex={lastItemIndex}
+              setLastItemIndex={setLastItemIndex}
+            />
+            <ItemList
+              listType={type}
+              items={items}
+              itemsPerPage={itemsPerPage}
+              lastItemIndex={lastItemIndex}
+            />
+            <Pagination
+              totalNumberOfItems={items.length}
+              itemsPerPage={itemsPerPage}
+              lastItemIndex={lastItemIndex}
+              setLastItemIndex={setLastItemIndex}
+            />
+          </div>
         </div>
       )}
     </div>

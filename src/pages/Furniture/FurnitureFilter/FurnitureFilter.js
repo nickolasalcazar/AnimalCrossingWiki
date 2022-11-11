@@ -274,6 +274,20 @@ const ItemFilter = ({ items, setItems }) => {
 
   return (
     <div className="item-filter stylized-font">
+      {/* Search field */}
+      <div className="item-search-field-wrapper">
+        <img
+          className="search-icon"
+          alt="search"
+          src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"
+        />
+        <input
+          placeholder="Search"
+          type="text"
+          className="item-search-field"
+          onChange={(e) => setQuery(e.target.value.toLowerCase())}
+        ></input>
+      </div>
       {/* Category fiter */}
       <button
         type="button"
@@ -319,20 +333,6 @@ const ItemFilter = ({ items, setItems }) => {
             {theme.charAt(0).toUpperCase() + theme.slice(1)}
           </div>
         ))}
-      </div>
-      {/* Search field */}
-      <div className="item-search-field-wrapper">
-        <img
-          className="search-icon"
-          alt="search"
-          src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"
-        />
-        <input
-          placeholder="Search"
-          type="text"
-          className="item-search-field"
-          onChange={(e) => setQuery(e.target.value.toLowerCase())}
-        ></input>
       </div>
     </div>
   );
