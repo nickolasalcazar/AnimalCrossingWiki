@@ -15,6 +15,7 @@ import Furniture from "./pages/Furniture/Furniture";
 import Villagers from "./pages/Villagers/Villagers";
 import Bugs from "./pages/Bugs/Bugs";
 import Fish from "./pages/Fish/Fish";
+import Art from "./pages/Art/Art";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
         <Route path="/critters/bugs" element={<Bugs />} />
         <Route path="/critters/fish" element={<Fish />} />
 
-        <Route path="/art" element={<h1>Art</h1>} />
+        <Route path="/art" element={<Art />} />
       </Routes>
       <Footer />
     </div>

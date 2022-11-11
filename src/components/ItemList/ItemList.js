@@ -4,6 +4,7 @@ import ItemCard from "../../pages/Furniture/FurnitureCard/FurnitureCard";
 import VillagerCard from "../../pages/Villagers/VillagerCard/VillagerCard";
 import BugCard from "../../pages/Bugs/BugCard";
 import FishCard from "../../pages/Fish/FishCard";
+import ArtCard from "../../pages/Art/ArtCard";
 
 /**
  * A component that maps items to individual ItemCard components.
@@ -34,7 +35,7 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
             .map((villager) => (
               <CardWrapper
                 key={villager["id"]}
-                style={{ backgroundColor: villager["bubble-color"] }}
+                style={{ backgroundColor: `${villager["bubble-color"]}AA` }}
               >
                 <VillagerCard villager={villager} />
               </CardWrapper>
@@ -53,6 +54,14 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
             .map((bug) => (
               <CardWrapper key={bug["id"]}>
                 <BugCard bug={bug} />
+              </CardWrapper>
+            ))}
+        {listType === "art" &&
+          Object.values(items)
+            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+            .map((artwork) => (
+              <CardWrapper key={artwork["id"]}>
+                <ArtCard artwork={artwork} />
               </CardWrapper>
             ))}
       </div>
