@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Collapsible from "../../../components/UI/Collapsible/Collapsible";
+import ItemSearchBar from "../../../components/ItemSearchBar/ItemSearchBar";
 
 import "./FurnitureFilter.css";
 
@@ -103,12 +104,14 @@ const ItemFilter = ({ items, setItems }) => {
       let item = items[i];
       let deleteFlag = false;
       item[0]["remove"] = false;
+
       // Remove any items that do not match the query string
       if (!item[0]["name"]["name-USen"].includes(query)) {
         filteredItems.splice(filteredItems.indexOf(item), 1);
         i--;
         continue;
       }
+
       // If not already deleted
       if (!deleteFlag) {
         // Apply Boolean Filters
@@ -267,19 +270,7 @@ const ItemFilter = ({ items, setItems }) => {
     <div className="item-filter stylized-font">
       {/* Search field */}
       <Collapsible title="Search" disabled="true" loadOpen="true">
-        <div className="item-search-field-wrapper">
-          <img
-            className="search-icon"
-            alt="search"
-            src="https://img.icons8.com/material-outlined/24/000000/search--v1.png"
-          />
-          <input
-            placeholder="Search"
-            type="text"
-            className="item-search-field"
-            onChange={(e) => setQuery(e.target.value.toLowerCase())}
-          ></input>
-        </div>
+        <ItemSearchBar query={query} setQuery={setQuery} />
       </Collapsible>
       {/* Category fiter */}
       <Collapsible title="Categories">

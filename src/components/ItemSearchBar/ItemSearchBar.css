@@ -1,0 +1,29 @@
+.item-search-wrapper {
+  margin: 7px 10px;
+  position: relative;
+  display: flex;
+  min-width: 100px;
+}
+
+.item-search-bar {
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 25px;
+  width: 200px;
+  padding: 2px 23px 2px 30px;
+  outline: 0;
+  background-color: #f5f5f5;
+}
+
+.item-search-bar:hover,
+.item-search-bar:focus {
+  border: 1px solid #009688;
+  background-color: white;
+}
+
+.search-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+}
