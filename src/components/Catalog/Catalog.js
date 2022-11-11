@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useFetchGET from "../../hooks/useFetchGET";
+import useFetchAll from "../../hooks/useFetchAll";
 
 import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
 import Pagination from "../../components/Pagination/Pagination";
@@ -12,30 +12,36 @@ import "./Catalog.css";
  * that specifies which catalog to render.
  *
  * @param {String} catalogType  Specifies which catalog to render. Appropriate values:
- *                              ["villagers", "furniture", "fish", "bugs"].
+ *                              ["villagers", "houseware", "fish", "bugs"].
  */
 function Catalog({ type = null }) {
-  // API URL for fetching all items: `http://acnhapi.com/v1/${type}/`
-  const { data, isPending, error } = useFetchGET(
-    `http://acnhapi.com/v1/${type}/`
-  );
+  const urls = [`http://acnhapi.com/v1/${type}/`];
+  // If catalog is for fish, also fetch sea creatures
+  if (type === "fish") urls.push("http://acnhapi.com/v1/sea/");
 
+  const { data, loading, error } = useFetchAll(urls);
   const [items, setItems] = useState([]);
   const [itemsPerPage /*setItemsPerPage*/] = useState(30);
   const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
   useEffect(() => {
-    if (!isPending) setItems(Object.values(data));
-  }, [data, isPending]);
+    if (!loading) {
+      if (type === "fish") setItems(Object.values({ ...data[0], ...data[1] }));
+      else setItems(Object.values(data[0]));
+    }
+  }, [data, loading, type]);
 
   return (
     <div className="catalog">
       {error && <p>Something went wrong...</p>}
-      {isPending && <p>Loading...</p>}
-      {!isPending && (
+      {loading && <p>Loading...</p>}
+      {!loading && (
         <div>
           {type === "houseware" && (
-            <FurnitureFilter items={Object.values(data)} setItems={setItems} />
+            <FurnitureFilter
+              items={Object.values(data[0])}
+              setItems={setItems}
+            />
           )}
           <Pagination
             totalNumberOfItems={items.length}

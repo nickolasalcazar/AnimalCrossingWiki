@@ -5,7 +5,7 @@ import Hero from "../../components/Hero/Hero";
 function Villagers(props) {
   return (
     <div>
-      <Hero title="Villagers" />
+      <Hero title="Villagers" image="assets/wallpapers/villagers.jpg" />
       <Catalog type="villagers" />
     </div>
   );
