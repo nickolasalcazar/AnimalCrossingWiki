@@ -79,7 +79,7 @@ let appliedFilters = {
  * @param   {Array}     items State variable of array containing all Animal Crossing furniture items.
  * @param   {setItems}  setItems useState hook for setting the value of items.
  */
-const ItemFilter = ({ items, setItems }) => {
+const FurnitureFilter = ({ items, setItems }) => {
   let filteredItems = items;
   const [query, setQuery] = useState("");
 
@@ -104,14 +104,12 @@ const ItemFilter = ({ items, setItems }) => {
       let item = items[i];
       let deleteFlag = false;
       item[0]["remove"] = false;
-
       // Remove any items that do not match the query string
       if (!item[0]["name"]["name-USen"].includes(query)) {
         filteredItems.splice(filteredItems.indexOf(item), 1);
         i--;
         continue;
       }
-
       // If not already deleted
       if (!deleteFlag) {
         // Apply Boolean Filters
@@ -261,13 +259,11 @@ const ItemFilter = ({ items, setItems }) => {
   };
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => multiFilter(), 500);
-    return () => clearTimeout(timeOutId);
-    // eslint-disable-next-line
+    multiFilter();
   }, [query]);
 
   return (
-    <div className="item-filter stylized-font">
+    <div className="filter">
       {/* Search field */}
       <Collapsible title="Search" disabled="true" loadOpen="true">
         <ItemSearchBar query={query} setQuery={setQuery} />
@@ -307,4 +303,4 @@ const ItemFilter = ({ items, setItems }) => {
     </div>
   );
 };
-export default ItemFilter;
+export default FurnitureFilter;

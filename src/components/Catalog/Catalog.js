@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import useFetchAll from "../../hooks/useFetchAll";
 
 import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
+import ItemFilter from "../ItemFilter";
+
 import Pagination from "../../components/Pagination/Pagination";
 import ItemList from "../../components/ItemList/ItemList";
 
 import "./Catalog.css";
 
 /**
- * The catalog component for Villagers, Furniture, Bugs, and Fish. Is passed @param catalogType
- * that specifies which catalog to render.
+ * The catalog component for all items.
  *
  * @param {String} catalogType  Specifies which catalog to render. Appropriate values:
  *                              ["villagers", "houseware", "fish", "bugs"].
@@ -25,10 +26,7 @@ function Catalog({ type = null }) {
   const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
   useEffect(() => {
-    if (!loading) {
-      if (type === "fish") setItems(Object.values({ ...data[0], ...data[1] }));
-      else setItems(Object.values(data[0]));
-    }
+    if (!loading) setItems(Object.values({ ...data[0], ...data[1] }));
   }, [data, loading, type]);
 
   return (
@@ -37,13 +35,13 @@ function Catalog({ type = null }) {
       {loading && <p>Loading...</p>}
       {!loading && (
         <div className="catalog">
-          {type === "houseware" && (
-            <div className="filter">
-              <FurnitureFilter
-                items={Object.values(data[0])}
-                setItems={setItems}
-              />
-            </div>
+          {type === "houseware" ? (
+            <FurnitureFilter
+              items={Object.values(data[0])}
+              setItems={setItems}
+            />
+          ) : (
+            <ItemFilter items={Object.values(data[0])} setItems={setItems} />
           )}
           <div className="catalog-item-list">
             <Pagination

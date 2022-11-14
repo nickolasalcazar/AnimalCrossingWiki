@@ -1,6 +1,6 @@
 import "./Hero.css";
 
-function Hero({ image = "assets/wallpapers/items.png", title = "Hero" }) {
+function Hero({ image = "/assets/wallpapers/items.png", title = "Hero" }) {
   return (
     <div
       className="hero"
