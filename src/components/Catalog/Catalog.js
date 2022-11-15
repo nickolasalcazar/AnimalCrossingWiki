@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useFetchAll from "../../hooks/useFetchAll";
 
 import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
-import ItemFilter from "../ItemFilter";
+import ItemFilter from "../ItemFilter/ItemFilter";
 
 import Pagination from "../../components/Pagination/Pagination";
 import ItemList from "../../components/ItemList/ItemList";
@@ -41,7 +41,11 @@ function Catalog({ type = null }) {
               setItems={setItems}
             />
           ) : (
-            <ItemFilter items={Object.values(data[0])} setItems={setItems} />
+            <ItemFilter
+              filterType={type}
+              items={Object.values(data[0])}
+              setItems={setItems}
+            />
           )}
           <div className="catalog-item-list">
             <Pagination
