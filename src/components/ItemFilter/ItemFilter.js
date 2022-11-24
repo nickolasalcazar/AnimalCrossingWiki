@@ -75,6 +75,7 @@ function ItemFilter({ filterType = null, items, setItems }) {
 
   useEffect(() => {
     filter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, appliedFilters]);
 
   const handleFilterButtonOnClick = (category, attribute) => {

@@ -260,6 +260,7 @@ const FurnitureFilter = ({ items, setItems }) => {
 
   useEffect(() => {
     multiFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   return (

@@ -20,7 +20,7 @@ function FilterButton({
     if (appliedFilters[category] !== attribute) {
       setActive(false);
     }
-  }, [active, appliedFilters]);
+  }, [active, appliedFilters, attribute, category]);
 
   return (
     <button
