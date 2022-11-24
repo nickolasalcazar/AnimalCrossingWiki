@@ -1,26 +1,14 @@
 .filter-option {
-  display: inline-block;
-  width: 150px;
-  height: 40px;
-
-  padding-top: 0px;
-  line-height: 35px;
-
-  text-align: center;
-  border-radius: 50%;
-
-  transition: background-color 0.1s;
+  padding: 25px !important;
 }
 
-.filter-option-null {
-  background-color: white;
-}
-.filter-option-true {
+/* .filter-btn is a CSS class that is applied from: src/components/ItemFilter/FilterButton/FilterButton.css" */
+.filter-btn.filter-option-true {
   background-color: lightgreen;
 }
-.filter-option-false {
+.filter-btn.filter-option-false {
   background-color: lightcoral;
 }
-.filter-option:hover {
+.filter-btn.filter-option:hover {
   background-color: #ded;
 }

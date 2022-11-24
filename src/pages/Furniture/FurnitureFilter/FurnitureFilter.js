@@ -4,6 +4,7 @@ import Collapsible from "../../../components/UI/Collapsible/Collapsible";
 import ItemSearchBar from "../../../components/ItemSearchBar/ItemSearchBar";
 
 import "./FurnitureFilter.css";
+import "../../../components/ItemFilter/FilterButton/FilterButton.css";
 
 const themes = [
   "bathroom",
@@ -273,7 +274,9 @@ const FurnitureFilter = ({ items, setItems }) => {
       <Collapsible title="Categories">
         {Object.keys(appliedFilters["boolean-filters"]).map((booleanFilter) => (
           <div
-            className="filter-option bool-filter filter-option-null clickable"
+            // Note that "filter-btn" is a CSS class that is applied from:
+            //    src/components/ItemFilter/FilterButton/FilterButton.css"
+            className="filter-btn filter-option bool-filter filter-option-null clickable"
             data-filter={booleanFilter}
             key={booleanFilter}
             onClick={(e) => {
@@ -289,7 +292,9 @@ const FurnitureFilter = ({ items, setItems }) => {
       <Collapsible title="Themes">
         {themes.map((theme) => (
           <div
-            className="filter-option filter-option-null clickable"
+            // Note that "filter-btn" is a CSS class that is applied from:
+            //    src/components/ItemFilter/FilterButton/FilterButton.css"
+            className="filter-btn filter-option filter-option-null clickable"
             data-filter={theme}
             key={theme}
             onClick={(e) => {

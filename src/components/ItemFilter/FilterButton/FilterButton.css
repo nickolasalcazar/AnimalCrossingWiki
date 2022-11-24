@@ -8,8 +8,17 @@
   font-family: var(--stylized-font);
   font-size: 12pt;
   margin: 2px auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .filter-btn.active {
   background-color: lightgreen;
+}
+
+.filter-btn:hover {
+  background-color: #ded;
 }
