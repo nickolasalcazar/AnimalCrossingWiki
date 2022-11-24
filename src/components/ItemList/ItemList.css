@@ -1,5 +1,6 @@
 .item-list {
   padding: 0px 20px;
+  padding-left: 50px;
 }
 
 .item-list-content {
@@ -13,6 +14,9 @@
 
   grid-template-columns: repeat(auto-fill, min(25vw, 200px));
   grid-template-columns: repeat(auto-fill, min(30%, 175px));
+  grid-template-columns: repeat(auto-fill, min(30%, 175px));
+
+  grid-template-columns: repeat(auto-fill, min(50%, 175px));
   justify-content: center;
   /* justify-content: space-evenly; */
   /* justify-content: space-around; */
@@ -23,5 +27,9 @@
 @media (max-width: 720px) {
   .item-list {
     padding: 0px;
+  }
+
+  .item-list-content {
+    grid-template-columns: repeat(auto-fill, min(33%, 175px));
   }
 }
