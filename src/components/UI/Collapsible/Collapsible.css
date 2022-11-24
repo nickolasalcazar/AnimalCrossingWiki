@@ -16,6 +16,9 @@
   border-radius: 20px 20px 3px 3px;
   border-bottom: #884c141a solid 4px;
   transition: background-color 0.1s;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .collapsible-btn:not(.disabled):hover {
@@ -26,13 +29,25 @@
   cursor: pointer;
 }
 
+.collapsible-arrow {
+  transform: rotate(90deg); /* Point DOWN */
+  transition: transform 0.1s;
+  font-size: 16pt;
+  margin-right: 5px;
+}
+
+.collapsible-active .collapsible-arrow {
+  transform: rotate(-90deg); /* Point UP */
+  transition: transform 0.1s;
+}
+
 .collapsible-content {
   padding-top: 10px;
 
   overflow: hidden;
   background-color: #fef9d5;
   max-height: 0px;
-  transition: max-height 0.5s;
+  transition: max-height 0.3s;
 
   border-radius: 0px 0px 15px 15px;
 }
@@ -44,6 +59,7 @@
   padding: 0px 15px 15px 15px;
 }
 
-.collapsible-active {
+.collapsible-active .collapsible-content {
   max-height: 100vmax;
+  transition: max-height 0.5s;
 }
