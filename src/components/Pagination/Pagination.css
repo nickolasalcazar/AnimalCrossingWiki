@@ -1,9 +1,12 @@
 .pagination {
-  margin: 5px 5px;
-  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0px;
 }
 
-.pagination button {
+.pagination-controls button {
   font-size: 15pt;
   line-height: 3px;
 
@@ -19,4 +22,9 @@
   border-radius: 5px;
 
   cursor: pointer;
+}
+
+.page-counter {
+  display: block;
+  font-family: var(--stylized-font);
 }

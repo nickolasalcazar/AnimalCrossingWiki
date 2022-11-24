@@ -16,62 +16,65 @@ const Pagination = ({
   setLastItemIndex,
 }) => {
   let currentPage = lastItemIndex / itemsPerPage;
+  const totalPages = Math.ceil(totalNumberOfItems / itemsPerPage);
 
   const handleStep = (step) => {
     if (step === 1) {
+      if (currentPage === totalPages) return;
       setLastItemIndex(lastItemIndex + itemsPerPage);
       currentPage++;
     } else if (step === -1) {
+      if (currentPage === 1) return;
       setLastItemIndex(lastItemIndex - itemsPerPage);
       currentPage--;
     }
   };
 
   return (
-    <div className="pagination stylized-font">
+    <div className="pagination">
       {/* First page */}
-      <button
-        className="cycle-page-btn stylized-font"
-        onClick={() => {
-          currentPage = 1;
-          setLastItemIndex(itemsPerPage);
-        }}
-      >
-        &lsaquo;&lsaquo;
-      </button>
+      <div className="pagination-controls">
+        <button
+          className="cycle-page-btn no-select"
+          onClick={() => {
+            currentPage = 1;
+            setLastItemIndex(itemsPerPage);
+          }}
+        >
+          &lsaquo;&lsaquo;
+        </button>
 
-      {/* Backward */}
-      <button
-        className="cycle-page-btn stylized-font"
-        onClick={() => handleStep(-1)}
-      >
-        &lsaquo;
-      </button>
+        {/* Backward */}
+        <button
+          className="cycle-page-btn no-select"
+          onClick={() => handleStep(-1)}
+        >
+          &lsaquo;
+        </button>
 
-      {/* Forward */}
-      <button
-        className="cycle-page-btn stylized-font"
-        onClick={() => handleStep(1)}
-      >
-        &rsaquo;
-      </button>
+        {/* Forward */}
+        <button
+          className="cycle-page-btn no-select"
+          onClick={() => handleStep(1)}
+        >
+          &rsaquo;
+        </button>
 
-      {/* Last page */}
-      <button
-        className="cycle-page-btn stylized-font"
-        onClick={() => {
-          currentPage = Math.ceil(totalNumberOfItems / itemsPerPage);
-          setLastItemIndex(
-            itemsPerPage * Math.ceil(totalNumberOfItems / itemsPerPage)
-          );
-        }}
-      >
-        &rsaquo;&rsaquo;
-      </button>
+        {/* Last page */}
+        <button
+          className="cycle-page-btn no-select"
+          onClick={() => {
+            currentPage = totalPages;
+            setLastItemIndex(itemsPerPage * totalPages);
+          }}
+        >
+          &rsaquo;&rsaquo;
+        </button>
+      </div>
 
       {/* Page counter */}
-      <span>
-        Page {currentPage} of {Math.ceil(totalNumberOfItems / itemsPerPage)}
+      <span className="page-counter">
+        Page {currentPage} of {totalPages}
       </span>
     </div>
   );
