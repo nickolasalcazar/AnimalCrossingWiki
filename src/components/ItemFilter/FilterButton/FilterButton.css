@@ -1,3 +1,13 @@
 .filter-btn {
+  cursor: pointer;
   background-color: var(--light-gray);
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 100%;
+  font-family: var(--stylized-font);
+}
+
+.filter-btn.active {
+  background-color: lightgreen;
 }

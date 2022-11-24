@@ -43,8 +43,8 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
         {listType === "fish" &&
           Object.values(items)
             .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((fish) => (
-              <CardWrapper key={fish["id"]}>
+            .map((fish, index) => (
+              <CardWrapper key={index}>
                 <FishCard fish={fish} />
               </CardWrapper>
             ))}

@@ -1,4 +1,5 @@
 {
+  "INFO": "Each category (villagers, bugs, etc.) stores an object that stores arrays filter categories. JSON format must be: object.object.array",
   "villagers": {
     "species": [
       "Alligator",
@@ -49,7 +50,13 @@
     ],
     "gender": ["Male", "Female"]
   },
-  "bugs": {},
-  "fish": {},
+  "bugs": {
+    "rarity": ["Common", "Uncommon", "Rare", "Ultra-rare"],
+    "availability": ["isAllDay", "isAllYear"]
+  },
+  "fish": {
+    "rarity": ["Common", "Uncommon", "Rare", "Ultra-rare"],
+    "availability": ["isAllDay", "isAllYear"]
+  },
   "art": {}
 }

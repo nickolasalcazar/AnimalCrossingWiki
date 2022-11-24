@@ -43,7 +43,8 @@ function Catalog({ type = null }) {
           ) : (
             <ItemFilter
               filterType={type}
-              items={Object.values(data[0])}
+              // items={Object.values(data[0])}
+              items={Object.values({ ...data[0], ...data[1] })}
               setItems={setItems}
             />
           )}
