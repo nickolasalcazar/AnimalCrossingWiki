@@ -1,34 +1,27 @@
-.catalog {
-  /* max-width: 850px;
-  margin: auto; */
-}
-
 .catalog-wrapper {
   margin-top: 50px;
 }
 
 .catalog {
-  max-width: 80vw;
+  max-width: min(90vw, 1600px);
   margin: auto;
   display: grid;
   grid-template-columns: 2fr 5fr;
 }
 
 .filter {
-  /* background-color: red; */
   grid-column: 1 / 2;
 }
 
 .catalog-item-list {
-  /* background-color: blue; */
   grid-column: 2 / 3;
 }
 
 /* Mobile view ***************************************************************/
-/* @media (max-width: 768px) { */
-@media (max-width: 1100px) {
+@media (max-width: 720px) {
   .catalog {
     display: flex;
     flex-direction: column;
+    /* max-width: 90vw; */
   }
 }

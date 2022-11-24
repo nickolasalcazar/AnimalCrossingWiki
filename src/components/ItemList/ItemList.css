@@ -1,3 +1,7 @@
+.item-list {
+  padding: 0px 20px;
+}
+
 .item-list-content {
   /* max-width: 850px; */
   display: grid;
@@ -6,5 +10,18 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 0.5fr));
   grid-template-columns: repeat(auto-fill, 200px);
   grid-template-columns: repeat(auto-fill, min(45vw, 200px));
+
+  grid-template-columns: repeat(auto-fill, min(25vw, 200px));
+  grid-template-columns: repeat(auto-fill, min(30%, 175px));
   justify-content: center;
+  /* justify-content: space-evenly; */
+  /* justify-content: space-around; */
+  /* justify-content: space-between; */
+}
+
+/* Mobile view ***************************************************************/
+@media (max-width: 720px) {
+  .item-list {
+    padding: 0px;
+  }
 }

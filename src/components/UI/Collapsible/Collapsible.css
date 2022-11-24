@@ -47,7 +47,7 @@
   overflow: hidden;
   background-color: #fef9d5;
   max-height: 0px;
-  transition: max-height 0.3s;
+  transition: max-height 0.2s;
 
   border-radius: 0px 0px 15px 15px;
 }
@@ -60,6 +60,6 @@
 }
 
 .collapsible-active .collapsible-content {
-  max-height: 100vmax;
-  transition: max-height 0.5s;
+  max-height: 100%;
+  transition: max-height 0.9s;
 }

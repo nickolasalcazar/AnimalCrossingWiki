@@ -49,12 +49,6 @@ function Catalog({ type = null }) {
             />
           )}
           <div className="catalog-item-list">
-            <Pagination
-              totalNumberOfItems={items.length}
-              itemsPerPage={itemsPerPage}
-              lastItemIndex={lastItemIndex}
-              setLastItemIndex={setLastItemIndex}
-            />
             <ItemList
               listType={type}
               items={items}
