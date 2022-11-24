@@ -8,12 +8,18 @@
 
 .pagination-controls button {
   font-size: 15pt;
+  font-size: 18pt;
   line-height: 3px;
 
-  background-color: #c83c24;
-  color: #f0c434;
+  background-color: #ffe46c;
+  color: #884c14;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  transition: background-color 0.1s;
 
-  padding: 10px 20px 14px 20px;
+  width: 65px;
+  height: 35px;
+  padding-bottom: 4px;
+
   margin: 5px;
   margin-bottom: 10px;
 
@@ -22,6 +28,10 @@
   border-radius: 5px;
 
   cursor: pointer;
+}
+
+.pagination-controls button:hover {
+  background-color: #e6bb00;
 }
 
 .page-counter {
