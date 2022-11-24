@@ -26,15 +26,16 @@
 }
 
 .collapsible-content {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  justify-content: space-around;
+
   padding: 0 18px;
   overflow: hidden;
   background-color: #fffce4;
   max-height: 0px;
   transition: max-height 0.5s;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  column-gap: 20px;
 
   border-radius: 0px 0px 15px 15px;
 }
@@ -45,5 +46,5 @@
 }
 
 .collapsible-active {
-  max-height: 500px;
+  max-height: 100vmax;
 }
