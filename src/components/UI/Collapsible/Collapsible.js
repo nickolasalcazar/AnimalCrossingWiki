@@ -25,7 +25,7 @@ function Collapsible({ children, disabled = false, loadOpen = false, title }) {
           loadOpen ? " collapsible-active" : " collapsible-inactive"
         }`}
       >
-        {children}
+        <div className={"collapsible-inner-content"}>{children}</div>
       </div>
     </div>
   );

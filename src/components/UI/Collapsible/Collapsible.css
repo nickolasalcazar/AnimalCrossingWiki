@@ -1,5 +1,6 @@
 .collapsible {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .collapsible-btn {
@@ -26,23 +27,21 @@
 }
 
 .collapsible-content {
-  display: flex;
-  flex-wrap: wrap;
-  /* justify-content: center; */
-  justify-content: space-around;
+  padding-top: 10px;
 
-  padding: 0 18px;
   overflow: hidden;
-  background-color: #fffce4;
+  background-color: #fef9d5;
   max-height: 0px;
   transition: max-height 0.5s;
 
   border-radius: 0px 0px 15px 15px;
 }
 
-.collapsible-content .filter-option {
-  font-size: 11pt;
-  border-radius: auto 50%;
+.collapsible-inner-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0px 15px 15px 15px;
 }
 
 .collapsible-active {

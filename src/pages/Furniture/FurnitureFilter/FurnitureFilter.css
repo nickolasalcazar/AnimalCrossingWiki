@@ -1,5 +1,6 @@
 .filter-option {
   padding: 25px !important;
+  font-size: 11pt !important;
 }
 
 /* .filter-btn is a CSS class that is applied from: src/components/ItemFilter/FilterButton/FilterButton.css" */
