@@ -6,6 +6,16 @@ import Logo from "../Logo/Logo";
 
 const NavBar = () => {
   const [shrink, setShrink] = useState(false);
+  const navbar = document.querySelector(".navbar");
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setShrink(false);
+    navbar.classList.remove("shrunk");
+  };
 
   useEffect(() => {
     const navbar = document.querySelector(".navbar");
@@ -25,7 +35,11 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        <Logo shrink={shrink} />
+        <Logo
+          shrink={shrink}
+          onClick={scrollToTop}
+          style={{ cursor: "pointer" }}
+        />
         <ul>
           <li>
             <Link to="/">Home</Link>

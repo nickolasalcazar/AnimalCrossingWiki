@@ -8,11 +8,11 @@ import "./Logo.css";
  *
  * @returns {SvgLogo}
  */
-function Logo({ shrink }) {
+function Logo({ onClick = undefined, shrink, style }) {
   return shrink ? (
-    <SvgLogoSmall className="logo-wrapper" />
+    <SvgLogoSmall className="logo-wrapper" onClick={onClick} style={style} />
   ) : (
-    <SvgLogoLarge className="logo-wrapper" />
+    <SvgLogoLarge className="logo-wrapper" onClick={onClick} style={style} />
   );
 }
 
