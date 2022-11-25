@@ -17,16 +17,39 @@ const NavBar = () => {
     navbar.classList.remove("shrunk");
   };
 
+  const handleHamburgerOnClick = () => {
+    const navbar = document.querySelector(".navbar");
+    const hamburger = document.getElementById("hamburger");
+    const navbarMenu = document.querySelector(".navbar-menu");
+    hamburger.classList.toggle("active");
+    const hamburgerOpen = hamburger.classList.contains("active");
+
+    if (hamburgerOpen) {
+      navbarMenu.classList.add("active");
+      navbar.classList.remove("shrunk");
+    } else {
+      navbarMenu.classList.remove("active");
+      if (window.pageYOffset <= 50) navbar.classList.remove("shrunk");
+      else navbar.classList.add("shrunk");
+    }
+  };
+
   useEffect(() => {
     const navbar = document.querySelector(".navbar");
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", () => {
-        if (window.pageYOffset >= 250) {
-          setShrink(true);
-          navbar.classList.add("shrunk");
-        } else if (window.pageYOffset <= 50) {
+        if (
+          document.getElementById("hamburger").classList.contains("active") ||
+          window.pageYOffset <= 50
+        ) {
           setShrink(false);
           navbar.classList.remove("shrunk");
+        } else if (
+          !document.getElementById("hamburger").classList.contains("active") &&
+          window.pageYOffset >= 250
+        ) {
+          setShrink(true);
+          navbar.classList.add("shrunk");
         }
       });
     }
@@ -40,7 +63,7 @@ const NavBar = () => {
           onClick={scrollToTop}
           style={{ cursor: "pointer" }}
         />
-        <ul>
+        <ul className="navbar-menu" style={{ top: "115px" }}>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -57,6 +80,11 @@ const NavBar = () => {
             <Link to="/art">Art</Link>
           </li>
         </ul>
+        <button id="hamburger" onClick={handleHamburgerOnClick}>
+          <span className="hamburger-bar"></span>
+          <span className="hamburger-bar"></span>
+          <span className="hamburger-bar"></span>
+        </button>
       </div>
     </nav>
   );
