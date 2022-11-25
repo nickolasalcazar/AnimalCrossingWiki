@@ -1,4 +1,9 @@
 .navbar {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
   box-sizing: unset;
 
   height: var(--navbar-height);
@@ -8,6 +13,11 @@
 
   border-top: 20px solid orange;
   border-bottom: 5px solid white;
+
+  transition: border-top 0.5s;
+  transition: height 0.5s;
+
+  overflow-y: hidden;
 }
 
 .navbar-content {
@@ -41,4 +51,9 @@
 .navbar ul li a {
   font-family: var(--stylized-font);
   color: var(--light-font-color);
+}
+
+.navbar.shrunk {
+  border-top: 10px solid orange;
+  height: 60px;
 }

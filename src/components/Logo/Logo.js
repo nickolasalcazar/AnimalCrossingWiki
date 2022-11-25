@@ -1,4 +1,5 @@
-import { ReactComponent as SvgLogo } from "./critter-catalog.svg";
+import { ReactComponent as SvgLogoLarge } from "./critter-catalog.svg";
+import { ReactComponent as SvgLogoSmall } from "./critter-catalog-small.svg";
 
 import "./Logo.css";
 
@@ -7,8 +8,12 @@ import "./Logo.css";
  *
  * @returns {SvgLogo}
  */
-function Logo() {
-  return <SvgLogo className="logo-wrapper" />;
+function Logo({ shrink }) {
+  return shrink ? (
+    <SvgLogoSmall className="logo-wrapper" />
+  ) : (
+    <SvgLogoLarge className="logo-wrapper" />
+  );
 }
 
 export default Logo;

@@ -3,8 +3,19 @@
   justify-content: center;
   height: 100px;
   width: 150px;
+
+  animation: logo-fade-in ease 0.25s;
 }
 
 .logo-wrapper path {
   fill: white;
+}
+
+@keyframes logo-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
