@@ -8,6 +8,11 @@ const NavBar = () => {
   const [shrink, setShrink] = useState(false);
   const navbar = document.querySelector(".navbar");
 
+  const disableScroll = (bool) => {
+    if (bool) document.querySelector("html").classList.add("disable-scroll");
+    else document.querySelector("html").classList.remove("disable-scroll");
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -27,10 +32,22 @@ const NavBar = () => {
     if (hamburgerOpen) {
       navbarMenu.classList.add("active");
       navbar.classList.remove("shrunk");
+      disableScroll(true);
     } else {
       navbarMenu.classList.remove("active");
+      disableScroll(false);
       if (window.pageYOffset <= 50) navbar.classList.remove("shrunk");
       else navbar.classList.add("shrunk");
+    }
+  };
+
+  const handleLinkOnClick = () => {
+    const hamburger = document.getElementById("hamburger");
+    const navbarMenu = document.querySelector(".navbar-menu");
+    if (hamburger.classList.contains("active")) {
+      hamburger.classList.remove("active");
+      navbarMenu.classList.remove("active");
+      disableScroll(false);
     }
   };
 
@@ -65,19 +82,29 @@ const NavBar = () => {
         />
         <ul className="navbar-menu" style={{ top: "115px" }}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={handleLinkOnClick}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/furniture">Furniture</Link>
+            <Link to="/furniture" onClick={handleLinkOnClick}>
+              Furniture
+            </Link>
           </li>
           <li>
-            <Link to="/villagers">Villagers</Link>
+            <Link to="/villagers" onClick={handleLinkOnClick}>
+              Villagers
+            </Link>
           </li>
           <li>
-            <Link to="/critters">Critters</Link>
+            <Link to="/critters" onClick={handleLinkOnClick}>
+              Critters
+            </Link>
           </li>
           <li>
-            <Link to="/art">Art</Link>
+            <Link to="/art" onClick={handleLinkOnClick}>
+              Art
+            </Link>
           </li>
         </ul>
         <button id="hamburger" onClick={handleHamburgerOnClick}>
