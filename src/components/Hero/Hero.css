@@ -16,6 +16,7 @@
 
 .hero h1 {
   font-size: 30pt;
+  font-size: 40pt;
   margin-left: 5%;
 }
 
@@ -25,8 +26,13 @@
   color: white;
 }
 
-/* .hero p {
-  background-color: lightgrey;
-  margin: auto;
-  position: relative;
-} */
+/* Mobile view ***************************************************************/
+@media (max-width: 720px) {
+  .hero {
+    height: 120px;
+  }
+
+  .hero h1 {
+    font-size: 30pt;
+  }
+}
