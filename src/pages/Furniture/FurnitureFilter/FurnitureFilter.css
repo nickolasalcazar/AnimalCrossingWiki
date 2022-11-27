@@ -10,6 +10,9 @@
 .filter-btn.filter-option-false {
   background-color: lightcoral;
 }
-.filter-btn.filter-option:hover {
-  background-color: #ded;
+
+@media (hover: hover) {
+  .filter-btn.filter-option:hover {
+    background-color: #ded;
+  }
 }

@@ -30,8 +30,10 @@
   cursor: pointer;
 }
 
-.pagination-controls button:hover {
-  background-color: #e6bb00;
+@media (hover: hover) {
+  .pagination-controls button:hover {
+    background-color: #e6bb00;
+  }
 }
 
 .page-counter {

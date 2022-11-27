@@ -30,6 +30,8 @@
   background-color: lightgreen;
 }
 
-.filter-btn:hover {
-  background-color: #ded;
+@media (hover: hover) {
+  .filter-btn:hover {
+    background-color: #ded;
+  }
 }

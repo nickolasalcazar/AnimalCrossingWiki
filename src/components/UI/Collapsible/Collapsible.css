@@ -21,8 +21,10 @@
   justify-content: space-between;
 }
 
-.collapsible-btn:not(.disabled):hover {
-  background-color: #e6bb00;
+@media (hover: hover) {
+  .collapsible-btn:not(.disabled):hover {
+    background-color: #e6bb00;
+  }
 }
 
 .collapsible-btn:not(.disabled) {
