@@ -18,6 +18,18 @@ import ArtCard from "../../pages/Art/ArtCard";
  * @param {Number} lastItemIndex  The last element to display.
  */
 const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
+  if (items.length === 0) {
+    return (
+      <div className="item-list">
+        <div className="item-list-content no-items">
+          <h3>What are you lookin' for?</h3>
+          <img src="assets/mr-resetti.png" className="mr-resetti" />
+          <h3>I couldn't find it!</h3>
+          <p>How about expanding your search?</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="item-list">
       <div className="item-list-content">
