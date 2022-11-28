@@ -23,7 +23,11 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
       <div className="item-list">
         <div className="item-list-content no-items">
           <h3>What are you lookin' for?</h3>
-          <img src="assets/mr-resetti.png" className="mr-resetti" />
+          <img
+            src="/assets/mr-resetti.png"
+            alt="mr-resetti"
+            className="mr-resetti"
+          />
           <h3>I couldn't find it!</h3>
           <p>How about expanding your search?</p>
         </div>

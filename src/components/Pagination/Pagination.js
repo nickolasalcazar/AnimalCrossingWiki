@@ -3,7 +3,7 @@ import "./Pagination.css";
 /**
  * Renders pagination UI for cycling through items.
  *
- * @param   {Integer} numberOfItems       Total number of items that are to be displayed.
+ * @param   {Integer} totalNumberOfItems       Total number of items that are to be displayed.
  * @param   {Integer} itemsPerPage        Number of items to be displayed on a single page.
  * @param   {Integer} lastItemIndex       The current index of the last item displayed in the page.
  * @param   {Function} setLastItemIndex    A function for setting lastItemIndex.
@@ -30,8 +30,15 @@ const Pagination = ({
     }
   };
 
+  // if ()
+
   return (
-    <div className="pagination">
+    <div
+      className="pagination"
+      style={{
+        display: totalPages === 0 ? "none" : "flex",
+      }}
+    >
       {/* First page */}
       <div className="pagination-controls">
         <button
