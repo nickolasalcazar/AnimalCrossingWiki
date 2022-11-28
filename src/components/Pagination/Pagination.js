@@ -3,10 +3,11 @@ import "./Pagination.css";
 /**
  * Renders pagination UI for cycling through items.
  *
- * @param   {Integer} totalNumberOfItems       Total number of items that are to be displayed.
- * @param   {Integer} itemsPerPage        Number of items to be displayed on a single page.
- * @param   {Integer} lastItemIndex       The current index of the last item displayed in the page.
- * @param   {Function} setLastItemIndex    A function for setting lastItemIndex.
+ * @param   {Integer}   totalNumberOfItems  Total number of items that are to be displayed.
+ * @param   {Integer}   itemsPerPage        Number of items to be displayed on a single page.
+ * @param   {Integer}   lastItemIndex       The current index of the last item displayed in the page.
+ * @param   {Function}  setLastItemIndex    A function for setting lastItemIndex.
+ * @param   {Boolean}   pageCounter         If passed true, the component will display a page ocunter.
  * @returns {Pagination}
  */
 const Pagination = ({
@@ -14,6 +15,7 @@ const Pagination = ({
   itemsPerPage,
   lastItemIndex = itemsPerPage,
   setLastItemIndex,
+  pageCounter,
 }) => {
   let currentPage = lastItemIndex / itemsPerPage;
   const totalPages = Math.ceil(totalNumberOfItems / itemsPerPage);
@@ -34,7 +36,8 @@ const Pagination = ({
     <div
       className="pagination"
       style={{
-        display: totalPages === 0 ? "none" : "flex",
+        // visibility: totalPages <= 1 ? "hidden" : "visible",
+        display: totalPages <= 1 ? "none" : "flex",
       }}
     >
       {/* First page */}
@@ -78,9 +81,13 @@ const Pagination = ({
       </div>
 
       {/* Page counter */}
-      <span className="page-counter">
-        Page {currentPage} of {totalPages}
-      </span>
+      {pageCounter ? (
+        <span className="page-counter">
+          Page {currentPage} of {totalPages}
+        </span>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 .catalog-wrapper {
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .catalog {
@@ -7,6 +8,8 @@
   margin: auto;
   display: grid;
   grid-template-columns: 2fr 5fr;
+  grid-template-columns: 2fr max-content;
+  grid-template-columns: 1fr 3fr;
 }
 
 .filter {
@@ -15,6 +18,8 @@
 
 .catalog-item-list {
   grid-column: 2 / 3;
+
+  margin-left: 20px;
 }
 
 /* Mobile view ***************************************************************/
@@ -27,5 +32,9 @@
     display: flex;
     flex-direction: column;
     /* max-width: 90vw; */
+  }
+
+  .catalog-item-list {
+    margin: unset;
   }
 }
