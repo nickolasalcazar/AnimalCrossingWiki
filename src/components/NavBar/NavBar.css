@@ -1,7 +1,3 @@
-.disable-scroll {
-  overflow: hidden;
-}
-
 .navbar {
   overflow: hidden;
   position: sticky;

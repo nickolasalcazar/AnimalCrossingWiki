@@ -8,11 +8,6 @@ const NavBar = () => {
   const [shrink, setShrink] = useState(false);
   const navbar = document.querySelector(".navbar");
 
-  const disableScroll = (bool) => {
-    if (bool) document.querySelector("html").classList.add("disable-scroll");
-    else document.querySelector("html").classList.remove("disable-scroll");
-  };
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -32,10 +27,8 @@ const NavBar = () => {
     if (hamburgerOpen) {
       navbarMenu.classList.add("active");
       navbar.classList.remove("shrunk");
-      disableScroll(true);
     } else {
       navbarMenu.classList.remove("active");
-      disableScroll(false);
       if (window.pageYOffset <= 50) navbar.classList.remove("shrunk");
       else navbar.classList.add("shrunk");
     }
@@ -47,7 +40,6 @@ const NavBar = () => {
     if (hamburger.classList.contains("active")) {
       hamburger.classList.remove("active");
       navbarMenu.classList.remove("active");
-      disableScroll(false);
     }
   };
 

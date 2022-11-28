@@ -30,8 +30,6 @@ const Pagination = ({
     }
   };
 
-  // if ()
-
   return (
     <div
       className="pagination"
