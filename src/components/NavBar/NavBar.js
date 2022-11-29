@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import "./NavBar.css";
@@ -43,6 +43,8 @@ const NavBar = () => {
     }
   };
 
+  let currentPath = useLocation().pathname;
+
   useEffect(() => {
     const navbar = document.querySelector(".navbar");
     if (typeof window !== "undefined") {
@@ -74,27 +76,53 @@ const NavBar = () => {
         />
         <ul className="navbar-menu" style={{ top: "115px" }}>
           <li>
-            <Link to="/" onClick={handleLinkOnClick}>
+            <Link
+              to="/"
+              onClick={handleLinkOnClick}
+              className={currentPath === "/" ? "active" : ""}
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link to="/furniture" onClick={handleLinkOnClick}>
+            <Link
+              to="/furniture"
+              onClick={handleLinkOnClick}
+              className={currentPath === "/furniture" ? "active" : ""}
+            >
               Furniture
             </Link>
           </li>
           <li>
-            <Link to="/villagers" onClick={handleLinkOnClick}>
+            <Link
+              to="/villagers"
+              onClick={handleLinkOnClick}
+              className={currentPath === "/villagers" ? "active" : ""}
+            >
               Villagers
             </Link>
           </li>
           <li>
-            <Link to="/critters" onClick={handleLinkOnClick}>
+            <Link
+              to="/critters"
+              onClick={handleLinkOnClick}
+              className={
+                currentPath === "/critters" ||
+                currentPath === "/critters/bugs" ||
+                currentPath === "/critters/fish"
+                  ? "active"
+                  : ""
+              }
+            >
               Critters
             </Link>
           </li>
           <li>
-            <Link to="/art" onClick={handleLinkOnClick}>
+            <Link
+              to="/art"
+              onClick={handleLinkOnClick}
+              className={currentPath === "/art" ? "active" : ""}
+            >
               Art
             </Link>
           </li>

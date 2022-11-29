@@ -53,6 +53,11 @@
 .navbar ul li a {
   font-family: var(--stylized-font);
   color: var(--light-font-color);
+  font-size: 13pt;
+}
+
+.navbar ul li a.active {
+  color: rgb(255, 196, 85);
 }
 
 .navbar.shrunk {
@@ -124,9 +129,12 @@
   .navbar-menu li {
     margin: 0px !important;
     padding: 10px 20px 10px 10px;
-    font-size: 18pt;
     border-bottom: 2px solid #d3d3d342;
     text-align: right;
+  }
+
+  .navbar ul li a {
+    font-size: 18pt;
   }
 
   .navbar-menu.active {
