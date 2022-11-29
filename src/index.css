@@ -3,8 +3,10 @@
   --light-gray: #f1f1f1;
   --navbar-height: 90px;
   --stylized-font: "Roboto Slab", serif;
+  --default-font: "M PLUS Rounded 1c", sans-serif;
   --dark-font-color: black;
   --light-font-color: white;
+  --light-orange: #ffe46b;
 }
 
 *,
@@ -13,7 +15,8 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
-  font-family: arial;
+  font-family: var(--default-font);
+  line-height: 1.3em;
 }
 
 a:link,

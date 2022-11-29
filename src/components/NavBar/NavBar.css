@@ -54,10 +54,17 @@
   font-family: var(--stylized-font);
   color: var(--light-font-color);
   font-size: 13pt;
+  transition: color 0.1s;
+}
+
+@media (hover: hover) {
+  .navbar ul li a:hover {
+    color: var(--light-orange);
+  }
 }
 
 .navbar ul li a.active {
-  color: rgb(255, 196, 85);
+  color: var(--light-orange);
 }
 
 .navbar.shrunk {
