@@ -48,7 +48,7 @@ const VariantBtn = ({
  *
  * @param {Array} item The item to be rendered.
  */
-const ItemCard = ({ item }) => {
+const FurnitureCard = ({ item }) => {
   const [variantNmbr, setVariantNmbr] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
@@ -59,14 +59,14 @@ const ItemCard = ({ item }) => {
           src={item[variantNmbr]["image_uri"]}
           alt="Furniture"
           onClick={() => setShowModal(true)}
-          className="clickable"
+          className="clickable main-img"
         ></img>
         {item.length !== 1 && (
           <span
             className="variant-btns no-select"
             onClick={(e) => e.stopPropagation()}
           >
-            <VariantBtn
+            {/* <VariantBtn
               direction="left"
               numberOfVariants={item.length}
               variantNmbr={variantNmbr}
@@ -77,7 +77,7 @@ const ItemCard = ({ item }) => {
               numberOfVariants={item.length}
               variantNmbr={variantNmbr}
               setVariantNmbr={setVariantNmbr}
-            />
+            /> */}
           </span>
         )}
         <div className="item-label">
@@ -85,16 +85,15 @@ const ItemCard = ({ item }) => {
             {item[0]["name"]["name-USen"].charAt(0).toUpperCase() +
               item[0]["name"]["name-USen"].slice(1)}
           </p>
-
-          <p style={{ fontSize: "10pt" }}>{item[0]["source"]}</p>
-          {item[0]["buy-price"] && (
+          {/* <p style={{ fontSize: "10pt" }}>{item[0]["source"]}</p> */}
+          {/* {item[0]["buy-price"] && (
             <p style={{ fontSize: "9pt", paddingTop: "8px" }}>
               {item[0]["buy-price"]
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               bells
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <ItemDetail
@@ -105,4 +104,4 @@ const ItemCard = ({ item }) => {
     </>
   );
 };
-export default ItemCard;
+export default FurnitureCard;

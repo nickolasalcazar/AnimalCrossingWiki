@@ -1,10 +1,7 @@
 import "./ItemList.css";
 import CardWrapper from "../UI/CardWrapper/CardWrapper";
-import ItemCard from "../../pages/Furniture/FurnitureCard/FurnitureCard";
-import VillagerCard from "../../pages/Villagers/VillagerCard/VillagerCard";
-import BugCard from "../../pages/Bugs/BugCard";
-import FishCard from "../../pages/Fish/FishCard";
-import ArtCard from "../../pages/Art/ArtCard";
+import FurnitureCard from "../../pages/Furniture/FurnitureCard/FurnitureCard";
+import ItemCard from "../ItemCard/ItemCard";
 
 /**
  * A component that maps items to individual ItemCard components.
@@ -37,49 +34,29 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
   return (
     <div className="item-list">
       <div className="item-list-content">
-        {listType === "houseware" &&
-          Object.values(items)
-            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((item) => (
-              <CardWrapper key={item[0]["internal-id"]}>
-                <ItemCard item={item} />
-              </CardWrapper>
-            ))}
-        {listType === "villagers" &&
-          Object.values(items)
-            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((villager) => (
-              <CardWrapper
-                key={villager["id"]}
-                style={{ backgroundColor: `${villager["bubble-color"]}AA` }}
-              >
-                <VillagerCard villager={villager} />
-              </CardWrapper>
-            ))}
-        {listType === "fish" &&
-          Object.values(items)
-            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((fish, index) => (
-              <CardWrapper key={index}>
-                <FishCard fish={fish} />
-              </CardWrapper>
-            ))}
-        {listType === "bugs" &&
-          Object.values(items)
-            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((bug) => (
-              <CardWrapper key={bug["id"]}>
-                <BugCard bug={bug} />
-              </CardWrapper>
-            ))}
-        {listType === "art" &&
-          Object.values(items)
-            .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-            .map((artwork) => (
-              <CardWrapper key={artwork["id"]}>
-                <ArtCard artwork={artwork} />
-              </CardWrapper>
-            ))}
+        {listType === "houseware"
+          ? Object.values(items)
+              .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+              .map((item) => (
+                <CardWrapper key={item[0]["internal-id"]}>
+                  <FurnitureCard item={item} />
+                </CardWrapper>
+              ))
+          : Object.values(items)
+              .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+              .map((villager) => (
+                <CardWrapper
+                  key={villager["id"]}
+                  style={{
+                    backgroundColor:
+                      listType === "villagers"
+                        ? `${villager["bubble-color"]}AA`
+                        : "inital",
+                  }}
+                >
+                  <ItemCard item={villager} />
+                </CardWrapper>
+              ))}
       </div>
     </div>
   );

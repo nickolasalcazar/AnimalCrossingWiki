@@ -32,3 +32,9 @@
 .item-card .variant-btn-right {
   left: 75px;
 } */
+
+.item-label p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  height: 40px;
+}
