@@ -1,6 +1,5 @@
 import "./ItemList.css";
 import CardWrapper from "../UI/CardWrapper/CardWrapper";
-import FurnitureCard from "../../pages/Furniture/FurnitureCard/FurnitureCard";
 import ItemCard from "../ItemCard/ItemCard";
 
 /**
@@ -39,7 +38,8 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
               .slice(lastItemIndex - itemsPerPage, lastItemIndex)
               .map((item) => (
                 <CardWrapper key={item[0]["internal-id"]}>
-                  <FurnitureCard item={item} />
+                  {/* <FurnitureCard item={item} /> */}
+                  <ItemCard item={item} itemType="housewares" />
                 </CardWrapper>
               ))
           : Object.values(items)

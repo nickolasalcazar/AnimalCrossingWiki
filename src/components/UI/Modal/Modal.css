@@ -1,0 +1,32 @@
+.modal {
+  z-index: 10;
+  display: unset;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 500px;
+  height: 500px;
+
+  max-width: 90vw;
+
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 0%;
+
+  background: none;
+  border: none;
+  font-size: 36pt;
+  line-height: 0px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  color: #aaa;
+}
