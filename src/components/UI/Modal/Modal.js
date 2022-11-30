@@ -14,11 +14,13 @@ function Modal({ children, style, open, setOpen }) {
   if (!open) return null;
 
   return (
-    <div className="modal" style={style}>
-      <button className="modal-close" onClick={() => setOpen(false)}>
-        &times;
-      </button>
-      <div className="modal-content">{children}</div>
+    <div className="modal-wrapper" onClick={() => setOpen(false)}>
+      <div className="modal" style={style}>
+        <button className="modal-close" onClick={() => setOpen(false)}>
+          &times;
+        </button>
+        <div className="modal-content">{children}</div>
+      </div>
     </div>
   );
 }
