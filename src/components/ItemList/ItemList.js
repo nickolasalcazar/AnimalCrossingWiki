@@ -44,17 +44,17 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
               ))
           : Object.values(items)
               .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-              .map((villager) => (
+              .map((item) => (
                 <CardWrapper
-                  key={villager["id"]}
+                  key={item["id"]}
                   style={{
                     backgroundColor:
                       listType === "villagers"
-                        ? `${villager["bubble-color"]}AA`
+                        ? `${item["bubble-color"]}AA`
                         : "inital",
                   }}
                 >
-                  <ItemCard item={villager} />
+                  <ItemCard item={item} itemType={listType} />
                 </CardWrapper>
               ))}
       </div>

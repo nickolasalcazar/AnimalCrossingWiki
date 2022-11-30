@@ -12,6 +12,7 @@ import "./ItemCard.css";
 function ItemCard({ item, itemType, style }) {
   const [open, setOpen] = useState(false);
   let variants;
+
   if (itemType === "housewares") {
     variants = item;
     item = item[0];

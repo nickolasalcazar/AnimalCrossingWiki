@@ -1,9 +1,28 @@
 .item-detail {
-  display: flex;
-  flex-direction: column;
   padding: 20px;
 }
 
 .item-detail h2 {
   font-family: var(--stylized-font);
+  margin-bottom: 10px;
+}
+
+.item-detail-content {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.item-detail-main-img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  /* float: left; */
+}
+
+.villager-details table {
+  padding: 20px;
+}
+
+.villager-details .info {
+  background-color: green;
 }
