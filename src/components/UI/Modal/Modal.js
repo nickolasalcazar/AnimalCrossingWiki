@@ -15,7 +15,7 @@ function Modal({ children, style, open, setOpen }) {
 
   return (
     <div className="modal-wrapper" onClick={() => setOpen(false)}>
-      <div className="modal" style={style}>
+      <div className="modal" style={style} onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={() => setOpen(false)}>
           &times;
         </button>
