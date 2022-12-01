@@ -1,3 +1,7 @@
+.item-card {
+  cursor: pointer;
+}
+
 .item-card p {
   text-align: center;
 }

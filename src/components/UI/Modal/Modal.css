@@ -1,6 +1,4 @@
 .modal-wrapper {
-  /* background-color: chocolate; */
-
   z-index: 10;
 
   position: fixed;
@@ -22,7 +20,7 @@
   transform: translate(-50%, -50%);
 
   width: 500px;
-  height: 500px;
+  height: auto;
 
   max-width: 90vw;
 

@@ -17,41 +17,49 @@ const ItemDetail = ({ item, itemType, variants = undefined }) => {
     <div className="item-detail">
       <h2>{name}</h2>
       <div className="item-detail-content">
-        <img className="item-detail-main-img" src={image} />
         {itemType === "villagers" ? <VillagerDetails villager={item} /> : null}
       </div>
     </div>
   );
 };
 
+function MainImage({ src }) {
+  return <img className="item-detail-main-img" src={src} />;
+}
+
 function VillagerDetails({ villager }) {
   return (
     <div className="villager-details">
+      <MainImage src={villager["image_uri"]} />
       <table>
         <tbody>
           <tr>
-            <td>Species:</td>
+            <th>Species:</th>
             <td>{villager["species"]}</td>
           </tr>
           <tr>
-            <td>Personality:</td>
+            <th>Personality:</th>
             <td>{villager["personality"]}</td>
           </tr>
           <tr>
-            <td>Catch phrase:</td>
+            <th>Catch phrase:</th>
             <td>{villager["catch-phrase"]}</td>
           </tr>
           <tr>
-            <td>Birthday:</td>
+            <th>Birthday:</th>
             <td>{villager["birthday-string"]}</td>
           </tr>
           <tr>
-            <td>Gender:</td>
+            <th>Gender:</th>
             <td>{villager["gender"]}</td>
           </tr>
         </tbody>
       </table>
-      <div className="info">Info about specific personality.</div>
+      <div className="info">
+        Info about specific personality. Info about specific personality. Info
+        about specific personality. Info about specific personality. Info about
+        specific personality.
+      </div>
     </div>
   );
 }

@@ -1,28 +1,41 @@
 .item-detail {
   padding: 20px;
+  padding-bottom: 30px;
 }
 
 .item-detail h2 {
   font-family: var(--stylized-font);
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .item-detail-content {
-  display: flex;
-  /* flex-direction: column; */
 }
 
 .item-detail-main-img {
   width: 200px;
-  height: auto;
+  height: 200px;
   border-radius: 10px;
-  /* float: left; */
+  margin: 5px;
+}
+
+/* Villager ItemDetail *******************************************************/
+.villager-details {
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .villager-details table {
-  padding: 20px;
+  margin: 20px;
+}
+
+.villager-details table th {
+  text-align: right;
+  padding-right: 15px;
 }
 
 .villager-details .info {
-  background-color: green;
+  padding-left: 5%;
 }
