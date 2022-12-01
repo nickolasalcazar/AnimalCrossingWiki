@@ -44,9 +44,9 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
               ))
           : Object.values(items)
               .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-              .map((item) => (
+              .map((item, index) => (
                 <CardWrapper
-                  key={item["id"]}
+                  key={index}
                   style={{
                     backgroundColor:
                       listType === "villagers"

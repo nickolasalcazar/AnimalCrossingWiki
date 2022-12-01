@@ -18,6 +18,9 @@ const ItemDetail = ({ item, itemType, variants = undefined }) => {
       <h2>{name}</h2>
       <div className="item-detail-content">
         {itemType === "villagers" ? <VillagerDetails villager={item} /> : null}
+        {itemType === "bugs" || itemType === "fish" ? (
+          <BugsAndFishDetails critter={item} />
+        ) : null}
       </div>
     </div>
   );
@@ -59,6 +62,53 @@ function VillagerDetails({ villager }) {
         Info about specific personality. Info about specific personality. Info
         about specific personality. Info about specific personality. Info about
         specific personality.
+      </div>
+    </div>
+  );
+}
+
+function BugsAndFishDetails({ critter }) {
+  return (
+    <div className="critter-details">
+      <MainImage src={critter["icon_uri"]} />
+      <div className="availability">
+        <h3>Availability</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>Northern Hemisphere:</th>
+              <td>
+                {critter["availability"]["month-northern"] === ""
+                  ? "Year-round"
+                  : critter["availability"]["month-northern"]}
+              </td>
+            </tr>
+            <tr>
+              <th>Southern Hemisphere:</th>
+              <td>
+                {critter["availability"]["month-southern"] === ""
+                  ? "Year-round"
+                  : critter["availability"]["month-southern"]}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="museum-description">
+        <h3>Museum Description</h3>
+        <p className="info">{critter["museum-phrase"]}</p>
+      </div>
+      <table>
+        <tbody>
+          <tr>
+            <th>Catch phrase:</th>
+            <td>{critter["catch-phrase"]}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <h3>Relative Size</h3>
+        <img className="relative-size-img" src={critter["image_uri"]} />
       </div>
     </div>
   );

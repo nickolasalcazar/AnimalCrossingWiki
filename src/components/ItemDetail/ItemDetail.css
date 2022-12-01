@@ -39,3 +39,10 @@
 .villager-details .info {
   padding-left: 5%;
 }
+
+/* Bug ItemDetail ************************************************************/
+.relative-size-img {
+  width: 100%;
+  background-color: lightsteelblue;
+  border-radius: 20px;
+}
