@@ -5,7 +5,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer>
-      <div>
+      <section>
         <h2>Navigation</h2>
         <ul>
           <li>
@@ -24,18 +24,28 @@ const Footer = () => {
             <Link to="/art">Art</Link>
           </li>
         </ul>
-      </div>
-      <div>
+      </section>
+      <section>
         <h2>Disclaimer</h2>
+
         <p>
-          "Critter Catalog" is an unofficial fan-made website and claims no
-          ownership of any intellectual property associated with Nintendo or{" "}
-          <em>Animal Crossing</em>.
+          "Critter Catalog" is an unofficial fan-made website that is not
+          affiliated with Nintendo or its <em>Animal Crossing</em> series.
         </p>
         <p>
-          All assets found on this site and its repository are the sole property
-          of Nintendo and are only used for non-commercial and educational
-          purposes.
+          All assets found on this website and repository are the sole property
+          of Nintendo and are used exclusively for non-commercial and
+          educational purposes. This website does not endorse or condone any
+          commercial use of these assets, and should not be indexed on the web.
+        </p>
+      </section>
+      <div className="credit">
+        <p>
+          Created by Nickolas Alcazar
+          <span className="divider">|</span>
+          <a href="https://nalcazar.com" target="_blank">
+            nalcazar.com
+          </a>
         </p>
       </div>
     </footer>
