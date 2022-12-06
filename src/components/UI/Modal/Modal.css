@@ -1,3 +1,8 @@
+:root {
+  --modal-width: 700px;
+  --modal-max-height: 85vh;
+}
+
 .outside-modal {
   z-index: 10;
 
@@ -15,19 +20,21 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
 
-  width: 500px;
+  width: var(--modal-width);
   height: 100%;
-  flex-direction: column;
+
   max-width: 90vw;
   max-height: 80vh;
+  max-height: var(--modal-max-height);
 }
 
 .modal-close {
   z-index: 11;
   position: relative;
   top: -3%;
-  left: 90%;
+  left: -5%;
 
   border: none;
   font-size: 36pt;
@@ -36,29 +43,34 @@
   height: 70px;
   cursor: pointer;
 
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
   background-color: red;
-  color: #aaa;
   color: white;
   border-radius: 50%;
+  padding-bottom: 5.5px;
 }
 
 .modal {
   z-index: 10;
   display: unset;
 
+  overflow-x: hidden !important;
+  scrollbar-width: none;
+
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 500px;
-  height: auto;
+  width: var(--modal-width);
+  height: 100%;
 
   max-width: 90vw;
   max-height: 80vh;
+  max-height: var(--modal-max-height);
   overflow: scroll;
 
   background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 20px;
 }

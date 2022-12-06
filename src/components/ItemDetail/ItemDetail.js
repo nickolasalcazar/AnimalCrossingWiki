@@ -7,7 +7,7 @@ import "./ItemDetail.css";
  * @param {String}  itemType  The type of item being rendered.
  * @param {Array}   variants  An array containing variants of the item. Optional.
  */
-const ItemDetail = ({ item, itemType, variants = undefined }) => {
+const ItemDetail = ({ item, itemType, variants = null }) => {
   const name = item["name"]["name-USen"];
   const icon = item["icon_uri"];
   // const image = item["image_uri"] ? item["image_uri"] : undefined;
@@ -21,13 +21,20 @@ const ItemDetail = ({ item, itemType, variants = undefined }) => {
         {itemType === "bugs" || itemType === "fish" ? (
           <BugsAndFishDetails critter={item} />
         ) : null}
+        {itemType === "housewares" ? (
+          <FurnitureDetails item={item} variants={variants ? variants : null} />
+        ) : null}
       </div>
     </div>
   );
 };
 
 function MainImage({ src }) {
-  return <img className="item-detail-main-img" src={src} />;
+  return (
+    <div className="item-detail-main-img-wrapper">
+      <img className="item-detail-main-img" src={src} />
+    </div>
+  );
 }
 
 function VillagerDetails({ villager }) {
@@ -95,8 +102,8 @@ function BugsAndFishDetails({ critter }) {
         </table>
       </div>
       <div className="museum-description">
-        <h3>Museum Description</h3>
-        <p className="info">{critter["museum-phrase"]}</p>
+        <h3>Blathers' Description</h3>
+        <p className="info">"{critter["museum-phrase"]}"</p>
       </div>
       <table>
         <tbody>
@@ -113,5 +120,100 @@ function BugsAndFishDetails({ critter }) {
     </div>
   );
 }
+
+function FurnitureDetails({ item, variants }) {
+  const hasVariants = variants.length > 1;
+
+  const hhaConcepts = [item["hha-concept-1"], item["hha-concept-2"]];
+
+  return (
+    <div className="furniture-details">
+      <MainImage src={item["image_uri"]} />
+      {hasVariants ? (
+        <div className="variants-container">
+          {variants.map((variant, index) => (
+            <img key={index} src={variant["image_uri"]} />
+          ))}
+        </div>
+      ) : null}
+      <table>
+        <tbody className="info-table">
+          <tr>
+            <th>Buy Price</th>
+            <td>
+              {item["buy-price"] ? formatWithCommas(item["buy-price"]) : "N/A"}{" "}
+              bells
+            </td>
+          </tr>
+          <tr>
+            <th>Sell Price</th>
+            <td>{formatWithCommas(item["sell-price"])} bells</td>
+          </tr>
+          {item["miles-price"] ? (
+            <tr>
+              <th>Miles Price</th>
+              <td>{formatWithCommas(item["miles-price"])} bells</td>
+            </tr>
+          ) : null}
+          <tr>
+            <th>Source</th>
+            <td>{item["source"]}</td>
+          </tr>
+          <tr>
+            <th>DIY</th>
+            <td>{item["isDIY"] ? "Yes" : "No"}</td>
+          </tr>
+          <tr>
+            <th>Catalog</th>
+            <td>{item["isCatalog"] ? "Available" : "No"}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table className="info-table">
+        <tr>
+          <th>Size</th>
+          <td>{item["size"]}</td>
+        </tr>
+        <tr>
+          <th>HHA Concepts</th>
+          <td>
+            {hhaConcepts.map((concept, index) => {
+              if (concept === null) return "";
+              else if (index === 0) return concept;
+              else return ", " + concept;
+            })}
+          </td>
+        </tr>
+        {item["hha-series"] ? (
+          <tr>
+            <th>HHA Series</th>
+            <td>{item["hha-series"]}</td>
+          </tr>
+        ) : null}
+        {item["hha-set"] ? (
+          <tr>
+            <th>HHA Set</th>
+            <td>{item["hha-set"]}</td>
+          </tr>
+        ) : null}
+        <tr>
+          <th>Customize Body</th>
+          <td>{item["canCustomizeBody"] ? "Yes" : "No"}</td>
+        </tr>
+        <tr>
+          <th>Patterns</th>
+          <td>{item["canCustomizePattern"] ? "Yes" : "No"}</td>
+        </tr>
+      </table>
+      {item["source-detail"] ? (
+        <div className="info">{item["source-detail"]}</div>
+      ) : null}
+    </div>
+  );
+}
+
+const formatWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
 export default ItemDetail;
