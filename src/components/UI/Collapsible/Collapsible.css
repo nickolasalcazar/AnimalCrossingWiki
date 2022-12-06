@@ -6,7 +6,7 @@
 .collapsible-btn {
   font-family: var(--stylized-font);
   background-color: #ffe46c;
-  color: #884c14;
+  color: var(--dark-brown);
   padding: 10px 18px 10px 18px;
   width: 100%;
   border: none;
