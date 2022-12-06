@@ -69,7 +69,7 @@ footer p:first-of-type {
   font-size: 10pt;
   font-family: var(--stylized-font);
   text-align: center;
-  margin: unset;
+  margin-block-end: 0px !important;
 }
 
 .credit p .divider {
@@ -91,7 +91,7 @@ footer p:first-of-type {
     padding-bottom: 7%;
   }
 
-  footer p {
+  footer section p {
     padding: 0px 5%;
   }
 
