@@ -1,0 +1,128 @@
+/* .homepage-hero {
+  height: 30vh;
+  min-height: 300px;
+  background-color: #ffd580;
+} */
+
+.homepage {
+  background-color: #ffdab9;
+  background: repeating-linear-gradient(
+    45deg,
+    #e5e5f7 0.01px,
+    #ffffff 5px,
+    #ffdab9 5px,
+    #ffdab9 25px
+  );
+}
+
+.homepage .welcome {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 0px 20px;
+
+  /* background-color: #ffdab9;
+  background: repeating-linear-gradient(
+    45deg,
+    #e5e5f7 0.01px,
+    #ffffff 5px,
+    #ffdab9 5px,
+    #ffdab9 25px
+  ); */
+}
+
+.homepage .welcome-title-bg {
+  min-width: 300px;
+  margin-bottom: 20px;
+
+  height: 300px;
+  max-height: 30vh;
+
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  align-items: flex-end;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 30%;
+}
+
+.homepage .welcome-title-bg h1 {
+  font-family: var(--stylized-font);
+  font-size: 30pt;
+  color: var(--light-font-color);
+  background-color: var(--light-blue);
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.homepage h2 {
+  font-family: var(--stylized-font);
+  background-color: var(--light-blue);
+  color: var(--light-font-color);
+  text-align: center;
+}
+
+.homepage .explore-by-category {
+  text-align: center;
+  background-color: var(--light-blue);
+  width: 100%;
+  padding: 20px;
+}
+
+.homepage section {
+  padding: 20px;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10%;
+}
+
+.homepage section p {
+  margin-bottom: 10px;
+}
+
+/* .homepage section p:last-of-type {
+  margin-bottom: unset;
+} */
+
+.homepage nav ul {
+  display: flex;
+  flex-wrap: wrap;
+
+  list-style: none;
+
+  margin: auto;
+
+  max-width: 950px;
+}
+
+.homepage nav {
+  background-color: var(--light-blue);
+}
+
+.homepage nav li {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  cursor: pointer;
+
+  font-size: 15pt;
+  min-width: 100px;
+  width: 33.3%;
+
+  border: 0.01px solid;
+  border-color: rgba(255, 255, 255, 0.13);
+  border-top-color: rgba(255, 255, 255, 0.13);
+  border-right-color: rgba(255, 255, 255, 0.13);
+  border-bottom-color: rgba(255, 255, 255, 0.13);
+  border-left-color: rgba(255, 255, 255, 0.13);
+}
+
+.homepage nav a {
+  text-align: center;
+  color: var(--light-font-color);
+  font-family: var(--stylized-font);
+}
