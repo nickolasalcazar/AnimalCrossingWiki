@@ -19,7 +19,7 @@ const ItemDetail = ({ item, itemType, variants = null }) => {
       <div className="item-detail-content">
         {itemType === "villagers" ? <VillagerDetails villager={item} /> : null}
         {itemType === "bugs" || itemType === "fish" ? (
-          <BugsAndFishDetails critter={item} />
+          <BugsAndFishDetails critter={item} itemType={itemType} />
         ) : null}
         {itemType === "housewares" ? (
           <FurnitureDetails item={item} variants={variants ? variants : null} />
@@ -65,7 +65,7 @@ function VillagerDetails({ villager }) {
           </tr>
         </tbody>
       </table>
-      <div className="info">
+      <div className="personality-info">
         Info about specific personality. Info about specific personality. Info
         about specific personality. Info about specific personality. Info about
         specific personality.
@@ -74,16 +74,27 @@ function VillagerDetails({ villager }) {
   );
 }
 
-function BugsAndFishDetails({ critter }) {
+function BugsAndFishDetails({ critter, itemType }) {
   return (
     <div className="critter-details">
       <MainImage src={critter["icon_uri"]} />
       <div className="availability">
-        <h3>Availability</h3>
         <table>
           <tbody>
             <tr>
-              <th>Northern Hemisphere:</th>
+              <th>Price:</th>
+              <td>{formatWithCommas(critter["price"]) + " bells"}</td>
+            </tr>
+            <tr>
+              <th>{itemType === "bugs" ? "Flick Price:" : "C.J. Price:"}</th>
+              <td>
+                {itemType === "bugs"
+                  ? formatWithCommas(critter["price-flick"]) + " bells"
+                  : formatWithCommas(critter["price-cj"]) + " bells"}
+              </td>
+            </tr>
+            <tr>
+              <th>North:</th>
               <td>
                 {critter["availability"]["month-northern"] === ""
                   ? "Year-round"
@@ -91,7 +102,7 @@ function BugsAndFishDetails({ critter }) {
               </td>
             </tr>
             <tr>
-              <th>Southern Hemisphere:</th>
+              <th>South:</th>
               <td>
                 {critter["availability"]["month-southern"] === ""
                   ? "Year-round"
@@ -101,9 +112,12 @@ function BugsAndFishDetails({ critter }) {
           </tbody>
         </table>
       </div>
-      <div className="museum-description">
+      <div
+        className="museum-description"
+        style={{ backgroundImage: 'url("/assets/blathers.png")' }}
+      >
         <h3>Blathers' Description</h3>
-        <p className="info">"{critter["museum-phrase"]}"</p>
+        <p>"{critter["museum-phrase"]}"</p>
       </div>
       <table>
         <tbody>
@@ -114,8 +128,8 @@ function BugsAndFishDetails({ critter }) {
         </tbody>
       </table>
       <div>
-        <h3>Relative Size</h3>
-        <img className="relative-size-img" src={critter["image_uri"]} />
+        <h3>Detailed Image</h3>
+        <img className="detailed-img" src={critter["image_uri"]} />
       </div>
     </div>
   );
@@ -141,8 +155,9 @@ function FurnitureDetails({ item, variants }) {
           <tr>
             <th>Buy Price</th>
             <td>
-              {item["buy-price"] ? formatWithCommas(item["buy-price"]) : "N/A"}{" "}
-              bells
+              {item["buy-price"]
+                ? formatWithCommas(item["buy-price"]) + " bells"
+                : "N/A"}
             </td>
           </tr>
           <tr>

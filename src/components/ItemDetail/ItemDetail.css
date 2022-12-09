@@ -1,6 +1,9 @@
 .item-detail {
   padding: 20px;
   padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .item-detail h2 {
@@ -10,6 +13,7 @@
 }
 
 .item-detail-content {
+  max-width: 95%;
 }
 
 .item-detail-main-img-wrapper {
@@ -25,12 +29,8 @@
   margin: 5px;
 }
 
-.item-detail table:first-of-type {
-  margin-top: 20px;
-}
-
 .item-detail table {
-  margin: 10px;
+  /* margin: 10px; */
   padding: 20px;
   border-radius: 30px;
   background-color: #f1f1f1;
@@ -47,20 +47,46 @@
   /* color: #884c14; */
 }
 
-.item-detail .info {
-  padding-left: 5%;
-}
-
 /* Villager ItemDetail *******************************************************/
 .villager-details {
   display: flex;
-  flex-flow: column;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
-/* Bug ItemDetail ************************************************************/
-.relative-size-img {
+.personality-info {
+  padding-left: 5%;
+}
+
+/* Critter ItemDetail ************************************************************/
+.critter-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.critter-details .item-detail-main-img {
+  /* margin: -2%; */
+}
+
+.museum-description {
+  padding: 20px;
+  background-color: #fef9d6;
+  background-size: 20% auto;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  padding-right: 15%;
+  border-radius: 20px;
+}
+
+.museum-description p {
+  padding-top: 5px;
+}
+
+.detailed-img {
+  margin-top: 10px;
   width: 100%;
   background-color: lightsteelblue;
   border-radius: 20px;
@@ -69,12 +95,10 @@
 /* Furniture ItemDetail ************************************************************/
 .furniture-details {
   display: flex;
-  /* flex-direction: column; */
-  /* align-items: center; */
-
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 .furniture-details .item-detail-main-img {
