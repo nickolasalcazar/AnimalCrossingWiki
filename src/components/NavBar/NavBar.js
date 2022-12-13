@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import "./NavBar.css";
@@ -7,6 +7,7 @@ import Logo from "../Logo/Logo";
 const NavBar = () => {
   const [shrink, setShrink] = useState(false);
   const navbar = document.querySelector(".navbar");
+  const navigate = useNavigate();
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -71,7 +72,10 @@ const NavBar = () => {
       <div className="navbar-content">
         <Logo
           shrink={shrink}
-          onClick={scrollToTop}
+          onClick={() => {
+            navigate("/");
+            scrollToTop();
+          }}
           style={{ cursor: "pointer" }}
         />
         <ul className="navbar-menu" style={{ top: "115px" }}>
