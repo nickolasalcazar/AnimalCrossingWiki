@@ -29,11 +29,13 @@
   margin: 5px;
 }
 
-.item-detail table {
-  /* margin: 10px; */
+.item-detail table,
+.item-detail .info {
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #f1f1f1;
+  width: 100%;
+  max-width: 500px;
 }
 
 .item-detail table th {
@@ -43,8 +45,13 @@
   font-weight: unset;
 }
 
+.item-detail table th,
 .item-detail table td {
-  /* color: #884c14; */
+  width: 50%;
+}
+
+.item-detail .info {
+  background-color: #fef9d6;
 }
 
 /* Villager ItemDetail *******************************************************/
@@ -67,10 +74,6 @@
   gap: 10px;
 }
 
-.critter-details .item-detail-main-img {
-  /* margin: -2%; */
-}
-
 .museum-description {
   padding: 20px;
   background-color: #fef9d6;
@@ -79,6 +82,8 @@
   background-position: bottom right;
   padding-right: 15%;
   border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .museum-description p {
@@ -88,6 +93,7 @@
 .detailed-img {
   margin-top: 10px;
   width: 100%;
+  max-width: 500px;
   background-color: lightsteelblue;
   border-radius: 20px;
 }
@@ -101,15 +107,38 @@
   gap: 10px;
 }
 
-.furniture-details .item-detail-main-img {
-  /* align-self: center !important; */
-}
-
-.variants-container {
-  overflow-y: none;
+.variants-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 100%;
   max-width: 500px;
+}
+
+.variants-container-wrapper .scroll-arrow {
+  color: gray;
+  font-size: 18pt;
+  width: 0px;
+}
+
+.scroll-arrow.left,
+.scroll-arrow.right {
+  position: relative;
+}
+
+.scroll-arrow.right {
+  left: 10px;
+}
+
+.scroll-arrow.left {
+  right: 20px;
+}
+
+.variants-container {
+  overflow-y: none !important;
+  -ms-overflow-style: none; /* Hide scrollbar: IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar: Firefox */
 
   display: flex;
   flex-flow: nowrap;
@@ -123,10 +152,15 @@
   scrollbar-width: none;
 }
 
-.variants-container img {
-  width: 100px;
-  height: auto;
+.variants-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar: Chrome, Safari and Opera */
+}
 
+.variants-container img {
+  cursor: pointer;
+  width: 100px;
+  min-width: 30%;
+  height: auto;
   background-color: #f1f1f1;
   border-radius: 5px;
   margin-right: 5px;
@@ -134,8 +168,4 @@
 
 .variants-container img:last-of-type {
   margin-right: 0px;
-}
-
-.furniture-details .info-table {
-  /* height: 100%; */
 }

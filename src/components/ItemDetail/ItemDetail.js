@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./ItemDetail.css";
 
 /**
@@ -65,7 +66,7 @@ function VillagerDetails({ villager }) {
           </tr>
         </tbody>
       </table>
-      <div className="personality-info">
+      <div className="info">
         Info about specific personality. Info about specific personality. Info
         about specific personality. Info about specific personality. Info about
         specific personality.
@@ -78,40 +79,38 @@ function BugsAndFishDetails({ critter, itemType }) {
   return (
     <div className="critter-details">
       <MainImage src={critter["icon_uri"]} />
-      <div className="availability">
-        <table>
-          <tbody>
-            <tr>
-              <th>Price:</th>
-              <td>{formatWithCommas(critter["price"]) + " bells"}</td>
-            </tr>
-            <tr>
-              <th>{itemType === "bugs" ? "Flick Price:" : "C.J. Price:"}</th>
-              <td>
-                {itemType === "bugs"
-                  ? formatWithCommas(critter["price-flick"]) + " bells"
-                  : formatWithCommas(critter["price-cj"]) + " bells"}
-              </td>
-            </tr>
-            <tr>
-              <th>North:</th>
-              <td>
-                {critter["availability"]["month-northern"] === ""
-                  ? "Year-round"
-                  : critter["availability"]["month-northern"]}
-              </td>
-            </tr>
-            <tr>
-              <th>South:</th>
-              <td>
-                {critter["availability"]["month-southern"] === ""
-                  ? "Year-round"
-                  : critter["availability"]["month-southern"]}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table>
+        <tbody>
+          <tr>
+            <th>Price:</th>
+            <td>{formatWithCommas(critter["price"]) + " bells"}</td>
+          </tr>
+          <tr>
+            <th>{itemType === "bugs" ? "Flick Price:" : "C.J. Price:"}</th>
+            <td>
+              {itemType === "bugs"
+                ? formatWithCommas(critter["price-flick"]) + " bells"
+                : formatWithCommas(critter["price-cj"]) + " bells"}
+            </td>
+          </tr>
+          <tr>
+            <th>North:</th>
+            <td>
+              {critter["availability"]["month-northern"] === ""
+                ? "Year-round"
+                : critter["availability"]["month-northern"]}
+            </td>
+          </tr>
+          <tr>
+            <th>South:</th>
+            <td>
+              {critter["availability"]["month-southern"] === ""
+                ? "Year-round"
+                : critter["availability"]["month-southern"]}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div
         className="museum-description"
         style={{ backgroundImage: 'url("/assets/blathers.png")' }}
@@ -137,17 +136,30 @@ function BugsAndFishDetails({ critter, itemType }) {
 
 function FurnitureDetails({ item, variants }) {
   const hasVariants = variants.length > 1;
-
   const hhaConcepts = [item["hha-concept-1"], item["hha-concept-2"]];
-
+  const [image, setImage] = useState(item["image_uri"]);
   return (
     <div className="furniture-details">
-      <MainImage src={item["image_uri"]} />
+      <MainImage src={image} />
       {hasVariants ? (
-        <div className="variants-container">
-          {variants.map((variant, index) => (
-            <img key={index} src={variant["image_uri"]} />
-          ))}
+        <div className="variants-container-wrapper">
+          {variants.length > 3 ? (
+            <span className="scroll-arrow left">&#10094;</span>
+          ) : null}
+          <div className="variants-container">
+            {variants.map((variant, index) => (
+              <img
+                key={index}
+                src={variant["image_uri"]}
+                onClick={() => {
+                  setImage(variant["image_uri"]);
+                }}
+              />
+            ))}
+          </div>
+          {variants.length > 3 ? (
+            <span className="scroll-arrow right">&#10095;</span>
+          ) : null}
         </div>
       ) : null}
       <table>
@@ -221,12 +233,19 @@ function FurnitureDetails({ item, variants }) {
         </tr>
       </table>
       {item["source-detail"] ? (
-        <div className="info">{item["source-detail"]}</div>
+        <div className="info">
+          <p>{item["source-detail"]}</p>
+        </div>
       ) : null}
     </div>
   );
 }
 
+/**
+ * Formats a number to a string with commas. E.g. 1000 -> 1,000
+ * @param {number} num
+ * @returns
+ */
 const formatWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
