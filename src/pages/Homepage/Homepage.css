@@ -44,13 +44,26 @@
 }
 
 .homepage h2 {
+  font-size: 22pt;
   font-family: var(--stylized-font);
   color: var(--light-font-color);
-  text-align: center;
+}
+
+.homepage .about h2 {
+  font-family: var(--stylized-font);
+  color: var(--light-font-color);
+  background-color: var(--light-blue);
+
+  width: fit-content;
+  padding: 5px 20px;
+  margin: 0px auto 20px auto;
+}
+
+.homepage article {
+  padding: 75px 0px;
 }
 
 .homepage .explore-by-category-wrapper {
-  padding: 75px 0px;
   background-color: var(--light-blue);
   border: 2px solid orange;
   border-width: 5px 0px;
@@ -110,15 +123,18 @@
   align-items: center;
 }
 
-/* @media (hover: hover) { */
 .homepage nav li:hover {
   background-color: #6ca2ff;
 }
-/* } */
 
 .homepage nav li img {
   width: 50%;
   padding-bottom: -10%;
+}
+
+.homepage .about section {
+  margin: auto;
+  border-radius: 25px;
 }
 
 @media (max-width: 720px) {

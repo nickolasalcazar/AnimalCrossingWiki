@@ -6,7 +6,6 @@ import "./Homepage.css";
 function Homepage(props) {
   return (
     <main className="homepage">
-      {/* <Hero title="Welcome" /> */}
       <article className="welcome">
         <div
           className="welcome-title-bg"
@@ -74,13 +73,24 @@ function Homepage(props) {
           </ul>
         </nav>
       </article>
-      <article>
+      <article className="about">
         <h2>About</h2>
         <section>
+          <p>This site is a hobby project. It was made using React.js.</p>
           <p>
-            This site is a hobby project. It was made using React.js and fetches
-            data from <a href="https://acnhapi.com/">ACNH API</a>, a publicly
-            available, unofficial Animal Crossing API.
+            Data is fetched data from{" "}
+            <a
+              style={{
+                textDecoration: "underline",
+                color: "var(--light-blue)",
+              }}
+              href="https://acnhapi.com/"
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              ACNH API
+            </a>
+            , a publicly available, unofficial Animal Crossing API.
           </p>
         </section>
       </article>
