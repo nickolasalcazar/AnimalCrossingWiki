@@ -135,6 +135,7 @@
 .homepage .about section {
   margin: auto;
   border-radius: 25px;
+  max-width: 90vw;
 }
 
 @media (max-width: 720px) {
