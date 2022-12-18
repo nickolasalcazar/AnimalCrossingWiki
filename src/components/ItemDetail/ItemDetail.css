@@ -99,7 +99,8 @@
 }
 
 /* Furniture ItemDetail ************************************************************/
-.furniture-details {
+.furniture-details,
+.artwork-details {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

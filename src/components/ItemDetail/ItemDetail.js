@@ -24,6 +24,8 @@ const ItemDetail = ({ item, itemType, variants = null }) => {
         ) : null}
         {itemType === "housewares" ? (
           <FurnitureDetails item={item} variants={variants ? variants : null} />
+        ) : itemType === "art" ? (
+          <ArtDetails artwork={item} />
         ) : null}
       </div>
     </div>
@@ -237,6 +239,37 @@ function FurnitureDetails({ item, variants }) {
           <p>{item["source-detail"]}</p>
         </div>
       ) : null}
+    </div>
+  );
+}
+
+function ArtDetails({ artwork }) {
+  return (
+    <div className="artwork-details">
+      <MainImage src={artwork["image_uri"]} />
+      <table>
+        <tbody>
+          <tr>
+            <th>Buy Price:</th>
+            <td>{formatWithCommas(artwork["buy-price"]) + " bells"}</td>
+          </tr>
+          <tr>
+            <th>Sell Price:</th>
+            <td>{formatWithCommas(artwork["sell-price"]) + " bells"}</td>
+          </tr>
+          <tr>
+            <th>Has fake:</th>
+            <td>{artwork["hasFake"] ? "Yes" : "No"}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        className="museum-description"
+        style={{ backgroundImage: 'url("/assets/blathers.png")' }}
+      >
+        <h3>Museum Description</h3>
+        <p>{artwork["museum-desc"]}</p>
+      </div>
     </div>
   );
 }
