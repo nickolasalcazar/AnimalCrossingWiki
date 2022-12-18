@@ -1,0 +1,31 @@
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50vh;
+}
+
+.loading-spinner img {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  max-width: 33vw;
+
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-timing-function: ease-out;
+}
+
+.loading-spinner h2 {
+  font-family: var(--stylized-font);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

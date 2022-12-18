@@ -4,6 +4,7 @@ import useFetchAll from "../../hooks/useFetchAll";
 import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
 import ItemFilter from "../ItemFilter/ItemFilter";
 
+import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 import Pagination from "../../components/Pagination/Pagination";
 import ItemList from "../../components/ItemList/ItemList";
 
@@ -22,7 +23,7 @@ function Catalog({ type = null }) {
 
   const { data, loading, error } = useFetchAll(urls);
   const [items, setItems] = useState([]);
-  const [itemsPerPage /*setItemsPerPage*/] = useState(30);
+  const itemsPerPage = 30;
   const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function Catalog({ type = null }) {
   return (
     <div className="catalog-wrapper">
       {error && <p>Something went wrong...</p>}
-      {loading && <p>Loading...</p>}
+      {loading && <LoadingSpinner />}
       {!loading && (
         <div className="catalog">
           {type === "houseware" ? (
@@ -43,7 +44,6 @@ function Catalog({ type = null }) {
           ) : (
             <ItemFilter
               filterType={type}
-              // items={Object.values(data[0])}
               items={Object.values({ ...data[0], ...data[1] })}
               setItems={setItems}
             />
