@@ -18,7 +18,10 @@ const Footer = () => {
             <Link to="/villagers">Villagers</Link>
           </li>
           <li>
-            <Link to="/critters">Critters</Link>
+            <Link to="/bugs">Bugs</Link>
+          </li>
+          <li>
+            <Link to="/fish">Fish</Link>
           </li>
           <li>
             <Link to="/art">Art</Link>

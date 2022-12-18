@@ -108,17 +108,20 @@ const NavBar = () => {
           </li>
           <li>
             <Link
-              to="/critters"
+              to="/bugs"
               onClick={handleLinkOnClick}
-              className={
-                currentPath === "/critters" ||
-                currentPath === "/critters/bugs" ||
-                currentPath === "/critters/fish"
-                  ? "active"
-                  : ""
-              }
+              className={currentPath === "/bugs" ? "active" : ""}
             >
-              Critters
+              Bugs
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/fish"
+              onClick={handleLinkOnClick}
+              className={currentPath === "/fish" ? "active" : ""}
+            >
+              Fish
             </Link>
           </li>
           <li>

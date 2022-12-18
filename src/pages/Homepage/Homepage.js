@@ -47,13 +47,13 @@ function Homepage(props) {
               </Link>
             </li>
             <li>
-              <Link to="/critters/bugs">
+              <Link to="/bugs">
                 Bugs
                 <img src="/assets/categories/bugs.png" />
               </Link>
             </li>
             <li>
-              <Link to="/critters/fish">
+              <Link to="/fish">
                 Fish
                 <img src="/assets/categories/fish.png" />
               </Link>
@@ -65,7 +65,7 @@ function Homepage(props) {
               </Link>
             </li>
             <li>
-              <Link to="/Fossils">
+              <Link to="/fossils">
                 Fossils
                 <img src="/assets/categories/fossils.png" />
               </Link>
