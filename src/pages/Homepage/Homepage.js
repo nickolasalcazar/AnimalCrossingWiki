@@ -64,10 +64,13 @@ function Homepage(props) {
                 <img src="/assets/categories/art.png" />
               </Link>
             </li>
-            <li>
-              <Link to="/fossils">
+            <li className="disabled">
+              <Link to="/fossils" style={{ pointerEvents: "none" }}>
                 Fossils
                 <img src="/assets/categories/fossils.png" />
+                <span className="coming-soon">
+                  <mark>Coming Soon</mark>
+                </span>
               </Link>
             </li>
           </ul>

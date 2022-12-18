@@ -123,8 +123,24 @@
   align-items: center;
 }
 
-.homepage nav li:hover {
+.homepage nav li:hover:not(.disabled) {
   background-color: #6ca2ff;
+}
+
+.homepage nav li.disabled {
+  cursor: default;
+}
+
+.coming-soon {
+  height: 0;
+}
+
+.coming-soon mark {
+  background-color: tomato;
+  border-radius: 15px;
+  padding: 5px;
+  color: var(--light-font-color);
+  font-family: var(--stylized-font);
 }
 
 .homepage nav li img {
