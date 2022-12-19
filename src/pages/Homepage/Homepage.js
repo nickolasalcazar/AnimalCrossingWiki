@@ -79,9 +79,9 @@ function Homepage(props) {
       <article className="about">
         <h2>About</h2>
         <section>
-          <p>This site is a hobby project. It was made using React.js.</p>
+          <p>This site is a hobby project made using React.js.</p>
           <p>
-            Data is fetched data from{" "}
+            Data on this site is fetched from{" "}
             <a
               style={{
                 textDecoration: "underline",
@@ -93,7 +93,22 @@ function Homepage(props) {
             >
               ACNH API
             </a>
-            , a publicly available, unofficial Animal Crossing API.
+            , a free Animal Crossing RESTful API.
+          </p>
+          <p>
+            Check out Critter Catalog's GitHub repo{" "}
+            <a
+              href="https://github.com/nickolasalcazar/AnimalCrossingWiki"
+              target={"_blank"}
+              rel="noreferrer"
+              style={{
+                textDecoration: "underline",
+                color: "var(--light-blue)",
+              }}
+            >
+              here
+            </a>
+            .
           </p>
         </section>
       </article>
