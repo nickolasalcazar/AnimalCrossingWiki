@@ -8,7 +8,6 @@ import Footer from "./components/Footer/Footer";
 import Homepage from "./pages/Homepage/Homepage";
 import Furniture from "./pages/Furniture/Furniture";
 import Villagers from "./pages/Villagers/Villagers";
-import Critters from "./pages/Critters/Critters";
 import Bugs from "./pages/Bugs/Bugs";
 import Fish from "./pages/Fish/Fish";
 import Art from "./pages/Art/Art";
