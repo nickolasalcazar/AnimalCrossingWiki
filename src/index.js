@@ -10,7 +10,7 @@ import { HashRouter as BrowserRouter } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     {/* <BrowserRouter basename={CONFIG.BASENAME}> */}
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
