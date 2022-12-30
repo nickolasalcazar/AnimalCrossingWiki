@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/AnimalCrossingWiki/static/css/main.7b499cc9.chunk.css",
+    "main.js": "/AnimalCrossingWiki/static/js/main.5e712f33.chunk.js",
+    "main.js.map": "/AnimalCrossingWiki/static/js/main.5e712f33.chunk.js.map",
+    "runtime-main.js": "/AnimalCrossingWiki/static/js/runtime-main.f07b5e54.js",
+    "runtime-main.js.map": "/AnimalCrossingWiki/static/js/runtime-main.f07b5e54.js.map",
+    "static/js/2.9b0d17b9.chunk.js": "/AnimalCrossingWiki/static/js/2.9b0d17b9.chunk.js",
+    "static/js/2.9b0d17b9.chunk.js.map": "/AnimalCrossingWiki/static/js/2.9b0d17b9.chunk.js.map",
+    "index.html": "/AnimalCrossingWiki/index.html",
+    "static/css/main.7b499cc9.chunk.css.map": "/AnimalCrossingWiki/static/css/main.7b499cc9.chunk.css.map",
+    "static/js/2.9b0d17b9.chunk.js.LICENSE.txt": "/AnimalCrossingWiki/static/js/2.9b0d17b9.chunk.js.LICENSE.txt",
+    "static/media/critter-catalog-small.5be35570.svg": "/AnimalCrossingWiki/static/media/critter-catalog-small.5be35570.svg",
+    "static/media/critter-catalog.bb0a1a76.svg": "/AnimalCrossingWiki/static/media/critter-catalog.bb0a1a76.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f07b5e54.js",
+    "static/js/2.9b0d17b9.chunk.js",
+    "static/css/main.7b499cc9.chunk.css",
+    "static/js/main.5e712f33.chunk.js"
+  ]
+}
