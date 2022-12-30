@@ -12,18 +12,20 @@ import Bugs from "./pages/Bugs/Bugs";
 import Fish from "./pages/Fish/Fish";
 import Art from "./pages/Art/Art";
 
+const CONFIG = require("./config.json");
+
 function App() {
   return (
     <div className="App">
       <NavBar />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/furniture" element={<Furniture />} />
-        <Route path="/villagers" element={<Villagers />} />
-        <Route path="/bugs" element={<Bugs />} />
-        <Route path="/fish" element={<Fish />} />
-        <Route path="/art" element={<Art />} />
+        <Route path={CONFIG.BASENAME + "/"} element={<Homepage />} />
+        <Route path={CONFIG.BASENAME + "/furniture"} element={<Furniture />} />
+        <Route path={CONFIG.BASENAME + "/villagers"} element={<Villagers />} />
+        <Route path={CONFIG.BASENAME + "/bugs"} element={<Bugs />} />
+        <Route path={CONFIG.BASENAME + "/fish"} element={<Fish />} />
+        <Route path={CONFIG.BASENAME + "/art"} element={<Art />} />
       </Routes>
       <Footer />
     </div>
