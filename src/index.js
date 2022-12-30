@@ -5,12 +5,12 @@ import App from "./App";
 
 import { HashRouter as BrowserRouter } from "react-router-dom";
 
-// const CONFIG = require("./config.json");
+const CONFIG = require("./config.json");
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <BrowserRouter basename={CONFIG.BASENAME}> */}
-    <BrowserRouter basename="/">
+    <BrowserRouter basename={CONFIG.BASENAME}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
