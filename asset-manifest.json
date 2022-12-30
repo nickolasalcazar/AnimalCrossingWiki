@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/AnimalCrossingWiki/static/css/main.7b499cc9.chunk.css",
-    "main.js": "/AnimalCrossingWiki/static/js/main.9251f428.chunk.js",
-    "main.js.map": "/AnimalCrossingWiki/static/js/main.9251f428.chunk.js.map",
+    "main.js": "/AnimalCrossingWiki/static/js/main.f4d59573.chunk.js",
+    "main.js.map": "/AnimalCrossingWiki/static/js/main.f4d59573.chunk.js.map",
     "runtime-main.js": "/AnimalCrossingWiki/static/js/runtime-main.f07b5e54.js",
     "runtime-main.js.map": "/AnimalCrossingWiki/static/js/runtime-main.f07b5e54.js.map",
     "static/js/2.6e01a108.chunk.js": "/AnimalCrossingWiki/static/js/2.6e01a108.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.f07b5e54.js",
     "static/js/2.6e01a108.chunk.js",
     "static/css/main.7b499cc9.chunk.css",
-    "static/js/main.9251f428.chunk.js"
+    "static/js/main.f4d59573.chunk.js"
   ]
 }
