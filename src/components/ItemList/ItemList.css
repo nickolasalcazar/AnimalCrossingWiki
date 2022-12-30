@@ -34,11 +34,8 @@
   font-family: var(--stylized-font);
 }
 
-/* .item-list-content.no-items img { */
 .mr-resetti {
   height: auto;
-  /* width: 200px; */
-  /* width: 50%; */
   width: min(50%, 250px);
   animation: bounce 0.5s;
   animation-iteration-count: 1;

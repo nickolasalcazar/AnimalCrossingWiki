@@ -1,16 +1,13 @@
 .card-wrapper {
   justify-self: center;
-  /* display: flex; */
-  /* justify-content: center; */
   padding: 5px;
-  /* max-width: 200px; */
   width: 100%;
 }
 
-.card-wrapper > * {
+/* .card-wrapper > * {
   display: flex;
   flex-direction: column;
-}
+} */
 
 @media (hover: hover) {
   .filter-btn:hover {
