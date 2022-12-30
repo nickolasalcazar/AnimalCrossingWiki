@@ -5,8 +5,6 @@ import App from "./App";
 
 import { HashRouter as BrowserRouter } from "react-router-dom";
 
-const CONFIG = require("./config.json");
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
