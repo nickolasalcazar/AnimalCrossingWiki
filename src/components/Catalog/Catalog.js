@@ -17,9 +17,9 @@ import "./Catalog.css";
  *                              ["villagers", "houseware", "fish", "bugs"].
  */
 function Catalog({ type = null }) {
-  const urls = [`http://acnhapi.com/v1/${type}/`];
+  const urls = [`https://acnhapi.com/v1/${type}/`];
   // If catalog is for fish, also fetch sea creatures
-  if (type === "fish") urls.push("http://acnhapi.com/v1/sea/");
+  if (type === "fish") urls.push("https://acnhapi.com/v1/sea/");
 
   const { data, loading, error } = useFetchAll(urls);
   const [items, setItems] = useState([]);
