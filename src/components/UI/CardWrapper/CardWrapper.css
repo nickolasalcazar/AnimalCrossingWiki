@@ -12,16 +12,6 @@
   flex-direction: column;
 }
 
-/* Class 'main-img' selects the main image of child elements nesteded in a CardWrapper. */
-.card-wrapper .main-img {
-  justify-self: center;
-  width: 100%;
-  height: auto;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-}
-
 @media (hover: hover) {
   .filter-btn:hover {
     background-color: #ded;

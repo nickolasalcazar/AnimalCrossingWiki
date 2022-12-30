@@ -8,6 +8,7 @@ import "./ItemCard.css";
  *
  * @param {Object} item
  * @param {String} itemType
+ * @param {Object} style
  */
 function ItemCard({ item, itemType, style }) {
   const [open, setOpen] = useState(false);

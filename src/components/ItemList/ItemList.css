@@ -64,7 +64,7 @@
 
 .item-list-content.no-items p {
   margin-bottom: 15px;
-  font-family: arial;
+  font-family: var(--default-font);
 }
 
 /* Mobile view ***************************************************************/
