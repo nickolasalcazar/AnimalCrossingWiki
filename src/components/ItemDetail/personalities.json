@@ -1,0 +1,34 @@
+{
+  "Uchi": {
+    "description": "Uchi also means 'sisterly'. Sisterly villagers will, when befriended, give the player fighting tips and teach them ways to relax. These villagers are tough but they still care deeply about their appearance. They have a tendency to stay up very late into the night. When befriended, they will give the player medicine if they are stung by a wasp. They will treat the player with respect and will even offer to fight off anyone that is giving the player trouble. Some Public Works Projects can only be suggested by sisterly villagers, such as the wood bench.",
+    "interaction": "Sisterly villagers generally get along with peppy, normal, lazy, jock, and other sisterly villagers but may conflict with smug and snooty villagers due to their arrogant nature. They may clash with cranky villagers due to their similarly stubborn personalities, but often end up becoming best friends."
+  },
+  "Snooty": {
+    "description": "Snooty villagers are well-spoken and sometimes appear offensive and rude towards other villagers, including the player. They are self-centered, hot-tempered, and sarcastic, but if the player talks to them often, they open up and become more kind, sometimes giving the player lessons in fashion. However, this doesn't prevent them from making the occasional scathing comment. Snooty villagers usually have exotic or upper-class names, or names relating to high-value items and gemstones, making them easy to distinguish when talking to villagers around town.",
+    "interaction": "They will find it difficult to socialize with most villagers, who have conflicting lifestyles to their own. They get along with cranky villagers, who share their maturity and viewpoints on life, smug villagers, due to their similar interests in fashion, and normal villagers, due to their generally sweet attitude towards others."
+  },
+  "Normal": {
+    "description": "Normal villagers, despite being called 'normal', have a lack of self-worth, where they feel self-depreciative. They also appear slightly obsessive with cleanliness and hygiene - a trait also found in peppy villagers. They don't, however, appear to show any concern for their physical appearance, making them happy with what they have.",
+    "interaction": "Normal villagers have the easiest time getting along with smug, lazy, jock, and other normal villagers, and sometimes even snooty and cranky villagers. The male equivalent of normal villagers are lazy villagers, who display many similar characteristics to them, including their caring and friendly nature that both personalities share."
+  },
+  "Lazy": {
+    "description": "Lazy villagers have a relaxed, easygoing, and naïve approach to living in the town. They are generally friendly and hospitable when interacting with the player and other villagers, they are fairly confident in themselves and their lifestyle.",
+    "interaction": "They get along more with other lazy, peppy, and normal villagers. Jock villagers will find it difficult to get along with them, due to their conflicting lifestyles of relaxing compared to the jock lifestyle of exercising and fitness. Lazy villagers are often brought down by snooty villagers because of their diet, lifestyle, and bitter comments towards them."
+  },
+  "Smug": {
+    "description": "Smug villagers are very polite, kind, and gentleman-like, and will easily get along with other villagers. They seem to be a mix between all personality types and are lively, kind, and positive, but may come off as conceited.",
+    "interaction": "They generally get along with peppy, snooty, normal, lazy, jock and other smug villagers, but may conflict with cranky and sisterly villagers."
+  },
+  "Peppy": {
+    "description": "Peppy villagers speak with chipper, high-pitched voices and enjoy cheering when talking with players and other villagers; they are rarely discouraged from doing anything. They come out of their homes often.",
+    "interaction": "They find it easy to get along with other villagers, but may become the center of jokes and gossip created by snooty and cranky villagers, and when either of two are rude, peppy villagers are rude back to them. They get along with normal, lazy, smug, and jock villagers, who naturally avoid making rude comments and share similar lifestyles with them, such as; food with lazy villagers, activities with jock villagers and typical, 'girly' discussions with the normal villagers."
+  },
+  "Cranky": {
+    "description": "Cranky characters can seem quite bitter and out-of-touch with social trends, making them generally unpopular with the peppy villagers.",
+    "interaction": "They find it easy to get along with snooty, jock, sisterly, smug, and other cranky villagers."
+  },
+  "Jock": {
+    "description": "Jock villagers are obsessed with sports, talking frequently about their physical appearance and sporting progress and occasionally gossip. They brag quite a bit, usually about working out. They would encourage the player when given tasks and other things. Stereotypically, they are also not very smart.",
+    "interaction": "Jock villagers easily get along with peppy, sisterly, normal, and other jock villagers. They have trouble getting along with the previously mentioned snooty, cranky, and lazy villagers, sometimes even getting angry and annoyed during conversations with them."
+  }
+}

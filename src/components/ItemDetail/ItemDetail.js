@@ -10,10 +10,6 @@ import "./ItemDetail.css";
  */
 const ItemDetail = ({ item, itemType, variants = null }) => {
   const name = item["name"]["name-USen"];
-  const icon = item["icon_uri"];
-  // const image = item["image_uri"] ? item["image_uri"] : undefined;
-  const image = item["image_uri"];
-
   return (
     <div className="item-detail">
       <h2>{name}</h2>
@@ -41,6 +37,7 @@ function MainImage({ src }) {
 }
 
 function VillagerDetails({ villager }) {
+  const personalityInfo = require("./personalities.json");
   return (
     <div className="villager-details">
       <MainImage src={villager["image_uri"]} />
@@ -68,10 +65,24 @@ function VillagerDetails({ villager }) {
           </tr>
         </tbody>
       </table>
+      <h3
+        style={{
+          alignSelf: "flex-start",
+          fontFamily: "var(--stylized-font)",
+          paddingLeft: "5%",
+        }}
+      >
+        Personality
+      </h3>
       <div className="info">
-        Info about specific personality. Info about specific personality. Info
-        about specific personality. Info about specific personality. Info about
-        specific personality.
+        {villager["name"]["name-USen"] +
+          "'s personality is '" +
+          villager["personality"] +
+          "'. "}
+        {personalityInfo[villager["personality"]]["description"]}
+      </div>
+      <div className="info">
+        {personalityInfo[villager["personality"]]["interaction"]}
       </div>
     </div>
   );
