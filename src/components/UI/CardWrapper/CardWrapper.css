@@ -4,11 +4,6 @@
   width: 100%;
 }
 
-/* .card-wrapper > * {
-  display: flex;
-  flex-direction: column;
-} */
-
 @media (hover: hover) {
   .filter-btn:hover {
     background-color: #ded;
