@@ -9,8 +9,7 @@ const CONFIG = require("./config.json");
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <BrowserRouter basename={CONFIG.BASENAME}> */}
-    <BrowserRouter basename={CONFIG.BASENAME}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
