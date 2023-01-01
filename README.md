@@ -1,6 +1,6 @@
 # Animal Crossing Wiki
 
-**AnimalCrossingWiki** is a web app that catalogs the items and characters featured in the Nintendo video game _Animal Crossing_ using a React.js frontend. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Data on this site is fetched from [ACNH API](https://acnhapi.com/), a free Animal Crossing RESTful API.
+**AnimalCrossingWiki** is a web app that catalogs the items and characters featured in the Nintendo video game _Animal Crossing_ using a React.js frontend. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Data on this site is fetched from [ACNH API](https://acnhapi.com/), a publicly available Animal Crossing RESTful API.
 
 ## Available Scripts
 
