@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
 /**
- * Makes fetch requests to urls contained in an array of urls and returns in their responses in an
- * array.
+ * Makes fetch requests to each url contained in an array of urls, and then
+ * combines their response into an array and returns it.
  *
  * @param {Array} urls Array of urls to fetch from.
  * @returns
