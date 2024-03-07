@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 
-const useFetchGET = (url) => {
+/**
+ * Makes a GET request to URL with given options.
+ *
+ * @param {string} url      URL to fetch from.
+ * @param {object} options  Options to configure request.
+ * @returns
+ */
+export default function useFetchGET(url, options) {
   const [data, setData] = useState(null);
-  const [isPending, setIsPending] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(url)
+    fetch(url, { method: "GET", ...options })
       .then((response) => {
         if (!response.ok)
           throw new Error("Error:", response.status, response.statusText);
@@ -14,15 +21,14 @@ const useFetchGET = (url) => {
       })
       .then((data) => {
         setData(data);
-        setIsPending(false);
+        setLoading(false);
         setError(null);
       })
       .catch((e) => {
         setError(true);
-        setIsPending(false);
+        setLoading(false);
       });
   }, [url]);
 
-  return { data, isPending, error };
-};
-export default useFetchGET;
+  return { data, loading, error };
+}
