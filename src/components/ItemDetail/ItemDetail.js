@@ -40,28 +40,29 @@ function VillagerDetails({ villager }) {
   const personalityInfo = require("./personalities.json");
   return (
     <div className="villager-details">
-      <MainImage src={villager["image_uri"]} />
+      <h2>{villager.name}</h2>
+      <MainImage src={villager.image_url} />
       <table>
         <tbody>
           <tr>
             <th>Species:</th>
-            <td>{villager["species"]}</td>
+            <td>{villager.species}</td>
           </tr>
           <tr>
             <th>Personality:</th>
-            <td>{villager["personality"]}</td>
+            <td>{villager.personality}</td>
           </tr>
           <tr>
             <th>Catch phrase:</th>
-            <td>{villager["catch-phrase"]}</td>
+            <td>{villager.quote}</td>
           </tr>
           <tr>
             <th>Birthday:</th>
-            <td>{villager["birthday-string"]}</td>
+            <td>{`${villager.birthday_month} ${villager.birthday_day}`}</td>
           </tr>
           <tr>
             <th>Gender:</th>
-            <td>{villager["gender"]}</td>
+            <td>{villager.gender}</td>
           </tr>
         </tbody>
       </table>
@@ -75,10 +76,7 @@ function VillagerDetails({ villager }) {
         Personality
       </h3>
       <div className="info">
-        {villager["name"]["name-USen"] +
-          "'s personality is '" +
-          villager["personality"] +
-          "'. "}
+        {`${villager.name}'s personality is '${villager.personality}'. `}
         {personalityInfo[villager["personality"]]["description"]}
       </div>
       <div className="info">
