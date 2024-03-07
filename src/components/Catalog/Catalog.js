@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useFetchAll from "../../hooks/useFetchAll";
+import useFetch from "../../hooks/useFetchGET";
 
 import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
 import ItemFilter from "../ItemFilter/ItemFilter";
@@ -14,20 +14,21 @@ import "./Catalog.css";
  * The catalog component for all items.
  *
  * @param {String} catalogType  Specifies which catalog to render. Appropriate values:
- *                              ["villagers", "houseware", "fish", "bugs"].
+ *                              ["villagers", "houseware", "fish", "bugs", "art"].
  */
-function Catalog({ type = null }) {
-  const urls = [`https://acnhapi.com/v1/${type}/`];
-  // If catalog is for fish, also fetch sea creatures
-  if (type === "fish") urls.push("https://acnhapi.com/v1/sea/");
-
-  const { data, loading, error } = useFetchAll(urls);
+export default function Catalog({ type = null }) {
+  const { data, loading, error } = useFetch(`http://localhost:3000/${type}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
   const [items, setItems] = useState([]);
   const itemsPerPage = 30;
   const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
   useEffect(() => {
-    if (!loading) setItems(Object.values({ ...data[0], ...data[1] }));
+    if (!loading) setItems(data);
+    if (!loading) console.log(data);
   }, [data, loading, type]);
 
   return (
@@ -36,7 +37,8 @@ function Catalog({ type = null }) {
       {loading && <LoadingSpinner />}
       {!loading && (
         <div className="catalog">
-          {type === "houseware" ? (
+          {/* Filter controls disabled for now */}
+          {/* {type === "houseware" ? (
             <FurnitureFilter
               items={Object.values(data[0])}
               setItems={setItems}
@@ -47,7 +49,7 @@ function Catalog({ type = null }) {
               items={Object.values({ ...data[0], ...data[1] })}
               setItems={setItems}
             />
-          )}
+          )} */}
           <div className="catalog-item-list">
             <Pagination
               totalNumberOfItems={items.length}
@@ -74,5 +76,3 @@ function Catalog({ type = null }) {
     </div>
   );
 }
-
-export default Catalog;
