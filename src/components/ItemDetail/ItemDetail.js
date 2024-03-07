@@ -89,57 +89,39 @@ function VillagerDetails({ villager }) {
 function BugsAndFishDetails({ critter, itemType }) {
   return (
     <div className="critter-details">
-      <MainImage src={critter["icon_uri"]} />
+      <h2>{critter.name}</h2>
+      <MainImage src={critter.image_url} />
       <table>
         <tbody>
           <tr>
             <th>Price:</th>
-            <td>{formatWithCommas(critter["price"]) + " bells"}</td>
+            <td>{formatWithCommas(critter.sell_nook) + " bells"}</td>
           </tr>
           <tr>
-            <th>{itemType === "bugs" ? "Flick Price:" : "C.J. Price:"}</th>
-            <td>
-              {itemType === "bugs"
-                ? formatWithCommas(critter["price-flick"]) + " bells"
-                : formatWithCommas(critter["price-cj"]) + " bells"}
-            </td>
+            <th>Flick Price:</th>
+            <td>{formatWithCommas(critter.sell_flick) + " bells"}</td>
           </tr>
           <tr>
             <th>North:</th>
-            <td>
-              {critter["availability"]["month-northern"] === ""
-                ? "Year-round"
-                : critter["availability"]["month-northern"]}
-            </td>
+            <td>{`${critter.north.availability_array[0].months}, ${critter.north.availability_array[0].time}`}</td>
           </tr>
           <tr>
             <th>South:</th>
-            <td>
-              {critter["availability"]["month-southern"] === ""
-                ? "Year-round"
-                : critter["availability"]["month-southern"]}
-            </td>
+            <td>{`${critter.south.availability_array[0].months}, ${critter.south.availability_array[0].time}`}</td>
           </tr>
         </tbody>
       </table>
-      <div
-        className="museum-description"
-        style={{ backgroundImage: 'url("/assets/blathers.png")' }}
-      >
-        <h3>Blathers' Description</h3>
-        <p>"{critter["museum-phrase"]}"</p>
-      </div>
       <table>
         <tbody>
           <tr>
             <th>Catch phrase:</th>
-            <td>{critter["catch-phrase"]}</td>
+            <td>{critter.catchphrases[0]}</td>
           </tr>
         </tbody>
       </table>
       <div>
         <h3>Detailed Image</h3>
-        <img className="detailed-img" src={critter["image_uri"]} />
+        <img className="detailed-img" src={critter.render_url} />
       </div>
     </div>
   );
