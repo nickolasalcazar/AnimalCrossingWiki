@@ -9,7 +9,7 @@ import "./ItemDetail.css";
  * @param {Array}   variants  An array containing variants of the item. Optional.
  */
 const ItemDetail = ({ item, itemType, variants = null }) => {
-  const name = item["name"]["name-USen"];
+  const name = item.name;
   return (
     <div className="item-detail">
       <h2>{name}</h2>
@@ -40,7 +40,6 @@ function VillagerDetails({ villager }) {
   const personalityInfo = require("./personalities.json");
   return (
     <div className="villager-details">
-      <h2>{villager.name}</h2>
       <MainImage src={villager.image_url} />
       <table>
         <tbody>
@@ -89,7 +88,6 @@ function VillagerDetails({ villager }) {
 function BugsAndFishDetails({ critter, itemType }) {
   return (
     <div className="critter-details">
-      <h2>{critter.name}</h2>
       <MainImage src={critter.image_url} />
       <table>
         <tbody>
@@ -98,8 +96,12 @@ function BugsAndFishDetails({ critter, itemType }) {
             <td>{formatWithCommas(critter.sell_nook) + " bells"}</td>
           </tr>
           <tr>
-            <th>Flick Price:</th>
-            <td>{formatWithCommas(critter.sell_flick) + " bells"}</td>
+            <th>{itemType === "bugs" ? "Flick Price:" : "C.J. Price:"}</th>
+            <td>
+              {itemType === "bugs"
+                ? formatWithCommas(critter.sell_flick) + " bells"
+                : formatWithCommas(critter.sell_cj) + " bells"}
+            </td>
           </tr>
           <tr>
             <th>North:</th>
