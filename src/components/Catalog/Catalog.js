@@ -33,9 +33,21 @@ export default function Catalog({ type = null }) {
 
   return (
     <div className="catalog-wrapper">
-      {error && <p>Something went wrong...</p>}
-      {loading && <LoadingSpinner />}
-      {!loading && (
+      {error && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <p>There was an error loading data.</p>
+          <p> Something went wrong on our end...</p>
+        </div>
+      )}
+      {!error && loading && <LoadingSpinner />}
+      {!error && !loading && (
         <div className="catalog">
           {/* Filter controls disabled for now */}
           {/* {type === "houseware" ? (
