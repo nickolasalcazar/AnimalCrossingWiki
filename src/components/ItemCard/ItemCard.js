@@ -10,7 +10,7 @@ import "./ItemCard.css";
  * @param {String} itemType
  * @param {Object} style
  */
-function ItemCard({ item, itemType, style }) {
+export default function ItemCard({ item, itemType, style }) {
   const [open, setOpen] = useState(false);
   let variants;
 
@@ -18,13 +18,15 @@ function ItemCard({ item, itemType, style }) {
     variants = item;
     item = item[0];
   }
-  let name = item["name"]["name-USen"];
+  let name = item.name;
 
   return (
     <>
       <div className="item-card" style={style} onClick={() => setOpen(true)}>
         <img
-          src={item["icon_uri"] ? item["icon_uri"] : item["image_uri"]}
+          // src={item["icon_url"] ? item["icon_uri"] : item["image_uri"]}
+          // src={item.image_url}
+          src={itemType === "art" ? item.real_info.image_url : item.image_url}
           alt={name}
           className="main-img"
         />
@@ -36,5 +38,3 @@ function ItemCard({ item, itemType, style }) {
     </>
   );
 }
-
-export default ItemCard;
