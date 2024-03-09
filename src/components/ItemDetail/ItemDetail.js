@@ -8,7 +8,7 @@ import "./ItemDetail.css";
  * @param {String}  itemType  The type of item being rendered.
  * @param {Array}   variants  An array containing variants of the item. Optional.
  */
-const ItemDetail = ({ item, itemType, variants = null }) => {
+export default function ItemDetail({ item, itemType, variants = null }) {
   const name = item.name;
   return (
     <div className="item-detail">
@@ -26,7 +26,7 @@ const ItemDetail = ({ item, itemType, variants = null }) => {
       </div>
     </div>
   );
-};
+}
 
 function MainImage({ src }) {
   return (
@@ -239,20 +239,20 @@ function FurnitureDetails({ item, variants }) {
 function ArtDetails({ artwork }) {
   return (
     <div className="artwork-details">
-      <MainImage src={artwork["image_uri"]} />
+      <MainImage src={artwork.real_info.image_url} />
       <table>
         <tbody>
           <tr>
             <th>Buy Price:</th>
-            <td>{formatWithCommas(artwork["buy-price"]) + " bells"}</td>
+            <td>{formatWithCommas(artwork.buy) + " bells"}</td>
           </tr>
           <tr>
             <th>Sell Price:</th>
-            <td>{formatWithCommas(artwork["sell-price"]) + " bells"}</td>
+            <td>{formatWithCommas(artwork.sell) + " bells"}</td>
           </tr>
           <tr>
             <th>Has fake:</th>
-            <td>{artwork["hasFake"] ? "Yes" : "No"}</td>
+            <td>{artwork.fake_info ? "Yes" : "No"}</td>
           </tr>
         </tbody>
       </table>
@@ -261,7 +261,7 @@ function ArtDetails({ artwork }) {
         style={{ backgroundImage: 'url("/assets/blathers.png")' }}
       >
         <h3>Museum Description</h3>
-        <p>{artwork["museum-desc"]}</p>
+        <p>{artwork.real_info.description}</p>
       </div>
     </div>
   );
@@ -275,5 +275,3 @@ function ArtDetails({ artwork }) {
 const formatWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
-
-export default ItemDetail;
