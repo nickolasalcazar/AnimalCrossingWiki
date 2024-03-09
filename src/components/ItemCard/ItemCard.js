@@ -23,13 +23,13 @@ export default function ItemCard({ item, itemType, style }) {
   return (
     <>
       <div className="item-card" style={style} onClick={() => setOpen(true)}>
-        <img
-          // src={item["icon_url"] ? item["icon_uri"] : item["image_uri"]}
-          // src={item.image_url}
-          src={itemType === "art" ? item.real_info.image_url : item.image_url}
-          alt={name}
-          className="main-img"
-        />
+        <div className="item-card-img-container">
+          <img
+            src={itemType === "art" ? item.real_info.image_url : item.image_url}
+            alt={name}
+            className="main-img"
+          />
+        </div>
         <p>{name}</p>
       </div>
       <Modal open={open} setOpen={setOpen}>

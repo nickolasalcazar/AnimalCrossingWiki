@@ -1,16 +1,27 @@
 .item-card {
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
 }
 
 .item-card p {
   text-align: center;
 }
 
-.main-img {
-  justify-self: center;
-  width: 100%;
-  height: auto;
+.item-card-img-container {
+  flex: 1;
+  height: 100%;
   background-color: #f1f1f1;
   border-radius: 5px;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-img {
+  padding: 15px;
+  width: 100%;
 }

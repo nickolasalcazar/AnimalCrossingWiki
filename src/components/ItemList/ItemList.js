@@ -50,7 +50,7 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
                   style={{
                     backgroundColor:
                       listType === "villagers"
-                        ? `${item["bubble-color"]}AA`
+                        ? `#${item.title_color}AA`
                         : "inital",
                   }}
                 >
