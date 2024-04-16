@@ -4,9 +4,21 @@ import Collapsible from "../UI/Collapsible/Collapsible";
 import ItemSearchBar from "../ItemSearchBar/ItemSearchBar";
 import FilterButton from "../ItemFilter/FilterButton/FilterButton";
 
-let filterConfig = require("./FilterConfig.json");
-
-// const bugAvailabilityFilters = ["location", "rarity", "isAllYear"];
+const filterConfig = require("./FilterConfig.json");
+const months_key = {
+  Jan: 1,
+  Feb: 2,
+  Mar: 3,
+  Apr: 4,
+  May: 5,
+  Jun: 6,
+  Jul: 7,
+  Aug: 8,
+  Sep: 9,
+  Oct: 10,
+  Nov: 11,
+  Dec: 12,
+};
 
 /**
  * Filters all non-houseware items suchs as Villagers, Bugs, Fish, Fossils, and Art.
@@ -17,8 +29,7 @@ let filterConfig = require("./FilterConfig.json");
  * @param {Object} setItems   Function for setting items.
  * @returns
  */
-function ItemFilter({ filterType = null, items, setItems }) {
-  let filteredItems = items;
+export default function ItemFilter({ filterType = null, items, setItems }) {
   const [query, setQuery] = useState("");
   const [appliedFilters, setAppliedFilters] = useState({});
 
@@ -26,45 +37,55 @@ function ItemFilter({ filterType = null, items, setItems }) {
   const categories = Object.keys(filterConfig[filterType]);
 
   const filter = () => {
-    filteredItems = items; // Array of objects
+    let filteredItems = [...items]; // Array of objects
+    // console.log(items);
+    // console.log("items.length", items.length, ";", "query", `"${query}"`);
+    // console.log("appliedFilters", appliedFilters);
     for (let i = 0; i < filteredItems.length; i++) {
-      let item = items[i];
+      let item = filteredItems[i];
 
-      // Remove any items that do not match the query string
-      if (!item["name"]["name-USen"].toLowerCase().includes(query)) {
+      // Remove items that do not include query string
+      if (!item.name.toLowerCase().includes(query)) {
         filteredItems.splice(filteredItems.indexOf(item), 1);
         i--;
         continue;
       }
 
       // Filter through categories
-      if (filterType === "fish" || filterType === "bugs") {
+      if (filterType === "villagers") {
         for (let category in appliedFilters) {
           if (appliedFilters[category] === null) continue;
-          if (
-            appliedFilters[category] === "isAllDay" ||
-            appliedFilters[category] === "isAllYear"
-          ) {
-            if (item["availability"][appliedFilters[category]] === false) {
-              filteredItems.splice(filteredItems.indexOf(item), 1);
-              i--;
-              break;
-            }
-          } else if (
-            appliedFilters[category] !== item["availability"][category]
-          ) {
+          if (item[category] !== appliedFilters[category]) {
             filteredItems.splice(filteredItems.indexOf(item), 1);
             i--;
-            break;
+            continue;
           }
         }
-      } else {
-        for (let category in appliedFilters) {
-          if (appliedFilters[category] === null) continue;
-          if (appliedFilters[category] !== item[category]) {
+      }
+
+      let fish_or_bug = filterType === "fish" || filterType === "bugs";
+
+      if (fish_or_bug) {
+        if (appliedFilters.availability === "isAllDay") {
+          if (!item.north.availability_array[0].time.includes("All day")) {
             filteredItems.splice(filteredItems.indexOf(item), 1);
             i--;
-            break;
+            continue;
+          }
+        } else if (appliedFilters.availability === "isAllYear") {
+          if (!item.north.availability_array[0].months.includes("All year")) {
+            filteredItems.splice(filteredItems.indexOf(item), 1);
+            i--;
+            continue;
+          }
+        }
+        console.log("avail by month:", appliedFilters["availability by month"]);
+        if (appliedFilters["availability by month"] !== null) {
+          let chosenMonth = appliedFilters["availability by month"];
+          let key = months_key[chosenMonth];
+          if (!item.north.months_array.includes(key)) {
+            filteredItems.splice(filteredItems.indexOf(item), 1);
+            i--;
           }
         }
       }
@@ -121,5 +142,3 @@ function ItemFilter({ filterType = null, items, setItems }) {
 function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
-
-export default ItemFilter;

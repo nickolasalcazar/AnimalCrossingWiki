@@ -10,6 +10,8 @@ import ItemList from "../../components/ItemList/ItemList";
 
 import "./Catalog.css";
 
+const itemsPerPage = 30;
+
 /**
  * The catalog component for all items.
  *
@@ -23,12 +25,10 @@ export default function Catalog({ type = null }) {
     },
   });
   const [items, setItems] = useState([]);
-  const itemsPerPage = 30;
   const [lastItemIndex, setLastItemIndex] = useState(itemsPerPage);
 
   useEffect(() => {
     if (!loading) setItems(data);
-    if (!loading) console.log(data);
   }, [data, loading, type]);
 
   return (
@@ -62,6 +62,8 @@ export default function Catalog({ type = null }) {
               setItems={setItems}
             />
           )} */}
+          {/* <ItemFilter filterType={type} items={items} setItems={setItems} /> */}
+          <ItemFilter filterType={type} items={data} setItems={setItems} />
           <div className="catalog-item-list">
             <Pagination
               totalNumberOfItems={items.length}

@@ -10,7 +10,7 @@
       "Cat",
       "Chicken",
       "Cow",
-      "Cub",
+      "Bear cub",
       "Deer",
       "Dog",
       "Duck",
@@ -32,31 +32,57 @@
       "Penguin",
       "Pig",
       "Rabbit",
-      "Rhino",
+      "Rhinoceros",
       "Sheep",
       "Squirrel",
       "Tiger",
       "Wolf"
     ],
     "personality": [
-      "Uchi",
       "Snooty",
       "Normal",
       "Lazy",
       "Smug",
       "Peppy",
       "Cranky",
-      "Jock"
+      "Jock",
+      "Big sister"
     ],
     "gender": ["Male", "Female"]
   },
   "bugs": {
-    "rarity": ["Common", "Uncommon", "Rare", "Ultra-rare"],
-    "availability": ["isAllDay", "isAllYear"]
+    "availability": ["isAllDay", "isAllYear"],
+    "availability by month": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
   },
   "fish": {
-    "rarity": ["Common", "Uncommon", "Rare", "Ultra-rare"],
-    "availability": ["isAllDay", "isAllYear"]
+    "availability": ["isAllDay", "isAllYear"],
+    "availability by month": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ]
   },
   "art": {}
 }
