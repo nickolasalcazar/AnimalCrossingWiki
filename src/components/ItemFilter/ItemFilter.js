@@ -46,7 +46,7 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
 
       // Remove items that do not include query string
       if (!item.name.toLowerCase().includes(query)) {
-        filteredItems.splice(filteredItems.indexOf(item), 1);
+        filteredItems.splice(i, 1);
         i--;
         continue;
       }
@@ -56,8 +56,9 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
         for (let category in appliedFilters) {
           if (appliedFilters[category] === null) continue;
           if (item[category] !== appliedFilters[category]) {
-            filteredItems.splice(filteredItems.indexOf(item), 1);
-            i--;
+            // filteredItems.splice(i, 1);
+            // i--;
+            filteredItems.splice(i--, 1);
             continue;
           }
         }
@@ -68,14 +69,16 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
       if (fish_or_bug) {
         if (appliedFilters.availability === "isAllDay") {
           if (!item.north.availability_array[0].time.includes("All day")) {
-            filteredItems.splice(filteredItems.indexOf(item), 1);
-            i--;
+            // filteredItems.splice(i, 1);
+            // i--;
+            filteredItems.splice(i--, 1);
             continue;
           }
         } else if (appliedFilters.availability === "isAllYear") {
           if (!item.north.availability_array[0].months.includes("All year")) {
-            filteredItems.splice(filteredItems.indexOf(item), 1);
-            i--;
+            // filteredItems.splice(i, 1);
+            // i--;
+            filteredItems.splice(i--, 1);
             continue;
           }
         }
@@ -84,8 +87,10 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
           let chosenMonth = appliedFilters["availability by month"];
           let key = months_key[chosenMonth];
           if (!item.north.months_array.includes(key)) {
-            filteredItems.splice(filteredItems.indexOf(item), 1);
-            i--;
+            // filteredItems.splice(i, 1);
+            // i--;
+            filteredItems.splice(i--, 1);
+            continue;
           }
         }
       }
