@@ -138,8 +138,11 @@
 
 .variants-container {
   overflow-y: none !important;
-  -ms-overflow-style: none; /* Hide scrollbar: IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar: Firefox */
+  /* Hide scrollbar: IE and Edge */
+  /* -ms-overflow-style: none;  */
+  /* Hide scrollbar: Firefox */
+  /* scrollbar-width: none;  */
+  /* scrollbar-width: none; */
 
   display: flex;
   flex-flow: nowrap;
@@ -149,12 +152,11 @@
   padding: 5px;
 
   overflow: scroll;
-
-  scrollbar-width: none;
 }
 
 .variants-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar: Chrome, Safari and Opera */
+  /* Hide scrollbar: Chrome, Safari and Opera */
+  /* display: none; */
 }
 
 .variants-container img {
