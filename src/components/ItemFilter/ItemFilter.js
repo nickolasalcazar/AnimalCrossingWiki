@@ -56,10 +56,8 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
         for (let category in appliedFilters) {
           if (appliedFilters[category] === null) continue;
           if (item[category] !== appliedFilters[category]) {
-            // filteredItems.splice(i, 1);
-            // i--;
             filteredItems.splice(i--, 1);
-            continue;
+            break;
           }
         }
       }
@@ -69,26 +67,19 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
       if (fish_or_bug) {
         if (appliedFilters.availability === "isAllDay") {
           if (!item.north.availability_array[0].time.includes("All day")) {
-            // filteredItems.splice(i, 1);
-            // i--;
             filteredItems.splice(i--, 1);
             continue;
           }
         } else if (appliedFilters.availability === "isAllYear") {
           if (!item.north.availability_array[0].months.includes("All year")) {
-            // filteredItems.splice(i, 1);
-            // i--;
             filteredItems.splice(i--, 1);
             continue;
           }
         }
-        console.log("avail by month:", appliedFilters["availability by month"]);
         if (appliedFilters["availability by month"] !== null) {
           let chosenMonth = appliedFilters["availability by month"];
           let key = months_key[chosenMonth];
           if (!item.north.months_array.includes(key)) {
-            // filteredItems.splice(i, 1);
-            // i--;
             filteredItems.splice(i--, 1);
             continue;
           }

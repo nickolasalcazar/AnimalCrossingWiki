@@ -6,7 +6,7 @@ function Furniture(props) {
   return (
     <div>
       <Hero title="Furniture" />
-      <Catalog type="houseware" />
+      <Catalog type="furniture" />
     </div>
   );
 }
