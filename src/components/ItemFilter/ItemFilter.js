@@ -40,10 +40,11 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
     let filteredItems = [...items]; // Array of objects
     // console.log(items);
     // console.log("items.length", items.length, ";", "query", `"${query}"`);
-    console.log("appliedFilters", appliedFilters);
+    // console.log("appliedFilters", appliedFilters);
 
     for (let i = 0; i < filteredItems.length; i++) {
       let item = filteredItems[i];
+      // console.log("index", i, "filterItems[i]", item);
 
       // Remove items that do not include query string
       if (!item.name.toLowerCase().includes(query)) {
@@ -52,9 +53,23 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
         continue;
       }
 
+      // Filter furniture themes
+      if (appliedFilters.themes) {
+        let filteredOut = false;
+        for (let theme of appliedFilters.themes) {
+          if (!item.themes.includes(theme)) {
+            filteredItems.splice(i--, 1);
+            filteredOut = true;
+            break;
+          }
+        }
+        if (filteredOut) continue;
+      }
+
       if (filterType === "villagers" || filterType === "furniture") {
         // Filter through applied categories
         for (let category in appliedFilters) {
+          if (category === "themes") continue;
           if (appliedFilters[category] === null) continue;
           if (item[category] !== appliedFilters[category]) {
             filteredItems.splice(i--, 1);
@@ -97,16 +112,30 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
   }, [query, appliedFilters]);
 
   const handleFilterButtonOnClick = (category, attribute) => {
-    if (appliedFilters[category] === attribute) {
+    let filterEnabled = null;
+
+    // If filter button is for a theme (for villagers only)
+    if (category === "themes") {
+      if (appliedFilters.themes === undefined) appliedFilters.themes = [];
+      let themes = appliedFilters.themes;
+
+      filterEnabled = themes.includes(attribute);
+
+      if (filterEnabled) themes.splice(themes.indexOf(attribute), 1);
+      else themes.push(attribute);
+
       setAppliedFilters({
         ...appliedFilters,
-        [category]: null,
+        themes: themes,
       });
       return;
     }
+
+    // In all other cases
+    filterEnabled = appliedFilters[category] === attribute;
     setAppliedFilters({
       ...appliedFilters,
-      [category]: attribute,
+      [category]: filterEnabled ? null : attribute,
     });
   };
 
