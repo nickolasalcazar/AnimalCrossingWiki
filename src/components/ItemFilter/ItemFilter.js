@@ -40,7 +40,8 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
     let filteredItems = [...items]; // Array of objects
     // console.log(items);
     // console.log("items.length", items.length, ";", "query", `"${query}"`);
-    // console.log("appliedFilters", appliedFilters);
+    console.log("appliedFilters", appliedFilters);
+
     for (let i = 0; i < filteredItems.length; i++) {
       let item = filteredItems[i];
 
@@ -51,8 +52,8 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
         continue;
       }
 
-      // Filter through categories
-      if (filterType === "villagers") {
+      if (filterType === "villagers" || filterType === "furniture") {
+        // Filter through applied categories
         for (let category in appliedFilters) {
           if (appliedFilters[category] === null) continue;
           if (item[category] !== appliedFilters[category]) {
