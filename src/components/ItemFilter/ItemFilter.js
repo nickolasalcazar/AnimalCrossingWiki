@@ -153,6 +153,7 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
           <Collapsible
             title={capitalize(category)}
             key={"collapsible-" + index + "-" + category}
+            open={filterConfig[filterType][category].length < 20}
           >
             {filterConfig[filterType][category].map((attribute, index) => (
               <FilterButton
