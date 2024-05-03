@@ -54,7 +54,7 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
       }
 
       // Filter furniture themes
-      if (appliedFilters.themes) {
+      if (filterType === "furniture" && appliedFilters.themes) {
         let filteredOut = false;
         for (let theme of appliedFilters.themes) {
           if (!item.themes.includes(theme)) {
@@ -92,7 +92,7 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
             continue;
           }
         }
-        if (appliedFilters["availability by month"] !== null) {
+        if (appliedFilters["availability by month"]) {
           let chosenMonth = appliedFilters["availability by month"];
           let key = months_key[chosenMonth];
           if (!item.north.months_array.includes(key)) {
@@ -110,6 +110,10 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
     filter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, appliedFilters]);
+
+  useEffect(() => {
+    setAppliedFilters({});
+  }, [items]);
 
   const handleFilterButtonOnClick = (category, attribute) => {
     let filterEnabled = null;
@@ -141,12 +145,15 @@ export default function ItemFilter({ filterType = null, items, setItems }) {
 
   return (
     <div className="filter">
-      <Collapsible title="Search" disabled="true" loadOpen="true">
+      <Collapsible title="Search" disabled="true" open="true">
         <ItemSearchBar query={query} setQuery={setQuery} />
       </Collapsible>
       {categories.map((category, index) => {
         return (
-          <Collapsible title={capitalize(category)} key={"collapsible" + index}>
+          <Collapsible
+            title={capitalize(category)}
+            key={"collapsible-" + index + "-" + category}
+          >
             {filterConfig[filterType][category].map((attribute, index) => (
               <FilterButton
                 key={"filter-btn-" + index}
