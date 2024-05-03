@@ -47,7 +47,7 @@ export default function ItemList({
                 backgroundColor:
                   listType === "villagers"
                     ? `#${item.title_color}AA`
-                    : "inital",
+                    : "transparent",
               }}
             >
               <ItemCard item={item} itemType={listType} />
