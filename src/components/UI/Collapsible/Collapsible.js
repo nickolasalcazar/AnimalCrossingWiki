@@ -3,7 +3,12 @@ import "./Collapsible.css";
 /**
  * A collapsible UI container that renders any children it is passed.
  */
-function Collapsible({ children, disabled = false, loadOpen = false, title }) {
+export default function Collapsible({
+  children,
+  disabled = false,
+  open = false,
+  title,
+}) {
   const toggleCollapsible = (e) => {
     let thisCollapsible = e.currentTarget.parentElement;
     let show = thisCollapsible.classList.contains("collapsible-active");
@@ -14,7 +19,7 @@ function Collapsible({ children, disabled = false, loadOpen = false, title }) {
   return (
     <div
       className={`collapsible${
-        loadOpen ? " collapsible-active" : " collapsible-inactive"
+        open ? " collapsible-active" : " collapsible-inactive"
       }`}
     >
       <button
@@ -22,7 +27,7 @@ function Collapsible({ children, disabled = false, loadOpen = false, title }) {
         onClick={!disabled ? (e) => toggleCollapsible(e) : undefined}
       >
         {title}
-        {!disabled ? <div className="collapsible-arrow">❯</div> : <></>}
+        {disabled ? <></> : <div className="collapsible-arrow">❯</div>}
       </button>
       <div className="collapsible-content">
         <div className={"collapsible-inner-content"}>{children}</div>
@@ -30,5 +35,3 @@ function Collapsible({ children, disabled = false, loadOpen = false, title }) {
     </div>
   );
 }
-
-export default Collapsible;
