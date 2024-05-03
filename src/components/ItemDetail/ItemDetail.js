@@ -18,8 +18,8 @@ export default function ItemDetail({ item, itemType, variants = null }) {
         {itemType === "bugs" || itemType === "fish" ? (
           <BugsAndFishDetails critter={item} itemType={itemType} />
         ) : null}
-        {itemType === "housewares" ? (
-          <FurnitureDetails item={item} variants={variants ? variants : null} />
+        {itemType === "furniture" ? (
+          <FurnitureDetails item={item} variants={variants} />
         ) : itemType === "art" ? (
           <ArtDetails artwork={item} />
         ) : null}
@@ -131,8 +131,7 @@ function BugsAndFishDetails({ critter, itemType }) {
 
 function FurnitureDetails({ item, variants }) {
   const hasVariants = variants.length > 1;
-  const hhaConcepts = [item["hha-concept-1"], item["hha-concept-2"]];
-  const [image, setImage] = useState(item["image_uri"]);
+  const [image, setImage] = useState(variants[0].image_url);
   return (
     <div className="furniture-details">
       <MainImage src={image} />
@@ -144,10 +143,10 @@ function FurnitureDetails({ item, variants }) {
           <div className="variants-container">
             {variants.map((variant, index) => (
               <img
-                key={index}
-                src={variant["image_uri"]}
+                key={`${item.name}-variant-${index}`}
+                src={variant.image_url}
                 onClick={() => {
-                  setImage(variant["image_uri"]);
+                  setImage(variant.image_url);
                 }}
               />
             ))}
@@ -159,79 +158,30 @@ function FurnitureDetails({ item, variants }) {
       ) : null}
       <table>
         <tbody className="info-table">
-          <tr>
-            <th>Buy Price</th>
-            <td>
-              {item["buy-price"]
-                ? formatWithCommas(item["buy-price"]) + " bells"
-                : "N/A"}
-            </td>
-          </tr>
-          <tr>
-            <th>Sell Price</th>
-            <td>{formatWithCommas(item["sell-price"])} bells</td>
-          </tr>
-          {item["miles-price"] ? (
+          {item.buy.map((price) => (
             <tr>
-              <th>Miles Price</th>
-              <td>{formatWithCommas(item["miles-price"])} bells</td>
+              <th>{price.currency} price</th>
+              <td>{formatWithCommas(price.price)}</td>
             </tr>
-          ) : null}
+          ))}
+          <tr>
+            <th>Sell price</th>
+            <td>{formatWithCommas(item.sell)}</td>
+          </tr>
           <tr>
             <th>Source</th>
-            <td>{item["source"]}</td>
+            <td>{item.availability[0].from}</td>
           </tr>
           <tr>
-            <th>DIY</th>
-            <td>{item["isDIY"] ? "Yes" : "No"}</td>
+            <th>Customizable</th>
+            <td>{item.customizable ? "Yes" : "No"}</td>
           </tr>
           <tr>
-            <th>Catalog</th>
-            <td>{item["isCatalog"] ? "Available" : "No"}</td>
+            <th>Category</th>
+            <td>{item.category}</td>
           </tr>
         </tbody>
       </table>
-      <table className="info-table">
-        <tr>
-          <th>Size</th>
-          <td>{item["size"]}</td>
-        </tr>
-        <tr>
-          <th>HHA Concepts</th>
-          <td>
-            {hhaConcepts.map((concept, index) => {
-              if (concept === null) return "";
-              else if (index === 0) return concept;
-              else return ", " + concept;
-            })}
-          </td>
-        </tr>
-        {item["hha-series"] ? (
-          <tr>
-            <th>HHA Series</th>
-            <td>{item["hha-series"]}</td>
-          </tr>
-        ) : null}
-        {item["hha-set"] ? (
-          <tr>
-            <th>HHA Set</th>
-            <td>{item["hha-set"]}</td>
-          </tr>
-        ) : null}
-        <tr>
-          <th>Customize Body</th>
-          <td>{item["canCustomizeBody"] ? "Yes" : "No"}</td>
-        </tr>
-        <tr>
-          <th>Patterns</th>
-          <td>{item["canCustomizePattern"] ? "Yes" : "No"}</td>
-        </tr>
-      </table>
-      {item["source-detail"] ? (
-        <div className="info">
-          <p>{item["source-detail"]}</p>
-        </div>
-      ) : null}
     </div>
   );
 }
