@@ -158,8 +158,8 @@ function FurnitureDetails({ item, variants }) {
       ) : null}
       <table>
         <tbody className="info-table">
-          {item.buy.map((price) => (
-            <tr>
+          {item.buy.map((price, index) => (
+            <tr key={"info-table-price-" + index}>
               <th>{price.currency} price</th>
               <td>{formatWithCommas(price.price)}</td>
             </tr>
@@ -179,6 +179,12 @@ function FurnitureDetails({ item, variants }) {
           <tr>
             <th>Category</th>
             <td>{item.category}</td>
+          </tr>
+          <tr>
+            <th>Themes</th>
+            <td>
+              {item.themes.length === 0 ? "None" : item.themes.join(", ")}
+            </td>
           </tr>
         </tbody>
       </table>

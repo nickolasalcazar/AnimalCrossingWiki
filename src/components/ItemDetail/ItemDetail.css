@@ -23,7 +23,7 @@
 }
 
 .item-detail-main-img {
-  width: 200px;
+  width: auto;
   height: 200px;
   border-radius: 10px;
   margin: 5px;
@@ -91,6 +91,7 @@
 }
 
 .detailed-img {
+  padding: 35px;
   margin-top: 10px;
   width: 100%;
   max-width: 500px;
@@ -152,11 +153,6 @@
   padding: 5px;
 
   overflow: scroll;
-}
-
-.variants-container::-webkit-scrollbar {
-  /* Hide scrollbar: Chrome, Safari and Opera */
-  /* display: none; */
 }
 
 .variants-container img {
