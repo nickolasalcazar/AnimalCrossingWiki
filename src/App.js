@@ -6,24 +6,20 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 
 import Homepage from "./pages/Homepage/Homepage";
-import Furniture from "./pages/Furniture/Furniture";
-import Villagers from "./pages/Villagers/Villagers";
-import Bugs from "./pages/Bugs/Bugs";
-import Fish from "./pages/Fish/Fish";
-import Art from "./pages/Art/Art";
+import CatalogPage from "./pages/CatalogPage/CatalogPage";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <NavBar />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/furniture" element={<Furniture />} />
-        <Route path="/villagers" element={<Villagers />} />
-        <Route path="/bugs" element={<Bugs />} />
-        <Route path="/fish" element={<Fish />} />
-        <Route path="/art" element={<Art />} />
+        <Route path="/furniture" element={<CatalogPage type="furniture" />} />
+        <Route path="/villagers" element={<CatalogPage type="villagers" />} />
+        <Route path="/bugs" element={<CatalogPage type="bugs" />} />
+        <Route path="/fish" element={<CatalogPage type="fish" />} />
+        <Route path="/art" element={<CatalogPage type="art" />} />
       </Routes>
       <Footer />
     </div>
@@ -37,5 +33,3 @@ function ScrollToTop() {
   }, [pathname]);
   return null;
 }
-
-export default App;
