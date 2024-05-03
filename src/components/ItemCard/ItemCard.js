@@ -12,28 +12,30 @@ import "./ItemCard.css";
  */
 export default function ItemCard({ item, itemType, style }) {
   const [open, setOpen] = useState(false);
-  let variants;
-
-  if (itemType === "housewares") {
-    variants = item;
-    item = item[0];
-  }
   let name = item.name;
+  let imgSrc = item.image_url;
+
+  if (itemType === "art") {
+    imgSrc = item.real_info?.image_url;
+  } else if (itemType === "furniture") {
+    // Does item.variations exist?
+    if (!!item.variations) imgSrc = item?.variations[0].image_url;
+  }
 
   return (
     <>
       <div className="item-card" style={style} onClick={() => setOpen(true)}>
         <div className="item-card-img-container">
-          <img
-            src={itemType === "art" ? item.real_info.image_url : item.image_url}
-            alt={name}
-            className="main-img"
-          />
+          <img src={imgSrc} alt={name} className="main-img" />
         </div>
         <p>{name}</p>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <ItemDetail item={item} variants={variants} itemType={itemType} />
+        <ItemDetail
+          item={item}
+          variants={item.variations}
+          itemType={itemType}
+        />
       </Modal>
     </>
   );
