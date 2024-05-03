@@ -1,6 +1,6 @@
 import "./Hero.css";
 
-function Hero({ image = "/assets/wallpapers/items.png", title = "Hero" }) {
+export default function Hero({ image, title = "Hero" }) {
   return (
     <div
       className="hero"
@@ -15,5 +15,3 @@ function Hero({ image = "/assets/wallpapers/items.png", title = "Hero" }) {
     </div>
   );
 }
-
-export default Hero;
