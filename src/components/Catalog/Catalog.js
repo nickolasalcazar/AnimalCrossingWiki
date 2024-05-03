@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetchGET";
 
-import FurnitureFilter from "../../pages/Furniture/FurnitureFilter/FurnitureFilter";
 import ItemFilter from "../ItemFilter/ItemFilter";
 
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
