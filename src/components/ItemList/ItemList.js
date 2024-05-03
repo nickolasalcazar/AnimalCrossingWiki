@@ -13,7 +13,12 @@ import ItemCard from "../ItemCard/ItemCard";
  * @param {Number} itemsPerPage   The number of items to be displayed at once.
  * @param {Number} lastItemIndex  The last element to display.
  */
-const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
+export default function ItemList({
+  listType,
+  items,
+  itemsPerPage,
+  lastItemIndex,
+}) {
   if (items.length === 0) {
     return (
       <div className="item-list">
@@ -33,32 +38,22 @@ const ItemList = ({ listType, items, itemsPerPage, lastItemIndex }) => {
   return (
     <div className="item-list">
       <div className="item-list-content">
-        {listType === "houseware"
-          ? Object.values(items)
-              .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-              .map((item) => (
-                <CardWrapper key={item[0]["internal-id"]}>
-                  {/* <FurnitureCard item={item} /> */}
-                  <ItemCard item={item} itemType="housewares" />
-                </CardWrapper>
-              ))
-          : Object.values(items)
-              .slice(lastItemIndex - itemsPerPage, lastItemIndex)
-              .map((item, index) => (
-                <CardWrapper
-                  key={index}
-                  style={{
-                    backgroundColor:
-                      listType === "villagers"
-                        ? `#${item.title_color}AA`
-                        : "inital",
-                  }}
-                >
-                  <ItemCard item={item} itemType={listType} />
-                </CardWrapper>
-              ))}
+        {Object.values(items)
+          .slice(lastItemIndex - itemsPerPage, lastItemIndex)
+          .map((item, index) => (
+            <CardWrapper
+              key={index}
+              style={{
+                backgroundColor:
+                  listType === "villagers"
+                    ? `#${item.title_color}AA`
+                    : "inital",
+              }}
+            >
+              <ItemCard item={item} itemType={listType} />
+            </CardWrapper>
+          ))}
       </div>
     </div>
   );
-};
-export default ItemList;
+}
