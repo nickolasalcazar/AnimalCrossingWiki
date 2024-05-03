@@ -15,8 +15,7 @@ const itemsPerPage = 30;
 /**
  * The catalog component for all items.
  *
- * @param {String} catalogType  Specifies which catalog to render. Appropriate values:
- *                              ["villagers", "houseware", "fish", "bugs", "art"].
+ * @param {String} catalogType  Specifies which catalog to render. Appropriate values: ["villagers", "houseware", "fish", "bugs", "art"].
  */
 export default function Catalog({ type = null }) {
   const { data, loading, error } = useFetch(`http://localhost:3000/${type}`, {
@@ -49,20 +48,6 @@ export default function Catalog({ type = null }) {
       {!error && loading && <LoadingSpinner />}
       {!error && !loading && (
         <div className="catalog">
-          {/* Filter controls disabled for now */}
-          {/* {type === "houseware" ? (
-            <FurnitureFilter
-              items={Object.values(data[0])}
-              setItems={setItems}
-            />
-          ) : (
-            <ItemFilter
-              filterType={type}
-              items={Object.values({ ...data[0], ...data[1] })}
-              setItems={setItems}
-            />
-          )} */}
-          {/* <ItemFilter filterType={type} items={items} setItems={setItems} /> */}
           <ItemFilter filterType={type} items={data} setItems={setItems} />
           <div className="catalog-item-list">
             <Pagination
