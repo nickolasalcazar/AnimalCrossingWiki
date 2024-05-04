@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-
-import Hero from "../../components/Hero/Hero";
 import "./Homepage.css";
 
-function Homepage(props) {
+export default function Homepage() {
   return (
     <main className="homepage">
       <article className="welcome">
@@ -81,19 +79,20 @@ function Homepage(props) {
         <section>
           <p>This site is a hobby project made using React.js.</p>
           <p>
-            Data on this site is fetched from{" "}
+            Data on this site is fetched from the{" "}
             <a
               style={{
                 textDecoration: "underline",
                 color: "var(--light-blue)",
               }}
-              href="https://acnhapi.com/"
+              href="https://api.nookipedia.com/"
               target={"_blank"}
               rel="noreferrer"
             >
-              ACNH API
+              Nookipedia Animal Crossing API
             </a>
-            , a free Animal Crossing RESTful API.
+            , a free RESTful service that provides endpoints for retrieving
+            Animal Crossing data.
           </p>
           <p>
             Check out Critter Catalog's GitHub repo{" "}
@@ -115,5 +114,3 @@ function Homepage(props) {
     </main>
   );
 }
-
-export default Homepage;
