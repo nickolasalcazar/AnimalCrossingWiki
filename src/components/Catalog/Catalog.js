@@ -10,9 +10,7 @@ import ItemList from "../../components/ItemList/ItemList";
 import "./Catalog.css";
 
 const itemsPerPage = 30;
-
-// const API_URL = "http://localhost:3000/";
-const API_URL = "https://critter-catalog-proxy-server.onrender.com/";
+const API_URL = process.env.REACT_APP_API_URL;
 
 /**
  * The catalog component for all items.
@@ -20,7 +18,7 @@ const API_URL = "https://critter-catalog-proxy-server.onrender.com/";
  * @param {String} catalogType  Specifies which catalog to render. Appropriate values: ["villagers", "houseware", "fish", "bugs", "art"].
  */
 export default function Catalog({ type = null }) {
-  const { data, loading, error } = useFetch(API_URL + type, {
+  const { data, loading, error } = useFetch(`${API_URL}/${type}`, {
     headers: {
       "Content-Type": "application/json",
     },
