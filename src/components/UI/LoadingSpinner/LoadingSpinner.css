@@ -34,7 +34,7 @@
   text-align: center;
   padding: 20px;
   opacity: 0;
-  animation: fadeInAnimation 0.5s ease-in-out 3s forwards;
+  animation: fadeInAnimation 0.5s ease-in-out 2s forwards;
 }
 
 @keyframes fadeInAnimation {
