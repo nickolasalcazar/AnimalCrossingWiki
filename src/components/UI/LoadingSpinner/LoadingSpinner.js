@@ -11,6 +11,9 @@ export default function LoadingSpinner() {
     >
       <img src="assets/categories/furniture.png" />
       <h2>Loading...</h2>
+      <p>
+        Initial loading time may be delayed as the server needs time to wake up.
+      </p>
     </div>
   );
 }
