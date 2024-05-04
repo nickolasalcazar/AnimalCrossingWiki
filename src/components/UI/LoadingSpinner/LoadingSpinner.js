@@ -12,7 +12,8 @@ export default function LoadingSpinner() {
       <img src="assets/categories/furniture.png" />
       <h2>Loading...</h2>
       <p>
-        Initial loading time may be delayed as the server needs time to wake up.
+        The server may be asleep and needs time to awaken. Load times are
+        &lt;=30 seconds.
       </p>
     </div>
   );
