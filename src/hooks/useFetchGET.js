@@ -13,6 +13,7 @@ export default function useFetchGET(url, options) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setLoading(true);
     fetch(url, { method: "GET", ...options })
       .then((response) => {
         if (!response.ok)
