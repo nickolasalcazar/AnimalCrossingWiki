@@ -11,10 +11,7 @@ export default function LoadingSpinner() {
     >
       <img src="assets/categories/furniture.png" />
       <h2>Loading...</h2>
-      <p>
-        The server may be asleep and needs time to spin up. This may take up to
-        30 seconds.
-      </p>
+      <p>The server is asleep and needs up 1 minute to spin up...</p>
     </div>
   );
 }
